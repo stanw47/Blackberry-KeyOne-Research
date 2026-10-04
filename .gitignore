@@ -15,6 +15,12 @@ firmware/**
 # Huge generated dumps
 recon/kallsyms_full.txt
 
+# Third-party exploit payloads / binaries (analysis only; obtain from upstream)
+exploit/key2-unlock/*.bin
+exploit/key2-unlock/*.exe
+exploit/key2-unlock/*.dll
+exploit/key2-unlock/*.resources
+
 # Extracted trees
 firmware/**/target/**
 firmware/**/host/**

@@ -60,6 +60,22 @@ fastboot exploit works on the KEY2 but **not** the KEYone.
   **DEV/test loader** with `peek`/`poke` and BBRY digest placeholders — was extracted from the
   official autoloader. Promising no-desolder lever.
 
+### KEYone — unprivileged kernel vulnerability (KGSL/IOMMU) — CONFIRMED LIVE
+- **CVE-2020-11261 / CVE-2023-33107** class: `kgsl_iommu_set_svm_region()` has **no
+  SVM-range validation** (only the 8 MB global-region start/end check). The 2021/2023
+  fixes (`iommu_addr_in_svm_ranges()`) are **absent** from BlackBerry's own published
+  msm8953 kernel source (`msm8953/ABY299`), and the tested ABL766 kernel is from 2018.
+- **Reachable from unprivileged `shell`**: `/dev/kgsl-3d0` is `0666`
+  (`u:object_r:gpu_device:s0`), opens with no SELinux denial, ioctls execute.
+- **Live proof**: `tools/kgsl_bugA_poc.c` gets `IOCTL_KGSL_MAP_USER_MEM` to accept a
+  valid user page **outside** the SVM range (e.g. `0x92f800000`) — a patched kernel
+  returns `-ENOMEM`. Reproduced twice; device healthy. Also a trivial local DoS
+  (oversized length → kernel panic).
+- Not blocked by the grsecurity slab isolation that neutralises Binder/ashmem UAFs
+  (the primitive is IOMMU page-table aliasing).
+- Full writeup with reproducible steps and evidence:
+  [`docs/KEYone-kgsl-IOMMU-vulnerability.md`](docs/KEYone-kgsl-IOMMU-vulnerability.md).
+
 ### KEY2 → LineageOS
 - Full install verified: **LineageOS 22.2 (Android 15)**, kernel 4.4.302, dual-SIM working.
 - Unlock via CVE-2021-1931 (`BlackBerryBootUnlock.exe` / kibo), ACQ160 base flashed twice.

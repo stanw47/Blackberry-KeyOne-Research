@@ -1,0 +1,7 @@
+﻿adb.exe : ls: /dev/block/bootdevice/by-name/: Permission denied
+At line:1 char:268
++ ... ").Count)"; & 'C:\platform-tools\adb.exe' shell "ls -la /dev/block/bo ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ls: /dev/block/...rmission denied:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

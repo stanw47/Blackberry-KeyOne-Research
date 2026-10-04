@@ -1,0 +1,12 @@
+﻿adb.exe : /system/bin/sh: pathtrust: not found
+At line:1 char:107
++ ... s\adb.exe'; & $adb shell 'cat /proc/kallsyms 2>/dev/null | grep -iE " ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh: pathtrust: not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+/system/bin/sh: security_: not found
+/system/bin/sh: bbsig: not found
+/system/bin/sh: bb_: not found
+/system/bin/sh: grsec: not found
+/system/bin/sh: pax: not found

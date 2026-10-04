@@ -1,0 +1,27 @@
+﻿vtnvfsd -> [/system/bin/vtnvfsd]
+vtnvfsd_wrapper -> [/system/bin/vtnvfsd_wrapper]
+bb_tokenserviced -> [/system/bin/bb_tokenserviced]
+secsvr -> [/system/bin/secsvr]
+tctd -> [/system/bin/tctd]
+dcmd -> [/system/bin/dcmd]
+StoreKeybox -> [/system/bin/StoreKeybox]
+RetainsDataSpace -> [/system/bin/RetainsDataSpace]
+bkup_bc_update -> [/system/bin/bkup_bc_update]
+powerup_reason -> [/system/bin/powerup_reason]
+reset_cause -> [/system/bin/reset_cause]
+bbauthtoold -> [/system/bin/bbauthtoold]
+ATFWD-daemon -> [/system/bin/ATFWD-daemon]
+mfgUtil -> [/system/bin/mfgUtil]
+bcc -> [/system/bin/bcc]
+bdt -> [/system/bin/bdt]
+bb_func -> [/system/bin/bb_func]
+===PATHSCAN===
+-- /system/bin
+-rwxr-xr-x  1 root shell  26728 2018-11-21 17:08 mfgUtil
+-- /system/xbin
+-- /system/vendor/bin
+-- /vendor/bin
+-- /sbin
+-- /system/libexec
+===WHICH===
+===DONE===

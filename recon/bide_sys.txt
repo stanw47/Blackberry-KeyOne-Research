@@ -1,0 +1,16 @@
+﻿ls: /sys/kernel/security/: Permission denied
+===BIDE===
+/sys/devices/virtual/bide
+/sys/devices/virtual/bide/bide
+/sys/class/bide
+===DEV===
+adb.exe : /system/bin/sh: bb: not found
+At line:1 char:107
++ ... s\adb.exe'; & $adb shell 'ls -la /sys/kernel/security/ 2>&1; echo === ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh: bb: not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+/system/bin/sh: sec: not found
+/system/bin/sh: tct: not found
+/system/bin/sh: tokn: not found

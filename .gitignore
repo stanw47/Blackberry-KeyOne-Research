@@ -1,0 +1,36 @@
+# Firmware blobs and extracted autoloaders (large, not redistributed)
+firmware/**
+!firmware/.gitkeep
+
+# Large firmware archives / dumps / images
+*.rar
+*.7z
+*.zip
+*.exe
+*.img
+*.mbn
+*.elf
+*.xml
+
+# Huge generated dumps
+recon/kallsyms_full.txt
+
+# Extracted trees
+firmware/**/target/**
+firmware/**/host/**
+
+# Downloads / temp
+*.megatmp*
+*.log
+
+# Keys and secrets
+id_rsa
+id_rsa.pub
+*.pem
+*.key
+*credentials*
+
+# OS junk
+Thumbs.db
+desktop.ini
+.DS_Store

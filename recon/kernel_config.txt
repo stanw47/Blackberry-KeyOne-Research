@@ -1,0 +1,7 @@
+﻿adb.exe : /system/bin/sh: zcat: not found
+At line:1 char:107
++ ... form-tools\adb.exe'; & $adb shell 'zcat /proc/config.gz' 2>&1 | Out-F ...
++                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh: zcat: not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

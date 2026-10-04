@@ -1,0 +1,7 @@
+﻿adb.exe : adb.exe: no devices/emulators found
+At line:1 char:181
++ ... state ==="; & $adb shell 'getprop ro.boot.binfo.bbss_wp_type; getprop ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (adb.exe: no devices/emulators found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

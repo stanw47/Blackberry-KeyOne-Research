@@ -1,0 +1,9 @@
+﻿/system/bin/sh: su: not found
+===TRY_SU===
+adb.exe : /system/bin/sh: busybox: not found
+At line:1 char:107
++ ... s\adb.exe'; & $adb shell 'su -c id 2>&1; echo ===TRY_SU===; which su  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh: busybox: not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

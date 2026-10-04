@@ -1,0 +1,553 @@
+﻿========================================================================
+FILE: libsecureservice.so  (38904 bytes)
+  type=FILE_TYPE.DYN  machine=ARCH.AARCH64  entrypoint=0x0
+  exported funcs (84):
+    __android_log_print
+    __cxa_atexit
+    __cxa_finalize
+    __register_atfork
+    __stack_chk_fail
+    __strlen_chk
+    calloc
+    free
+    malloc
+    memcpy
+    memset
+    property_get
+    pthread_mutex_lock
+    pthread_mutex_unlock
+    qseecomapi_open
+    ss_attestation_verify_data
+    ss_bide_add_section
+    ss_bide_generate_keypair
+    ss_bide_generate_nonce
+    ss_bide_sign_data
+    ss_bide_storage_build_to_number
+    ss_bide_storage_number_to_build
+    ss_bide_storage_read
+    ss_bide_storage_update_sensor
+    ss_bide_storage_wipe
+    ss_bsis_gen_ecdh_bsis_priv_key
+    ss_bsis_gen_pub_priv_key
+    ss_bsis_sign_with_bsis_priv_key
+    ss_bsis_validate_pub_priv_key
+    ss_disable_hw_access
+    ss_drm_hdcp2_decrypt_key
+    ss_drm_wv_decrypt_keybox
+    ss_get_rand
+    ss_get_version
+    ss_hdcp2x_L_hash_failed
+    ss_hdcp2x_calc_L_hash
+    ss_hdcp2x_calc_V_hash
+    ss_hdcp2x_calc_k_d
+    ss_hdcp2x_calc_verify_H_hash
+    ss_hdcp2x_calc_verify_M_hash
+    ss_hdcp2x_copy_k_s
+    ss_hdcp2x_encrypt_k_s
+    ss_hdcp2x_export_half_lsb_L_hash
+    ss_hdcp2x_export_half_lsb_V_hash
+    ss_hdcp2x_gen_k_s
+    ss_hdcp2x_get_max_sessions
+    ss_hdcp2x_load_lc128
+    ss_hdcp2x_pairing_export_k_m
+    ss_hdcp2x_pairing_import_k_m
+    ss_hdcp2x_pes_enc
+    ss_hdcp2x_reset_session
+    ss_hdcp2x_rsa_encrypt_k_m
+    ss_hdcp2x_update_pes_key
+    ss_hdcp2x_verify_L_hash
+    ss_hdcp2x_verify_V_hash
+    ss_hmac
+    ss_is_oem_secured_proc
+    ss_is_secure_proc_bound
+    ss_memset_s
+    ss_password_calc_hash_with_entropy
+    ss_password_encrypt
+    ss_pk_global_get_max_instances
+    ss_pk_global_get_user_id
+    ss_pk_user_delete
+    ss_pk_user_enroll
+    ss_pk_user_get_attempt_count
+    ss_pk_user_masterpass_export
+    ss_pk_user_recovery_get_uidrs
+    ss_pk_user_recovery_key_create
+    ss_pk_user_recovery_key_extract
+    ss_pk_user_recovery_remove_uidr
+    ss_read_proc_id
+    ss_rpmb_get_block_count
+    ss_rpmb_read_block
+    ss_rpmb_write_block
+    ss_set_lk_milestone
+    ss_user_key_blacklist_diversifier
+    ss_user_key_derive
+    ss_verify_integrity
+    strncmp
+    strstr
+    tz_app_init
+    tz_call
+    tz_wv_app_init
+  NEEDED: libc++.so, libc.so, libcutils.so, libdl.so, liblog.so, libm.so, libqseecomimport.so
+  interesting strings:
+    libsecureservice.so
+    pthread_mutex_unlock
+    ss_is_oem_secured_proc
+    ss_is_secure_proc_bound
+    ss_bide_add_section
+    ss_bide_generate_keypair
+    ss_bide_generate_nonce
+    ss_bide_sign_data
+    ss_bide_storage_build_to_number
+    ss_bide_storage_number_to_build
+    ss_bide_storage_read
+    ss_bide_storage_update_sensor
+    ss_bide_storage_wipe
+    secure_service
+    ro.boot.binfo.bbss_insecure
+    %d: Device is insecure, command not allowed
+    %d: OEM secured: %s
+    %d: pthread_mutex_unlock failed: %d
+
+========================================================================
+FILE: libbidejni.so  (14280 bytes)
+  type=FILE_TYPE.DYN  machine=ARCH.AARCH64  entrypoint=0x0
+  exported funcs (26):
+    Java_com_blackberry_bide_BideKernelInterface_createAndSignBIDEReport
+    Java_com_blackberry_bide_BideKernelInterface_firstBootCheck
+    Java_com_blackberry_bide_BideKernelInterface_forceScan
+    Java_com_blackberry_bide_BideKernelInterface_generateP10Request
+    Java_com_blackberry_bide_BideKernelInterface_initialize
+    Java_com_blackberry_bide_BideKernelInterface_takeStartupSnapShot
+    __android_log_print
+    __cxa_atexit
+    __cxa_finalize
+    __errno
+    __register_atfork
+    __stack_chk_fail
+    close
+    free
+    ioctl
+    malloc
+    memcmp
+    memcpy
+    memset
+    open
+    property_get
+    sem_init
+    sem_post
+    sem_wait
+    strerror
+    token_service_is_token_present
+  NEEDED: libbb_tokenservice.so, libc++.so, libc.so, libcutils.so, libdl.so, liblog.so, libm.so, libnativehelper.so, libutils.so
+  interesting strings:
+    libbidejni.so
+    Java_com_blackberry_bide_BideKernelInterface_createAndSignBIDEReport
+    Java_com_blackberry_bide_BideKernelInterface_firstBootCheck
+    Java_com_blackberry_bide_BideKernelInterface_forceScan
+    Java_com_blackberry_bide_BideKernelInterface_generateP10Request
+    Java_com_blackberry_bide_BideKernelInterface_initialize
+    Java_com_blackberry_bide_BideKernelInterface_takeStartupSnapShot
+    token_service_is_token_present
+    libbb_tokenservice.so
+    [BIDE NATIVE]
+    [%s][%d] JBIDE started multiple times! Reset nonce.
+    sendBideDdtJBideRestartEvent
+    [%s][%d] First start of JBIDE.
+    [%s][%d] Bide ioctl returned ok.
+    setKBideReport
+    [%s][%d] Couldn't find setKBideReport(String).
+    setTZBideReport
+    [%s][%d] Couldn't find setTZBideReport(String).
+    setTZSignature
+    [%s][%d] Couldn't find setTZSignature(byte[]).
+    [%s][%d] Sending bide ioctl. cmd=%d
+    send_bide_ioctl
+    /dev/bide
+    [%s][%d] Error returned from bide kernel: %d
+    [%s][%d] Token Service not yet available at BID snapshot.
+
+========================================================================
+FILE: libbbauthtool.so  (14280 bytes)
+  type=FILE_TYPE.DYN  machine=ARCH.AARCH64  entrypoint=0x0
+  exported funcs (25):
+    __android_log_vprint
+    __cxa_atexit
+    __cxa_finalize
+    __errno
+    __read_chk
+    __register_atfork
+    __stack_chk_fail
+    __strcpy_chk
+    __write_chk
+    android_log
+    auth_password
+    auth_rtas_has_permission
+    auth_rtas_init
+    auth_rtas_sign_record
+    bbauthtool_cs_enter
+    bbauthtool_cs_exit
+    bbauthtool_event_signal
+    bbauthtool_event_wait
+    bbauthtool_sock_client_register
+    bbauthtool_sock_client_send
+    close
+    memcpy
+    memset
+    socket_local_client
+    strncpy
+  NEEDED: libc++.so, libc.so, libdl.so, liblog.so, libm.so
+  interesting strings:
+    libbbauthtool.so
+    auth_password
+    auth_rtas_has_permission
+    auth_rtas_init
+    auth_rtas_sign_record
+    bbauthtool_cs_enter
+    bbauthtool_cs_exit
+    bbauthtool_event_signal
+    bbauthtool_event_wait
+    bbauthtool_sock_client_register
+    bbauthtool_sock_client_send
+    bbauthtool
+
+========================================================================
+FILE: libbb_tokenservice.so  (10120 bytes)
+  type=FILE_TYPE.DYN  machine=ARCH.AARCH64  entrypoint=0x0
+  exported funcs (18):
+    __android_log_print
+    __cxa_atexit
+    __cxa_finalize
+    __errno
+    __read_chk
+    __register_atfork
+    __stack_chk_fail
+    __strlcpy_chk
+    __strlen_chk
+    __write_chk
+    atoi
+    close
+    connect
+    memcpy
+    memset
+    socket
+    token_service_get_token_payload
+    token_service_is_token_present
+  NEEDED: libc++.so, libc.so, libcutils.so, libdl.so, liblog.so, libm.so
+  interesting strings:
+    libbb_tokenservice.so
+    token_service_get_token_payload
+    token_service_is_token_present
+    libbb_tokenservice
+    TokenClient: token name is too long
+    Could not connect to token service
+    Could not write token name to token_service: write() returned: %d, expected: %u, errno: %d
+    Could not read payload from token_service: read() returned: %d, expected: %u, errno: %d
+    /dev/socket/tokenservice
+    TokenClient: socket name is too long
+    TokenClient: could not connect to socket: errno: %d
+
+========================================================================
+FILE: libbbry_vs.so  (63664 bytes)
+  type=FILE_TYPE.DYN  machine=ARCH.AARCH64  entrypoint=0x0
+  exported funcs (150):
+    _Z16get_ds_interfacev
+    _Z28ddt_readParcelFileDescriptorRKN7android6ParcelERi
+    _Z29ddt_writeParcelFileDescriptorRN7android6ParcelEii
+    _ZN18IDiagnosticService11asInterfaceERKN7android2spINS0_7IBinderEEE
+    _ZN18IDiagnosticServiceC2Ev
+    _ZN18IDiagnosticServiceD0Ev
+    _ZN18IDiagnosticServiceD1Ev
+    _ZN18IDiagnosticServiceD2Ev
+    _ZN19BpDiagnosticService10append_logEl5log_tPKc
+    _ZN19BpDiagnosticService11get_sysvarsEv
+    _ZN19BpDiagnosticService18diagnosticsEnabledEv
+    _ZN19BpDiagnosticService4openElPKcS1_
+    _ZN19BpDiagnosticService4sendEiiiiiPKcS1_
+    _ZN19BpDiagnosticService5adminEPKc
+    _ZN19BpDiagnosticService6appendElPKc
+    _ZN19BpDiagnosticService8get_guidEl
+    _ZN19BpDiagnosticService9send_fileEliPKcl
+    _ZN19BpDiagnosticServiceC1ERKN7android2spINS0_7IBinderEEE
+    _ZN19BpDiagnosticServiceC2ERKN7android2spINS0_7IBinderEEE
+    _ZN19BpDiagnosticServiceD0Ev
+    _ZN19BpDiagnosticServiceD1Ev
+    _ZN19BpDiagnosticServiceD2Ev
+    _ZN7android10IInterfaceC2Ev
+    _ZN7android10IInterfaceD0Ev
+    _ZN7android10IInterfaceD1Ev
+    _ZN7android10IInterfaceD2Ev
+    _ZN7android21defaultServiceManagerEv
+    _ZN7android2spI18IDiagnosticServiceED2Ev
+    _ZN7android6Parcel10writeInt32Ei
+    _ZN7android6Parcel10writeInt64El
+    _ZN7android6Parcel13writeString16ERKNS_8String16E
+    _ZN7android6Parcel19writeInterfaceTokenERKNS_8String16E
+    _ZN7android6Parcel22writeDupFileDescriptorEi
+    _ZN7android6ParcelC1Ev
+    _ZN7android6ParcelD1Ev
+    _ZN7android7RefBase10onFirstRefEv
+    _ZN7android7RefBase13onLastWeakRefEPKv
+    _ZN7android7RefBase15onLastStrongRefEPKv
+    _ZN7android7RefBase20onIncStrongAttemptedEjPKv
+    _ZN7android7RefBaseC2Ev
+    _ZN7android7RefBaseD2Ev
+    _ZN7android8String16C1EPKc
+    _ZN7android8String16D1Ev
+    _ZN7android9BpRefBase10onFirstRefEv
+    _ZN7android9BpRefBase15onLastStrongRefEPKv
+    _ZN7android9BpRefBase20onIncStrongAttemptedEjPKv
+    _ZN7android9BpRefBaseC2ERKNS_2spINS_7IBinderEEE
+    _ZN7android9BpRefBaseD0Ev
+    _ZN7android9BpRefBaseD1Ev
+    _ZN7android9BpRefBaseD2Ev
+    _ZNK18IDiagnosticService22getInterfaceDescriptorEv
+    _ZNK7android6Parcel11readCStringEv
+    _ZNK7android6Parcel17readExceptionCodeEv
+    _ZNK7android6Parcel18readFileDescriptorEv
+    _ZNK7android6Parcel9readInt32EPi
+    _ZNK7android6Parcel9readInt32Ev
+    _ZNK7android6Parcel9readInt64EPl
+    _ZNK7android7RefBase9decStrongEPKv
+    _ZNK7android7RefBase9incStrongEPKv
+    _ZThn8_N19BpDiagnosticServiceD0Ev
+    _ZThn8_N19BpDiagnosticServiceD1Ev
+    _ZTv0_n24_N18IDiagnosticServiceD0Ev
+    _ZTv0_n24_N18IDiagnosticServiceD1Ev
+    _ZTv0_n24_N19BpDiagnosticServiceD0Ev
+    _ZTv0_n24_N19BpDiagnosticServiceD1Ev
+    _ZTv0_n24_N7android10IInterfaceD0Ev
+    _ZTv0_n24_N7android10IInterfaceD1Ev
+    _ZTv0_n24_N7android9BpRefBaseD0Ev
+    _ZTv0_n24_N7android9BpRefBaseD1Ev
+    _ZTv0_n32_N7android9BpRefBase10onFirstRefEv
+    _ZTv0_n40_N7android9BpRefBase15onLastStrongRefEPKv
+    _ZTv0_n48_N7android9BpRefBase20onIncStrongAttemptedEjPKv
+    _ZdlPv
+    _Znwm
+    __android_log_buf_print
+    __android_log_print
+    __cxa_atexit
+    __cxa_finalize
+    __cxa_pure_virtual
+    __register_atfork
+    __snprintf_chk
+    __stack_chk_fail
+    __strlcpy_chk
+    __strlen_chk
+    __strncpy_chk
+    bbry_efs_force_sync_util
+    bbry_escr_qmi_get_csfb_delay_rau
+    bbry_escr_qmi_set_csfb_delay_rau
+    bbry_ims_qct_metrics_ims_config
+    bbry_qmi_get_sense_ic_meas
+    bbry_qmi_set_enhanced_roaming_acqdb_scan
+    bbry_qmi_set_tuner_dacs
+    bbry_reset_modem_no_efs_sync_util
+    bbry_reset_modem_util
+    bbry_svc_initialize
+    bbry_svc_uninitialize
+    bbry_tuner_set_uc
+    bbry_vendor_specific_get_qmi_handle
+    bbry_vs_qmi_get_power_profile
+    bbry_vs_qmi_register_callback
+    bbry_vs_qmi_register_callback_init
+    bbry_vs_qmi_set_power_profile
+    clock_gettime
+    ddt_append
+    ddt_append_log
+    ddt_diagnosticsEnabled
+    ddt_open
+    ddt_send
+    ddt_send_file
+    ddt_set_status_listener
+    dup
+    free
+    gettimeofday
+    malloc
+    memcpy
+    memset
+    pthread_cond_init
+    pthread_cond_timedwait
+    pthread_cond_wait
+    pthread_condattr_init
+    pthread_condattr_setclock
+    pthread_create
+    pthread_detach
+    pthread_mutex_init
+    pthread_mutex_lock
+    pthread_mutex_unlock
+    pthread_setname_np
+    qmi_client_get_service_list
+    qmi_client_init
+    qmi_client_message_decode
+    qmi_client_notifier_init
+    qmi_client_register_error_cb
+    qmi_client_release
+    qmi_client_send_msg_sync
+    qmi_idl_get_message_c_struct_len
+    qmi_vs_bbry_service_get_service_object_internal_v01
+    radionv_qct_efs_delete
+    radionv_qct_get_efs_file_size
+    radionv_qct_read_efs_e_nv_item
+    radionv_qct_read_efs_large_nv_item
+    radionv_qct_read_efs_nv_item
+    radionv_qct_readnv_item
+    radionv_qct_readnv_per_subs_item
+    radionv_qct_write_efs_e_nv_item
+    radionv_qct_write_efs_large_nv_item
+    radionv_qct_write_efs_nv_item
+    radionv_qct_writenv_item
+    radionv_qct_writenv_per_subs_item
+    vs_qmi_ss_cb
+    wait_for_modem
+  NEEDED: libbinder.so, libc++.so, libc.so, libcutils.so, libdl.so, liblog.so, libm.so, libqmi_cci.so, libqmi_client_qmux.so, libqmi_encdec.so, libutils.so
+  interesting strings:
+    libbbry_vs.so
+    bbry_efs_force_sync_util
+    bbry_escr_qmi_get_csfb_delay_rau
+    bbry_escr_qmi_set_csfb_delay_rau
+    bbry_ims_qct_metrics_ims_config
+    bbry_qmi_get_sense_ic_meas
+    bbry_qmi_set_enhanced_roaming_acqdb_scan
+    bbry_qmi_set_tuner_dacs
+    bbry_reset_modem_no_efs_sync_util
+    bbry_reset_modem_util
+    bbry_svc_initialize
+    bbry_svc_uninitialize
+    bbry_tuner_set_uc
+    bbry_vendor_specific_get_qmi_handle
+    bbry_vs_qmi_get_power_profile
+    bbry_vs_qmi_register_callback
+    bbry_vs_qmi_register_callback_init
+    bbry_vs_qmi_set_power_profile
+    pthread_mutex_unlock
+    qmi_vs_bbry_service_get_service_object_internal_v01
+    qmi_vs_bbry_service_qmi_idl_service_object_v01
+    _ZN7android6Parcel19writeInterfaceTokenERKNS_8String16E
+    BBRY_RADIO
+    received QMI_VS_BBRY_GSM_CIPHER_INFO_V01 from MP with cipher info =%d
+    received QMI_VS_BBRY_METRIC_IMS_%s_V01 from MP
+    received QMI_VS_BBRY_CALL_STATE_INFO_IND_V01 from MP
+    bbry_vs: qmi_client_release(global_bbry_vs_client) failed; qmi_rc=%d
+    bbry_vs: qmi_client_release(global_bbry_vs_notifier) failed; qmi_rc=%d
+    bbry_vs: qmi_vs_bbry_service_get_service_object_v01() succeeded
+    ERROR: qmi_vs_bbry_service_get_service_object_v01() failed, verify qmi_vs_bbry_service_v01.h and .c match
+    bbry_vs: waiting for modem service to become available
+    bbry_vs: modem service available
+    bbry_vs: qmi_client_get_service_list() succeeded; num_entries=%d, num_services=%d
+    bbry_vs: qmi_client_init() succeeded
+    ERROR: qmi_client_release(global_bbry_vs_notifier) failed; qmi_rc=%d
+    bbry_vs: qmi_client_init() failed
+    bbry_vs: bbry_vendor_specific_get_qmi_handle(global_bbry_vs_client) =%p
+    ERROR bbry_vs_client null client OR nv_data_len < 0
+    bbry_vs: the nv_item_data buffer is NULL!
+    bbry_vs: requesting to read NV item=%d nam_idx(%d) nam_valid(%d)
+    bbry_vs: reading NV item success with code:%d
+    bbry_vs: qmi_response.nv_item_data_len (%d) *nv_data_len(%d)
+    ERROR: bbry_READ_NV_ITEM failed with QMI error qmi_rc=%d
+    ERROR bbry_vs_client null client 
+    bbry_vs: the nv_data_len > %d or nv_item_data is null
+    bbry_vs: requesting to write NV item=%d, nv_item_data:%d,nv_data_len:%d
+    bbry_vs: writing NV item success with code:%d
+    ERROR: bbry_WRITE_NV_ITEM failed with QMI error qmi_rc=%d
+    ERROR bbry_vs: read per sub: bbry_vs_client null client OR nv_data_len < 0
+    bbry_vs: read per sub: the nv_item_data buffer is NULL!
+    bbry_vs: requesting to read NV per sub item=%d context_id(%d) context_id_valid(%d)
+    bbry_vs: reading NV per sub item success with code:%d
+    bbry_vs: nv_read per sub qmi_response.nv_item_data_len (%d) *nv_data_len(%d)
+    ERROR: bbry_READ_NV_ITEM per sub failed with QMI error qmi_rc=%d
+    ERROR nv write per sub: bbry_vs_client null client 
+    bbry_vs: nv write per sub: the nv_data_len > %d or nv_item_data is null
+    bbry_vs: nv write per sub: api only allowed for context_id >= 2
+    bbry_vs: requesting to write NV per sub item=%d, nv_item_data:%d,nv_data_len:%d, context_id(%d)
+    bbry_vs: writing NV per sub item success with code:%d
+    ERROR: bbry_WRITE_NV_ITEM per sub failed with QMI error qmi_rc=%d
+    bbry_vs: reading EFS NV success, qmi_response.result(%d), data_len(%d)
+    bbry_vs: writing EFS NV FAILED, qmi_response.result(%d)
+    bbry_vs: writing EFS NV success, qmi_response.result(%d)
+    bbry_vs: radionv_qct_efs_delete success, qmi_response.result(%d)
+    bbry_vs: requesting to read EFS NV = %s
+    bbry_vs: requesting to write EFS NV = %s, data_len : %d
+    bbry_efs_force_sync_util(): requesting to FORCE SYNC ALL
+    bbry_efs_force_sync_util(): QMI successful!
+    bbry_efs_force_sync_util(): EFS Force Sync Successful!
+    bbry_efs_force_sync_util(): EFS Force Sync Failed!
+    bbry_efs_force_sync_util(): QMI Failed! rc = %d
+    NULL bbry_vs_client QMI handle
+    bbry_reset_modem_util(): requesting to modem reset
+    bbry_reset_modem_util(): modem reset Successful!
+    bbry_reset_modem_util(): modem reset Failed!
+    bbry_reset_modem_util(): QMI Failed! rc = %d
+    bbry_reset_modem_no_efs_sync_util(): requesting to modem reset
+    bbry_reset_modem_no_efs_sync_util(): modem reset Successful!
+    bbry_reset_modem_no_efs_sync_util(): modem reset Failed!
+    bbry_reset_modem_no_efs_sync_util(): QMI Failed! rc = %d
+    bbry_qmi_set_tuner_dacs: _dac_length=%d
+    bbry_qmi_set_tuner_dacs failure (result=%d)
+    bbry_qmi_set_tuner_dacs:QMI error %d
+    bbry_qmi_get_sense_ic_meas failure (result=%d)
+    bbry_qmi_get_sense_ic_meas:QMI error %d
+    bbry_ant_tuner_uc =%d
+    bbrytuner: bbry_tuner_set_state success with code:%d
+    bbrytuner: bbry_tuner_set_state failed cause: %d
+    bbrytuner: bbry_tuner_set_state failed with QMI error qmi_rc=%d
+    ERROR bbry_vs_client null client
+    bbry_vs: requesting to %s IMS metrics collection
+    bbry_vs: IMS metrics collection config success
+    QMI_BBRY_SET_POWER_PROFILE_REQ_V01 success
+    QMI_BBRY_SET_POWER_PROFILE_REQ_V01 failed (qmi_resp=%d)
+    QMI_BBRY_SET_POWER_PROFILE_REQ_V01 failed (qmi_rc=%d)
+    QMI_BBRY_GET_POWER_PROFILE_REQ_V01 success (profile=%d)
+    QMI_BBRY_GET_POWER_PROFILE_REQ_V01 failed (qmi_resp=%d)
+    QMI_BBRY_GET_POWER_PROFILE_REQ_V01 failed (qmi_rc=%d)
+    bbry_qmi_set_enhanced_roaming_acqdb_scan, setState=%d
+    bbry_qmi_set_enhanced_roaming_acqdb_scan: done successfully
+    bbry_qmi_set_enhanced_roaming_acqdb_scan:escreens failure (result=%d)
+    bbry_qmi_set_enhanced_roaming_acqdb_scan:QMI error %d
+    BBRY  VS QMI Cb already registered ind: %d 
+    BBRY   VS QMI Cb registering bbry_vs_qmi_msg_type: %d
+    BBRY   VS QMI Cb cannot register NULL callback
+    BBRY   VS QMI Msg:%d is not supported as a callback
+    bbry_vs_qmi_notify_callbacks entered, msg_type = %d
+    bbry_vs_qmi_notify_callbacks trigger gsm_cipher call back
+    bbry_vs_qmi_notify_callbacks trigger gsm_cipher call back func is NULL
+    bbry_vs_qmi_notify_callbacks trigger IMS metric call back
+    bbry_vs_qmi_notify_callbacks trigger IMS metric call back func is NULL
+    bbry_vs_qmi_notify_callbacks trigger call state info call back
+    bbry_vs_qmi_notify_callbacks trigger call state info call back func is NULL
+    com.blackberry.ddt.IDiagnosticService
+
+========================================================================
+FILE: libbbusb.so  (10192 bytes)
+  type=FILE_TYPE.DYN  machine=ARCH.AARCH64  entrypoint=0x0
+  exported funcs (27):
+    __cxa_atexit
+    __cxa_finalize
+    __errno
+    __poll_chk
+    __read_chk
+    __recvfrom_chk
+    __register_atfork
+    __stack_chk_fail
+    __strlen_chk
+    __write_chk
+    bbusb_is_offline
+    bbusb_is_online
+    bbusb_receive
+    bbusb_send
+    bbusb_wait_for_offline
+    bbusb_wait_for_online
+    bind
+    close
+    getpid
+    open
+    printf
+    setsockopt
+    socket
+    strcmp
+    strerror
+    strncmp
+    wait_for_uevent
+  NEEDED: libc++.so, libc.so, libdl.so, libm.so
+  interesting strings:
+    /dev/usb_blackberry
+

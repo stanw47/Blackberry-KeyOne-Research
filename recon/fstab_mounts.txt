@@ -1,0 +1,39 @@
+﻿===FSTAB_QC===
+/system/bin/sh: cat: /fstab.qcom: Permission denied
+===FSTAB===
+/system/bin/sh: cat: /fstab: No such file or directory
+===MOUNTS===
+rootfs / rootfs ro,seclabel,trusted,size=1259032k,nr_inodes=314758 0 0
+tmpfs /dev tmpfs rw,seclabel,nosuid,relatime,size=1442672k,nr_inodes=360668,mode=755 0 0
+devpts /dev/pts devpts rw,seclabel,relatime,mode=600 0 0
+proc /proc proc rw,relatime,gid=3009,hidepid=2 0 0
+sysfs /sys sysfs rw,seclabel,relatime 0 0
+securityfs /sys/kernel/security securityfs rw,relatime 0 0
+selinuxfs /sys/fs/selinux selinuxfs rw,relatime 0 0
+debugfs /sys/kernel/debug debugfs rw,seclabel,relatime 0 0
+none /acct cgroup rw,relatime,cpuacct 0 0
+/dev/block/mmcblk0p34 /cache ext4 rw,seclabel,nosuid,nodev,relatime,data=ordered 0 0
+tmpfs /mnt tmpfs rw,seclabel,relatime,size=1442672k,nr_inodes=360668,mode=755,gid=1000 0 0
+none /config configfs rw,relatime 0 0
+none /dev/cpuctl cgroup rw,relatime,cpu 0 0
+pstore /sys/fs/pstore pstore rw,seclabel,relatime 0 0
+/dev/block/dm-0 /system ext4 ro,seclabel,relatime,trusted,discard,data=ordered 0 0
+/dev/block/bootdevice/by-name/cache /cache ext4 rw,seclabel,nosuid,nodev,relatime,data=ordered 0 0
+/dev/block/bootdevice/by-name/persist /persist ext4 rw,seclabel,nosuid,nodev,relatime,data=ordered 0 0
+/dev/block/bootdevice/by-name/bbpersist /bbpersist ext4 rw,seclabel,nosuid,nodev,relatime,data=ordered 0 0
+/dev/block/bootdevice/by-name/dsp /dsp ext4 ro,seclabel,nosuid,nodev,relatime,data=ordered 0 0
+/dev/block/bootdevice/by-name/modem /firmware vfat ro,context=u:object_r:firmware_file:s0,relatime,uid=1000,gid=1000,fmask=0337,dmask=0227,codepage=437,iocharset=iso8859-1,shortname=lower,errors=remount-ro 0 0
+/dev/block/bootdevice/by-name/oem /oem ext4 ro,seclabel,nosuid,nodev,relatime,data=ordered 0 0
+/dev/block/bootdevice/by-name/oempersist /oempersist ext4 rw,seclabel,nosuid,nodev,relatime,data=ordered 0 0
+adb /dev/usb-ffs/adb functionfs rw,relatime 0 0
+tmpfs /storage tmpfs rw,seclabel,relatime,size=1442672k,nr_inodes=360668,mode=755,gid=1000 0 0
+/dev/fuse /nvram/blog fuse rw,sync,context=u:object_r:vtnvfs_blog_file:s0,nosuid,nodev,noexec,noatime,nodiratime,user_id=2900,group_id=2900,default_permissions,allow_other 0 0
+/dev/fuse /nvram/boardid fuse ro,sync,context=u:object_r:vtnvfs_boardid_file:s0,nosuid,nodev,noexec,noatime,nodiratime,user_id=2900,group_id=2900,default_permissions,allow_other 0 0
+/dev/fuse /nvram/nvuser fuse rw,sync,context=u:object_r:vtnvfs_nvuser_file:s0,nosuid,nodev,noexec,noatime,nodiratime,user_id=2900,group_id=2900,default_permissions,allow_other 0 0
+/dev/fuse /nvram/perm fuse rw,sync,context=u:object_r:vtnvfs_perm_file:s0,nosuid,nodev,noexec,noatime,nodiratime,user_id=2900,group_id=2900,default_permissions,allow_other 0 0
+/dev/fuse /nvram/prdid fuse ro,sync,context=u:object_r:vtnvfs_prdid_file:s0,nosuid,nodev,noexec,noatime,nodiratime,user_id=2900,group_id=2900,default_permissions,allow_other 0 0
+/dev/block/dm-1 /data ext4 rw,seclabel,nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered 0 0
+/dev/fuse /mnt/runtime/default/emulated fuse rw,nosuid,nodev,noexec,noatime,user_id=1023,group_id=1023,default_permissions,allow_other 0 0
+/dev/fuse /storage/emulated fuse rw,nosuid,nodev,noexec,noatime,user_id=1023,group_id=1023,default_permissions,allow_other 0 0
+/dev/fuse /mnt/runtime/read/emulated fuse rw,nosuid,nodev,noexec,noatime,user_id=1023,group_id=1023,default_permissions,allow_other 0 0
+/dev/fuse /mnt/runtime/write/emulated fuse rw,nosuid,nodev,noexec,noatime,user_id=1023,group_id=1023,default_permissions,allow_other 0 0

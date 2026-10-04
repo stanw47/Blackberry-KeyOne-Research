@@ -1,0 +1,12 @@
+﻿ls: /dev/bide: Permission denied
+===DMESG_BIDE===
+adb.exe : /system/bin/sh: grsec: not found
+At line:1 char:107
++ ... s\adb.exe'; & $adb shell 'ls -la /dev/bide 2>&1; echo ===DMESG_BIDE== ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh: grsec: not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+/system/bin/sh: pax: not found
+/system/bin/sh: bbauth: not found
+/system/bin/sh: pathtrust: not found

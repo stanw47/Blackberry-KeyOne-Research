@@ -1,0 +1,19 @@
+﻿adb.exe : /system/bin/sh: token: not found
+At line:1 char:107
++ ... s\adb.exe'; & $adb shell 'ls -la /system/lib64/ 2>/dev/null | grep -i ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh: token: not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+/system/bin/sh: vtnvfs: not found
+/system/bin/sh: tct: not found
+/system/bin/sh: rim: not found
+/system/bin/sh: sec: not found
+/system/bin/sh: auth: not found
+===LIB===
+/system/bin/sh: sec: not found
+/system/bin/sh: tct: not found
+/system/bin/sh: vtnvfs: not found
+/system/bin/sh: rim: not found
+/system/bin/sh: auth: not found
+/system/bin/sh: token: not found

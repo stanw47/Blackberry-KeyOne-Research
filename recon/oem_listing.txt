@@ -1,0 +1,15 @@
+﻿total 64
+drwxr-xr-x  7 root root 4096 1970-01-01 08:00 .
+drwxrwxrwt 23 root root 1400 1970-01-01 08:00 ..
+drwxr-xr-x  3 root root 4096 1970-01-01 08:00 app
+drwxr-xr-x  2 root root 4096 1970-01-01 08:00 etc
+drwxr-xr-x  2 root root 4096 1970-01-01 08:00 lost+found
+drwxr-xr-x  5 root root 4096 1970-01-01 08:00 media
+-rw-r--r--  1 root root   76 1970-01-01 08:00 oem.prop
+-rw-r--r--  1 root root  875 1970-01-01 08:00 oem_sprint_context.txt
+drwxr-xr-x  5 root root 4096 1970-01-01 08:00 priv-app
+===OEMPROPS===
+-rw-r--r-- 1 root root 76 1970-01-01 08:00 /oem/oem.prop
+===CONFIGGZ===
+ls: /proc/config.gz: No such file or directory
+/system/bin/sh: cat: /proc/config.gz: No such file or directory

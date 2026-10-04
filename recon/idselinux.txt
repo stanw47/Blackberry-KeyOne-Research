@@ -1,0 +1,80 @@
+﻿uid=2000(shell) gid=2000(shell) groups=2000(shell),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),2908(devicepwd),2915(token_service_native_consumer),2994(mfg_client),2994(mfg_client),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats),3009(readproc) context=u:r:shell:s0
+Enforcing
+---
+adb.exe : ls: //oempersist: Permission denied
+At line:1 char:390
++ ... on\df.txt"; & 'C:\platform-tools\adb.exe' shell "id; getenforce; echo ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ls: //oempersist: Permission denied:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ls: //verity_key: Permission denied
+ls: //ueventd.rc: Permission denied
+ls: //ueventd.qcom.rc: Permission denied
+ls: //system_signature: Permission denied
+ls: //service_contexts: Permission denied
+ls: //sepolicy: Permission denied
+ls: //selinux_version: Permission denied
+ls: //seapp_contexts: Permission denied
+ls: //pathtrust_contexts: Permission denied
+ls: //init.zygote64_32.rc: Permission denied
+ls: //init.zygote32.rc: Permission denied
+ls: //init.usb.rc: Permission denied
+total 152
+ls: //init.usb.configfs.rc: Permission denied
+ls: //init.target.usb.sh: Permission denied
+ls: //init.target.usb.rc: Permission denied
+ls: //init.target.rc: Permission denied
+ls: //init.target.ext.usb.rc: Permission denied
+ls: //init.rc: Permission denied
+ls: //init.qcom.syspart_fixup.sh: Permission denied
+ls: //init.qcom.sh: Permission denied
+ls: //init.qcom.sensors.sh: Permission denied
+ls: //init.qcom.rc: Permission denied
+ls: //init.qcom.factory.rc: Permission denied
+ls: //init.qcom.early_boot.sh: Permission denied
+ls: //init.qcom.class_core.sh: Permission denied
+ls: //init.oem.rc: Permission denied
+ls: //init.metrics.rc: Permission denied
+ls: //init.mdm.sh: Permission denied
+ls: //init.factory.sfi.rc: Permission denied
+ls: //init.environ.rc: Permission denied
+ls: //init.class_main.sh: Permission denied
+ls: //init: Permission denied
+ls: //fstab.bbry.sfi: Permission denied
+ls: //file_contexts.bin: Permission denied
+ls: //default.prop: Permission denied
+ls: //boot.ver: Permission denied
+ls: //addon_verity_key: Permission denied
+drwxrwxrwt  23 root   root    1400 1970-01-04 10:42 .
+drwxrwxrwt  23 root   root    1400 1970-01-04 10:42 ..
+dr-xr-xr-x  73 root   root       0 1970-01-04 10:42 acct
+drwxrwx--x   7 root   system  4096 1970-01-25 05:59 bbpersist
+drwxr-xr-x   2 root   root      40 1970-01-01 08:00 bt_firmware
+lrwxrwxrwx   1 root   root      50 1970-01-01 08:00 bugreports -> /data/user_de/0/com.android.shell/files/bugreports
+drwxrwx---   6 system cache   4096 1970-01-04 10:42 cache
+lrwxrwxrwx   1 root   root      19 1970-01-01 08:00 carrier -> /oempersist/carrier
+lrwxrwxrwx   1 root   root      13 1970-01-01 08:00 charger -> /sbin/healthd
+drwxr-xr-x   2 root   root       0 1970-01-04 10:42 config
+lrwxrwxrwx   1 root   root      17 1970-01-01 08:00 d -> /sys/kernel/debug
+drwxrwx--x  52 system system  4096 2016-12-29 09:43 data
+drwxr-xr-x  16 root   root    3700 2016-12-29 09:43 dev
+drwxr-xr-x   3 root   root    4096 1970-01-01 08:00 dsp
+lrwxrwxrwx   1 root   root      11 1970-01-01 08:00 etc -> /system/etc
+dr-xr-x---   4 system system 16384 1970-01-01 08:00 firmware
+lrwxrwxrwx   1 root   root      14 1970-01-01 08:00 fstab.qcom -> fstab.bbry.sfi
+drwxr-xr-x  10 root   system   220 1970-01-04 10:42 mnt
+drwxrwxr-x   7 root   root     140 1970-01-04 10:42 nvram
+drwxr-xr-x   7 root   root    4096 1970-01-01 08:00 oem
+drwxrwx--x  19 root   system  4096 1970-01-25 05:42 persist
+dr-xr-xr-x 556 root   root       0 1970-01-01 08:00 proc
+-rw-r--r--   1 root   root   15248 1970-01-01 08:00 property_contexts
+drwxr-xr-x   3 root   root      60 1970-01-01 08:00 res
+drwx------   2 root   root      40 2018-11-21 16:50 root
+drwxr-x---   2 root   root     180 1970-01-01 08:00 sbin
+lrwxrwxrwx   1 root   root      21 1970-01-01 08:00 sdcard -> /storage/self/primary
+drwxr-xr-x   4 root   root      80 2016-12-29 09:44 storage
+dr-xr-xr-x  15 root   root       0 1970-01-04 10:42 sys
+drwxr-xr-x  20 root   root    4096 1970-01-01 08:00 system
+lrwxrwxrwx   1 root   root      16 1970-01-04 10:42 tombstones -> /data/tombstones
+lrwxrwxrwx   1 root   root      14 1970-01-01 08:00 vendor -> /system/vendor

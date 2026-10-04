@@ -1,0 +1,111 @@
+﻿Processor	: AArch64 Processor rev 4 (aarch64)
+processor	: 0
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 1
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 2
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 3
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 4
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 5
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 6
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 7
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+Hardware	: Qualcomm Technologies, Inc MSM8953
+===MEM===
+MemTotal:        2926300 kB
+MemFree:           45652 kB
+MemAvailable:    1584268 kB
+Buffers:           21988 kB
+Cached:          1559756 kB
+SwapCached:         7268 kB
+Active:          1294640 kB
+Inactive:        1153808 kB
+Active(anon):     691668 kB
+Inactive(anon):   182968 kB
+Active(file):     602972 kB
+Inactive(file):   970840 kB
+Unevictable:         424 kB
+Mlocked:             424 kB
+SwapTotal:        524284 kB
+SwapFree:         492948 kB
+Dirty:               528 kB
+Writeback:             0 kB
+AnonPages:        867244 kB
+Mapped:           668324 kB
+Shmem:              7880 kB
+Slab:             146060 kB
+SReclaimable:      42264 kB
+SUnreclaim:       103796 kB
+KernelStack:       35088 kB
+PageTables:        51916 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     1987432 kB
+Committed_AS:   107572976 kB
+VmallocTotal:   258998208 kB
+VmallocUsed:      146896 kB
+VmallocChunk:   258714628 kB
+===IOMEM===
+/system/bin/sh: cat: /proc/iomem: Permission denied

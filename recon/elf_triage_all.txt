@@ -1,0 +1,242 @@
+﻿========================================================================
+FILE: RetainsDataSpace  (142 bytes)
+  interesting strings:
+
+========================================================================
+FILE: StoreKeybox  (132 bytes)
+  interesting strings:
+
+========================================================================
+FILE: bb_func  (140 bytes)
+  interesting strings:
+
+========================================================================
+FILE: bb_tokenserviced  (142 bytes)
+  interesting strings:
+
+========================================================================
+FILE: bbauthtoold  (132 bytes)
+  interesting strings:
+
+========================================================================
+FILE: bcc  (94930 bytes)
+  interesting strings:
+
+========================================================================
+FILE: bdt  (44678 bytes)
+  interesting strings:
+
+========================================================================
+FILE: bkup_bc_update  (138 bytes)
+  interesting strings:
+
+========================================================================
+FILE: dcmd  (118 bytes)
+  interesting strings:
+
+========================================================================
+FILE: libbb-nfc-nci-nxp.so  (56088 bytes)
+  type=FILE_TYPE.DYN  machine=ARCH.AARCH64  entrypoint=0x0
+  exported funcs (186):
+    NFA_Enable
+    _Z10ndef_parsePKhPmP13ndef_record_t
+    _Z11PostBBEventN5bbnfc5EventEPv
+    _Z12ndef_msg_genPK10ndef_msg_thPhS2_
+    _Z13InitNFAThunksv
+    _Z14NfaCtrlNfaInitPFvhP18tNFA_DM_CBACK_DATAEPFvhP18tNFA_CONN_EVT_DATAEb
+    _Z15ndef_msg_lengthPK10ndef_msg_th
+    _Z16NfaCtrlNfaDeinitb
+    _Z16Stack_DetectCardj
+    _Z16Stack_DetectUiccv
+    _Z16Stack_ReadTagRawPjPhj
+    _Z16Stack_getNfcInfoRN5bbnfc15StringPairStoreEb
+    _Z17Stack_WriteTagRawjPhj
+    _Z18Stack_ContinuousRFPKiib
+    _Z19Stack_RunRfSelfTesthjjPj
+    _Z31Stack_CreateNFAEventHookManagerv
+    _Z8dump_hexPKviPKc
+    _Z8ndef_genv
+    _ZN11EventWaiter4waitEPP5Eventj
+    _ZN11EventWaiterC1Eih
+    _ZN11EventWaiterC2Eih
+    _ZN11EventWaiterD1Ev
+    _ZN11EventWaiterD2Ev
+    _ZN14MultiEventHook11handleEventEP5Event
+    _ZN14MultiEventHook12acquireEventEih
+    _ZN14MultiEventHook13checkCapacityEi
+    _ZN14MultiEventHook13isEventHookedEih
+    _ZN14MultiEventHook14hasCaughtEventEv
+    _ZN14MultiEventHook7getHookEihPKc
+    _ZN14MultiEventHook8getStateEih
+    _ZN14MultiEventHook8setStateEihN9EventHook5StateE
+    _ZN14MultiEventHook9hookEventEih
+    _ZN14MultiEventHook9hookEventEihN9EventHook6ActionEPFbPvP5EventES2_
+    _ZN14MultiEventHook9saveEventEP5Event
+    _ZN14MultiEventHookC1Eb
+    _ZN14MultiEventHookC2Eb
+    _ZN14MultiEventHookD0Ev
+    _ZN14MultiEventHookD1Ev
+    _ZN14MultiEventHookD2Ev
+    _ZN15SimpleEventHook11handleEventEP5Event
+    _ZN15SimpleEventHook12acquireEventEih
+    _ZN15SimpleEventHook13isEventHookedEih
+    _ZN15SimpleEventHook14hasCaughtEventEv
+    _ZN15SimpleEventHook5checkEihPKc
+    _ZN15SimpleEventHook8getStateEih
+    _ZN15SimpleEventHook8setStateEihN9EventHook5StateE
+    _ZN15SimpleEventHook9saveEventEP5Event
+    _ZN15SimpleEventHookC1Eih
+    _ZN15SimpleEventHookC1EihN9EventHook6ActionEPFbPvP5EventES2_
+    _ZN15SimpleEventHookC2Eih
+    _ZN15SimpleEventHookC2EihN9EventHook6ActionEPFbPvP5EventES2_
+    _ZN15SimpleEventHookD0Ev
+    _ZN15SimpleEventHookD1Ev
+    _ZN15SimpleEventHookD2Ev
+    _ZN16EventHookManager10removeHookEP9EventHook
+    _ZN16EventHookManager10removeHookEP9EventHookS1_
+    _ZN16EventHookManager11handleEventEP5Event
+    _ZN16EventHookManager7addHookEP9EventHook
+    _ZN16EventHookManager7cleanupEv
+    _ZN16EventHookManagerC1Ev
+    _ZN16EventHookManagerC2Ev
+    _ZN16EventHookManagerD1Ev
+    _ZN16EventHookManagerD2Ev
+    _ZN17ProximityDetector12eventHandlerEPvP5Event
+    _ZN17ProximityDetector9onTimeoutE6sigval
+    _ZN17ProximityDetectorC1Ev
+    _ZN17ProximityDetectorC2Ev
+    _ZN17ProximityDetectorD1Ev
+    _ZN17ProximityDetectorD2Ev
+    _ZN19NFAEventHookManager10DMCallbackEhP18tNFA_DM_CBACK_DATA
+    _ZN19NFAEventHookManager11GetInstanceEv
+    _ZN19NFAEventHookManager11VscCallbackEhtPh
+    _ZN19NFAEventHookManager12ConnCallbackEhP18tNFA_CONN_EVT_DATA
+    _ZN19NFAEventHookManager14VscRspCallbackEhtPh
+    _ZN19NFAEventHookManager17GetBbNfcCallbacksEPPFvhP18tNFA_DM_CBACK_DATAEPPFvhP18tNFA_CONN_EVT_DATAEPPFvhtPhE
+    _ZN19NFAEventHookManager17RegisterCallbacksEPFvhP18tNFA_DM_CBACK_DATAEPFvhP18tNFA_CONN_EVT_DATAE
+    _ZN19NFAEventHookManager7forwardEP5Event
+    _ZN19NFAEventHookManagerC1Ev
+    _ZN19NFAEventHookManagerC2Ev
+    _ZN5bbnfc10getNfcInfoERNS_15StringPairStoreEb
+    _ZN5bbnfc12continuousRFEPKiib
+    _ZN5bbnfc14testDetectCardEj
+    _ZN5bbnfc14testDetectUiccEv
+    _ZN5bbnfc14testReadTagRawEPjPhj
+    _ZN5bbnfc14testRfSelfTestEhjjPj
+    _ZN5bbnfc15testWriteTagRawEjPhj
+    _ZN5bbnfc21RegisterEventCallbackEPFvNS_5EventEPvE
+    _ZN5bbnfc5MutexC1Ei
+    _ZN5bbnfc5MutexC2Ei
+    _ZN5bbnfc5MutexD1Ev
+py.exe : Traceback (most recent call last):
+At line:1 char:73
++ ... KeyOne Research'; & py -3.11 "$root\tools\elf_triage.py" 2>&1 | Out-F ...
++                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Users\Stanley Williamson\Desktop\Blackberry KeyOne Research\tools\elf_triage.py", line 85, in <module>
+    main()
+  File "C:\Users\Stanley Williamson\Desktop\Blackberry KeyOne Research\tools\elf_triage.py", line 72, in main
+    libs = sorted({l.name for l in b.libraries})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Stanley Williamson\Desktop\Blackberry KeyOne Research\tools\elf_triage.py", line 72, in <setcomp>
+    libs = sorted({l.name for l in b.libraries})
+                   ^^^^^^
+AttributeError: 'str' object has no attribute 'name'
+    _ZN5bbnfc5MutexD2Ev
+    _ZN5bbnfc7Condvar4waitEj
+    _ZN5bbnfc7CondvarC1Ev
+    _ZN5bbnfc7CondvarC2Ev
+    _ZN5bbnfc7CondvarD1Ev
+    _ZN5bbnfc7CondvarD2Ev
+    _ZN5bbnfc7nfaInitEv
+    _ZN5bbnfc9nfaDeinitEb
+    _ZN7DmEvent10getDataLenEv
+    _ZN7DmEvent3strEv
+    _ZN7DmEvent5cloneEv
+    _ZN7DmEvent7forwardEv
+    _ZN7DmEvent7getDataEv
+    _ZN7DmEvent9cloneImplEPS_
+    _ZN7DmEventC1EhP18tNFA_DM_CBACK_DATA
+    _ZN7DmEventC1Eih
+    _ZN7DmEventC2EhP18tNFA_DM_CBACK_DATA
+    _ZN7DmEventC2Eih
+    _ZN7DmEventD0Ev
+    _ZN7DmEventD1Ev
+    _ZN7DmEventD2Ev
+    _ZN8VscEvent10getDataLenEv
+    _ZN8VscEvent3strEv
+    _ZN8VscEvent5cloneEv
+    _ZN8VscEvent7forwardEv
+    _ZN8VscEvent7getDataEv
+    _ZN8VscEvent9cloneImplEPS_
+    _ZN8VscEventC1Ehi
+    _ZN8VscEventC1EhiPh
+    _ZN8VscEventC2Ehi
+    _ZN8VscEventC2EhiPh
+    _ZN8VscEventD0Ev
+    _ZN8VscEventD1Ev
+    _ZN8VscEventD2Ev
+    _ZN9ConnEvent10getDataLenEv
+    _ZN9ConnEvent3strEv
+    _ZN9ConnEvent5cloneEv
+    _ZN9ConnEvent7forwardEv
+    _ZN9ConnEvent7getDataEv
+    _ZN9ConnEvent9cloneImplEPS_
+    _ZN9ConnEventC1EhP18tNFA_CONN_EVT_DATA
+    _ZN9ConnEventC1Eih
+    _ZN9ConnEventC2EhP18tNFA_CONN_EVT_DATA
+    _ZN9ConnEventC2Eih
+    _ZN9ConnEventD0Ev
+    _ZN9ConnEventD1Ev
+    _ZN9ConnEventD2Ev
+    _ZN9EventHook13executeActionEP5EventNS_6ActionEPFbPvS1_ES3_
+    _ZN9EventHook15blockUntilEventEj
+    _ZN9EventHook7unblockEv
+    _ZN9EventHookC1Eb
+    _ZN9EventHookC2Eb
+    _ZN9EventHookD0Ev
+    _ZN9EventHookD1Ev
+    _ZN9EventHookD2Ev
+    _ZdlPv
+    _ZnamRKSt9nothrow_t
+    _ZnwmRKSt9nothrow_t
+    __android_log_print
+    __cxa_atexit
+    __cxa_finalize
+    __cxa_pure_virtual
+    __errno
+    __register_atfork
+    __stack_chk_fail
+    abort
+    clock_gettime
+    dlerror
+    dlopen
+    dlsym
+    memcpy
+    memset
+    property_get
+    pthread_cond_destroy
+    pthread_cond_init
+    pthread_cond_signal
+    pthread_cond_timedwait
+    pthread_cond_wait
+    pthread_condattr_destroy
+    pthread_condattr_init
+    pthread_condattr_setclock
+    pthread_mutex_destroy
+    pthread_mutex_init
+    pthread_mutex_lock
+    pthread_mutex_unlock
+    pthread_mutexattr_destroy
+    pthread_mutexattr_init
+    pthread_mutexattr_settype
+    snprintf
+    strcmp
+    strerror
+    strtok
+    strtok_r
+    timer_create
+    timer_delete
+    timer_settime

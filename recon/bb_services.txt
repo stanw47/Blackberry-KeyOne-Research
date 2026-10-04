@@ -1,0 +1,22 @@
+﻿===services===
+adb.exe : /system/bin/sh: auth: not found
+At line:1 char:107
++ ... s\adb.exe'; & $adb shell 'echo ===services===; service list 2>&1 | gr ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh: auth: not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+/system/bin/sh: rim: not found
+/system/bin/sh: vtnvfs: not found
+/system/bin/sh: sec: not found
+/system/bin/sh: dcmd: not found
+/system/bin/sh: token: not found
+===proc===
+/system/bin/sh: token: not found
+/system/bin/sh: tctd: not found
+/system/bin/sh: auth: not found
+/system/bin/sh: secsvr: not found
+/system/bin/sh: vtnvfs: not found
+/system/bin/sh: mfg: not found
+/system/bin/sh: dcmd: not found
+/system/bin/sh: rim: not found

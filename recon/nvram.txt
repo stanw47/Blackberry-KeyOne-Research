@@ -1,0 +1,19 @@
+﻿===/nvram===
+ls: /nvram/boardid: Permission denied
+ls: /nvram/prdid: Permission denied
+ls: /nvram/nvuser: Permission denied
+ls: /nvram/perm: Permission denied
+ls: /nvram/blog: Permission denied
+total 0
+drwxrwxr-x  7 root root  140 1970-01-01 08:00 .
+drwxrwxrwt 23 root root 1400 1970-01-01 08:00 ..
+===nvuser===
+ls: /nvram/nvuser: Permission denied
+===perm===
+ls: /nvram/perm: Permission denied
+===boardid===
+ls: /nvram/boardid: Permission denied
+===prdid===
+ls: /nvram/prdid: Permission denied
+===blog===
+ls: /nvram/blog: Permission denied

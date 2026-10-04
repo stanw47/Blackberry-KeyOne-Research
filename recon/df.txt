@@ -1,0 +1,14 @@
+﻿Filesystem                              Size  Used Avail Use% Mounted on
+rootfs                                  1.2G  5.1M  1.1G   1% /
+tmpfs                                   1.3G  852K  1.3G   1% /dev
+tmpfs                                   1.3G     0  1.3G   0% /mnt
+/dev/block/dm-0                         4.2G  3.7G  511M  89% /system
+/dev/block/bootdevice/by-name/cache     992M  2.7M  973M   1% /cache
+/dev/block/bootdevice/by-name/persist    27M  544K   26M   2% /persist
+/dev/block/bootdevice/by-name/bbpersist  16M  172K   15M   2% /bbpersist
+/dev/block/bootdevice/by-name/dsp        12M  4.9M  6.4M  44% /dsp
+/dev/block/bootdevice/by-name/modem      96M   71M   25M  74% /firmware
+/dev/block/bootdevice/by-name/oem       325M  186M  132M  59% /oem
+tmpfs                                   1.3G     0  1.3G   0% /storage
+/dev/block/dm-1                          22G  421M   22G   2% /data
+/dev/fuse                                22G  421M   22G   2% /storage/emulated

@@ -1,0 +1,15 @@
+﻿adb.exe : /system/bin/sh: tctd: not found
+At line:1 char:392
++ ... emons ==="; & $adb shell 'ls -la /system/bin/ 2>/dev/null | grep -iE  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh: tctd: not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+/system/bin/sh: vtnvfs: not found
+/system/bin/sh: auth: not found
+/system/bin/sh: rim: not found
+/system/bin/sh: secsvr: not found
+/system/bin/sh: mfg: not found
+/system/bin/sh: blackberry: not found
+/system/bin/sh: token: not found
+/system/bin/sh: dcmd: not found

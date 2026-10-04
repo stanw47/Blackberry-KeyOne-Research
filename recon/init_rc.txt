@@ -1,0 +1,43 @@
+﻿adb.exe : /system/bin/sh: vtnvfs: not found
+At line:1 char:342
++ ...  bits ==="; & $adb shell 'cat /init.rc 2>/dev/null | grep -iE "bb|tok ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh: vtnvfs: not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+/system/bin/sh: dcmd: not found
+/system/bin/sh: token: not found
+/system/bin/sh: secsvr: not found
+/system/bin/sh: auth: not found
+/system/bin/sh: rim: not found
+===INITDIR===
+acct
+bbpersist
+bt_firmware
+bugreports
+cache
+carrier
+charger
+config
+d
+data
+dev
+dsp
+etc
+firmware
+fstab.qcom
+mnt
+nvram
+oem
+persist
+proc
+property_contexts
+res
+root
+sbin
+sdcard
+storage
+sys
+system
+tombstones
+vendor

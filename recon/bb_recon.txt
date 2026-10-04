@@ -1,0 +1,134 @@
+﻿===PROC_VERSION===
+Linux version 3.18.31-perf-gf38c8fb (ec_agent@br602cnc) (gcc version 4.9 20150123 (prerelease) (GCC) ) #1 SMP PREEMPT Wed Nov 21 04:52:44 EST 2018
+===BB_PROPS===
+[gsm.operator.alpha]: [Blackberry]
+[gsm.sim.operator.alpha]: [Blackberry]
+[init.svc.tctd]: [running]
+[init.svc.token_service]: [running]
+[init.svc.vtnvfsd]: [running]
+[init.svc.vtnvfsd_blog]: [running]
+[persist.sys.wfc_sso_token]: [false]
+[ro.adb.secure]: [1]
+[ro.boot.binfo.bbss_insecure]: [false]
+[ro.bootimage.build.fingerprint]: [blackberry/bbry_qc8953_sfi/bbry_qc8953:7.1.1/NMF26F/ABL766:user/release-keys]
+[ro.build.fingerprint]: [blackberry/bbb100usasprint/bbb100:7.1.1/NMF26F/ABL766:user/release-keys]
+[ro.build.flavor]: [bbry_qc8953_sfi-user]
+[ro.build.manufacturer]: [Blackberry]
+[ro.build.version.base_os]: [blackberry/bbb100usasprint/bbb100:7.1.1/NMF26F/ABI131:user/release-keys]
+[ro.cdma.home.operator.alpha]: [Blackberry]
+[ro.config.notification_sound]: [BBRY_Essential.ogg]
+[ro.home.operator.carrierid]: [Blackberry]
+[ro.mdtp.package_name2]: [com.qualcomm.qti.securemsm.mdtp.MdtpDemo]
+[ro.product.brand]: [blackberry]
+[ro.product.manufacturer]: [BlackBerry]
+[ro.product.publicname]: [BlackBerry BBB100-3]
+[ro.secure]: [1]
+[ro.tct.curef]: [PRD-63118-003]
+[ro.tct.handsetref]: [SAA61Y3WA11C]
+[ro.tct.multiple]: [unknown]
+[ro.tct.ptm]: [24]
+[ro.tct.trace.bsn]: [AAKH11BPDKA00VV]
+[ro.tct.trace.pth]: [24]
+[ro.tct.trace.pts]: [194]
+[vold.bbry.bootanim.state]: [nopassword]
+===BIN_BB===
+-rwxr-xr-x  1 root shell  47272 2018-11-21 17:08 bcc
+-rwxr-xr-x  1 root shell  22200 2018-11-21 17:08 bdt
+-rwxr-xr-x  1 root shell  26728 2018-11-21 17:08 mfgUtil
+===LIB64_BB===
+-rw-r--r--  1 root root    67608 2018-11-21 17:08 libbacktrace.so
+-rw-r--r--  1 root root    47208 2018-11-21 17:07 libbase.so
+-rw-r--r--  1 root root    56088 2018-11-21 17:08 libbb-nfc-nci-nxp.so
+-rw-r--r--  1 root root    10120 2018-11-21 17:08 libbb_tokenservice.so
+-rw-r--r--  1 root root    14280 2018-11-21 17:07 libbbauthtool.so
+-rw-r--r--  1 root root    78088 2018-11-21 17:08 libbbnfc_nci.nxp.default.so
+-rw-r--r--  1 root root    63664 2018-11-21 17:09 libbbry_vs.so
+-rw-r--r--  1 root root    10192 2018-11-21 17:07 libbbusb.so
+-rw-r--r--  1 root root   551008 2018-11-21 17:08 libbcc.so
+-rw-r--r--  1 root root   317536 2018-11-21 17:08 libbcinfo.so
+-rw-r--r--  1 root root    14280 2018-11-21 17:08 libbidejni.so
+-rw-r--r--  1 root root    18312 2018-11-21 17:07 libbinary_parse.so
+-rw-r--r--  1 root root   505960 2018-11-21 17:08 libbinder.so
+-rw-r--r--  1 root root  1091528 2018-11-21 17:07 libblas.so
+-rw-r--r--  1 root root   260008 2018-11-21 17:08 libbt-vndlog.so
+-rw-r--r--  1 root root    26648 2018-11-21 17:09 libbthost_if.so
+-rw-r--r--  1 root root    16640 2018-11-21 17:07 librmnetctl.so
+-rw-r--r--  1 root root    38904 2018-11-21 17:08 libsecureservice.so
+===LIB_BB===
+-rw-r--r--  1 root root    58900 2018-11-21 17:08 libbacktrace.so
+-rw-r--r--  1 root root    42572 2018-11-21 17:07 libbase.so
+-rw-r--r--  1 root root    51120 2018-11-21 17:08 libbb-nfc-nci-nxp.so
+-rw-r--r--  1 root root    13844 2018-11-21 17:08 libbb_tokenservice.so
+-rw-r--r--  1 root root    17940 2018-11-21 17:07 libbbauthtool.so
+-rw-r--r--  1 root root    55932 2018-11-21 17:08 libbbnfc_nci.nxp.default.so
+-rw-r--r--  1 root root    54908 2018-11-21 17:09 libbbry_vs.so
+-rw-r--r--  1 root root   456264 2018-11-21 17:08 libbcc.so
+-rw-r--r--  1 root root   222792 2018-11-21 17:08 libbcinfo.so
+-rw-r--r--  1 root root    22036 2018-11-21 17:07 libbinary_parse.so
+-rw-r--r--  1 root root   370252 2018-11-21 17:08 libbinder.so
+-rw-r--r--  1 root root   796180 2018-11-21 17:07 libblas.so
+-rw-r--r--  1 root root   144024 2018-11-21 17:09 libbluetooth_jni.so
+-rw-r--r--  1 root root   167424 2018-11-21 17:08 libbt-vndlog.so
+-rw-r--r--  1 root root   147004 2018-11-21 17:08 libbtdebug.so
+-rw-r--r--  1 root root    18032 2018-11-21 17:09 libbtdebug_jni.so
+-rw-r--r--  1 root root    30228 2018-11-21 17:09 libbthost_if.so
+-rw-r--r--  1 root root    20440 2018-11-21 17:07 librmnetctl.so
+-rw-r--r--  1 root root    38428 2018-11-21 17:08 libsecureservice.so
+===SERVICES===
+4	bb.nfc: [com.blackberry.nfc.IBBNfcAdapter]
+75	bbry_device_policy: [android.app.admin.IBbryDevicePolicyManager]
+81	trust_zone: [com.blackberry.security.trustzone.ITrustZoneService]
+82	password_manager: [com.blackberry.security.passwordmanager.IPasswordManagerService]
+85	backup_token: [com.android.server.backup.IBackupTokenService]
+120	TokenService: [com.blackberry.tokenservice.ITokenService]
+131	android.security.keystore: [android.security.IKeystoreService]
+132	mdtp: [com.qualcomm.qti.securemsm.mdtp.IMdtpService]
+===PS_BB===
+===INIT_BB===
+===VENDOR_BIN===
+total 368
+drwxr-xr-x  2 root shell  4096 2018-11-21 17:09 .
+drwxr-xr-x 16 root shell  4096 2018-11-21 17:07 ..
+-rwxr-xr-x  1 root shell 14464 2018-11-21 16:58 audioflacapp
+-rwxr-xr-x  1 root shell 14536 2018-11-21 16:58 chamomile_provision
+-rwxr-xr-x  1 root shell 22040 2018-11-21 17:09 mm-qjpeg-dec-test
+-rwxr-xr-x  1 root shell 22040 2018-11-21 17:09 mm-qjpeg-enc-test
+-rwxr-xr-x  1 root shell 30228 2018-11-21 17:08 mm-qomx-idec-test
+-rwxr-xr-x  1 root shell 38420 2018-11-21 17:08 mm-qomx-ienc-test
+-rwxr-xr-x  1 root shell 22036 2018-11-21 17:08 qjpeg-dma-test
+===MOUNTED_SEPOLICY===
+-r--r--r-- 1 root root 368451 1970-01-01 08:00 /sys/fs/selinux/policy
+===BIDE_KERNEL===
+total 0
+drwxr-xr-x   2 root root    0 1970-01-01 08:00 boot_adsp
+drwxr-xr-x   2 root root    0 1970-01-01 08:00 boot_slpi
+drwxr-xr-x   2 root root    0 1970-01-01 08:00 config
+drwxr-xr-x  88 root root    0 1970-01-01 08:00 debug
+drwxr-xr-x   2 root root    0 1970-01-01 08:00 dload
+-r--r--r--   1 root root 4096 1970-01-01 08:00 fscaps
+drwxr-xr-x   2 root root    0 1970-01-01 08:00 gpu
+drwxr-xr-x   8 root root    0 1970-01-01 08:00 iommu_groups
+drwxr-xr-x   2 root root    0 1970-01-01 08:00 ipv4
+drwxr-xr-x   2 root root    0 1970-01-01 08:00 mm
+-r--r--r--   1 root root   36 1970-01-01 08:00 notes
+-rw-r--r--   1 root root 4096 1970-01-01 08:00 profiling
+-rw-r--r--   1 root root 4096 1970-01-01 08:00 rcu_expedited
+drwxr-xr-x   3 root root    0 1970-01-01 08:00 security
+drwxr-xr-x 187 root root    0 1970-01-01 08:00 slab
+-r--r--r--   1 root root 4096 1970-01-01 08:00 uevent_seqnum
+drwxr-xr-x   2 root root    0 1970-01-01 08:00 wakeup_reasons
+===BIDE_PROC===
+adb.exe : ls: /proc//ftxxxx-debug: Permission denied
+At line:1 char:173
++ ... /recon.sh 2>&1; & $adb shell sh /data/local/tmp/recon.sh 2>&1 | Out-F ...
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ls: /proc//ftxx...rmission denied:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ls: /proc//sysrq-trigger: Permission denied
+ls: /proc//timer_stats: Permission denied
+ls: /proc//iomem: Permission denied
+ls: /proc//stat: Permission denied
+dr-xr-xr-x   8 bide          bide           0 2016-12-26 07:00 2523
+dr-xr-xr-x   8 bbauth        bbauth         0 1970-01-01 08:00 520
+===DONE===

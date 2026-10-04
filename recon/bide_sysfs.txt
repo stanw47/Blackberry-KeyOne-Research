@@ -1,0 +1,18 @@
+﻿ls: /sys/devices/virtual/bide/bide//subsystem: Permission denied
+total 0
+drwxr-xr-x 3 root root    0 1970-01-01 08:00 .
+drwxr-xr-x 3 root root    0 1970-01-01 08:00 ..
+-r--r--r-- 1 root root 4096 2026-10-02 15:00 dev
+drwxr-xr-x 2 root root    0 1970-01-01 08:00 power
+-rw-r--r-- 1 root root 4096 1970-01-01 08:00 uevent
+===READ===
+--- /sys/devices/virtual/bide/bide/dev
+229:0
+--- /sys/devices/virtual/bide/bide/power
+/system/bin/sh: cat: /sys/devices/virtual/bide/bide/power: Is a directory
+--- /sys/devices/virtual/bide/bide/subsystem
+/system/bin/sh: cat: /sys/devices/virtual/bide/bide/subsystem: Is a directory
+--- /sys/devices/virtual/bide/bide/uevent
+MAJOR=229
+MINOR=0
+DEVNAME=bide

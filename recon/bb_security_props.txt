@@ -1,0 +1,14 @@
+﻿Linux version 3.18.31-perf-gf38c8fb (ec_agent@br602cnc) (gcc version 4.9 20150123 (prerelease) (GCC) ) #1 SMP PREEMPT Wed Nov 21 04:52:44 EST 2018
+===
+adb.exe : /system/bin/sh: tokn: not found
+At line:1 char:107
++ ... s\adb.exe'; & $adb shell 'cat /proc/version; echo ===; getprop | grep ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh: tokn: not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+/system/bin/sh: blackberry: not found
+/system/bin/sh: pathtrust: not found
+/system/bin/sh: bbry: not found
+/system/bin/sh: bb_: not found
+/system/bin/sh: secure: not found

@@ -1,0 +1,10 @@
+﻿blackberry/bbb100usasprint/bbb100:7.1.1/NMF26F/ABL766:user/release-keys
+1
+false
+permanent
+enforcing
+
+
+===
+ABL766
+BBB100-3

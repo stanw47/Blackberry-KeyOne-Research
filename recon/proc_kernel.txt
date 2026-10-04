@@ -1,0 +1,17 @@
+﻿Linux version 3.18.31-perf-gf38c8fb (ec_agent@br602cnc) (gcc version 4.9 20150123 (prerelease) (GCC) ) #1 SMP PREEMPT Wed Nov 21 04:52:44 EST 2018
+---UNAME---
+Linux localhost 3.18.31-perf-gf38c8fb #1 SMP PREEMPT Wed Nov 21 04:52:44 EST 2018 aarch64
+---CMDLINE---
+---SLOT---
+adb.exe : /system/bin/sh: cat: /proc/cmdline: Permission denied
+At line:1 char:73
++ ...  Research'; & 'C:\platform-tools\adb.exe' shell "cat /proc/version; e ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/system/bin/sh:...rmission denied:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+---VERITY---
+enforcing
+
+1

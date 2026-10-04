@@ -1,0 +1,5 @@
+﻿ls: /dev/block/platform/7824900.sdhci/by-name: Permission denied
+===SOC===
+ls: /dev/block/platform/soc/7824900.sdhci/by-name: Permission denied
+===GLOB===
+ls: /dev/block/*/by-name: Permission denied

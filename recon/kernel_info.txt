@@ -1,0 +1,14 @@
+﻿===KALLSYMS===
+-r--r--r-- 1 root root 0 2026-10-02 15:01 /proc/kallsyms
+0000000000000000 t efi_head
+0000000000000000 T _text
+0000000000000000 t pe_header
+0000000000000000 t coff_header
+0000000000000000 t optional_header
+===MODULES===
+wlan 5499443 0 - Live 0x0000000000000000 0x0000000000000000 (O)
+===VERSION===
+Linux version 3.18.31-perf-gf38c8fb (ec_agent@br602cnc) (gcc version 4.9 20150123 (prerelease) (GCC) ) #1 SMP PREEMPT Wed Nov 21 04:52:44 EST 2018
+===CONFIG_IN_IMAGE===
+ls: /boot: No such file or directory
+/system/bin/sh: zcat: not found

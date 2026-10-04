@@ -1,0 +1,1223 @@
+﻿[   98.830521] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib64/libthermalioctl.so/0][0x157713a000, 8192, 4096][0][0x75]
+[   98.843547] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: New section being hashed [/system/bin/spfd/0][0x1d975c1000, 1581056, 4096][2][0x875]
+[   98.843576] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: Hashing Process: /system/bin/selfieflash(697, 697).
+[   98.868122] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: New section being hashed [/system/bin/selfieflash/0][0x198befe000, 20480, 4096][0][0x875]
+[   98.868154] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: Hashing Process: /system/bin/zygoteman(700, 700).
+[   98.869290] [2016-12-28 01:26:25 GMT-5]i2c-msm-v2 7af5000.i2c: msm_bus_scale_register_client(mstr-id:84):0x1f (ok)
+[   98.870671] [BIDE] DBG: New section being hashed [/system/bin/zygoteman/0][0x1b6742e000, 81920, 4096][1][0x875]
+[   98.876369] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: Hashing Process: /system/bin/installd(709, 709).
+[   98.882418] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: New section being hashed [/system/bin/installd/0][0xf50d77000, 147456, 4096][3][0x875]
+[   98.888428] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: Hashing Process: /system/bin/netd(717, 717).
+[   98.888880] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: New section being hashed [/system/bin/netd/0][0xf296a5000, 278528, 4096][3][0x875]
+[   98.893290] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: New section being hashed [/system/lib64/libqsap_sdk.so/0][0x53d51c4000, 53248, 4096][3][0x75]
+[   98.896587] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: New section being hashed [/system/lib64/libmdnssd.so/0][0x53d52fc000, 32768, 4096][3][0x75]
+[   98.901982] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: New section being hashed [/system/lib64/libnetdaidl.so/0][0x53d5522000, 36864, 4096][1][0x75]
+[   98.903027] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib64/libconnctrl.so/0][0x53d5598000, 45056, 4096][3][0x75]
+[   98.904211] [2016-12-28 01:26:25 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(737, 737).
+[   98.939091] [2016-12-28 01:26:25 GMT-5]sps: BAM device 0x0000000007ac4000 is not registered yet.
+[   98.941553] [2016-12-28 01:26:25 GMT-5]sps:BAM 0x0000000007ac4000 is registered.
+[   98.943595] sps:BAM 0x0000000007ac4000 (va:0xffffff8003540000) enabled: ver:0x19, number of pipes:12
+[   98.988217] [2016-12-28 01:26:25 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[   99.087375] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process32(739, 739).
+[   99.087438] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/bin/app_process32/0][0x133e000, 20480, 4096][0][0x875]
+[   99.101254] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot.oat/1312][0x70bed000, 3055616, 4096][3][0x75]
+[   99.111125] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-core-libart.oat/1150][0x71357000, 2359296, 4096][3][0x75]
+[   99.115869] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-conscrypt.oat/108][0x71605000, 249856, 4096][3][0x75]
+[   99.121707] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-okhttp.oat/135][0x716cb000, 303104, 4096][2][0x75]
+[   99.123138] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-core-junit.oat/10][0x71721000, 8192, 4096][3][0x75]
+[   99.127605] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-bouncycastle.oat/363][0x71890000, 212992, 4096][3][0x75]
+[   99.134686] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-ext.oat/283][0x719e1000, 196608, 4096][3][0x75]
+[   99.162302] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-framework.oat/5751][0x7308a000, 12845056, 4096][2][0x75]
+[   99.177202] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-telephony-common.oat/985][0x740a5000, 1904640, 4096][3][0x75]
+[   99.179457] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-voip-common.oat/48][0x742a8000, 53248, 4096][3][0x75]
+[   99.183247] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-ims-common.oat/50][0x742e9000, 98304, 4096][3][0x75]
+[   99.190229] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-apache-xml.oat/337][0x74454000, 114688, 4096][3][0x75]
+[   99.197420] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-org.apache.http.legacy.boot.oat/169][0x7451b000, 344064, 4096][3][0x75]
+[   99.198351] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-tcmiface.oat/3][0x74574000, 4096, 4096][1][0x75]
+[   99.199945] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-WfdCommon.oat/22][0x7458d000, 4096, 4096][1][0x75]
+[   99.201846] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-qcom.fmradio.oat/26][0x745aa000, 12288, 4096][3][0x75]
+[   99.203063] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-qcmediaplayer.oat/8][0x745b7000, 4096, 4096][1][0x75]
+[   99.203860] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-telephony-ext.oat/7][0x745c1000, 4096, 4096][1][0x75]
+[   99.205168] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-com.sprint.internal.id.LauncherFacade.oat/10][0x745ce000, 4096, 4096][1][0x75]
+[   99.207044] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-com.ts.android.chameleon.dataservice.oat/14][0x745df000, 4096, 4096][1][0x75]
+[   99.208914] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/framework/arm/boot-com.ts.android.chameleon.chameleonshare.oat/38][0x74608000, 8192, 4096][3][0x75]
+[   99.259422] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libllvm-glnext.so/0][0xd72e5000, 8413184, 4096][3][0x75]
+[   99.261834] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libwebviewchromium_loader.so/0][0xd7b31000, 16384, 4096][3][0x75]
+[   99.283435] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/egl/libGLESv2_adreno.so/0][0xd7bdd000, 2777088, 4096][3][0x75]
+[   99.285649] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libcompiler_rt.so/0][0xd7ebe000, 36864, 4096][3][0x75]
+[   99.287847] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libmemalloc.so/0][0xd7ec9000, 28672, 4096][3][0x75]
+[   99.292236] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libqdMetaData.so/0][0xd7ed2000, 12288, 4096][3][0x75]
+[   99.296769] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libqdutils.so/0][0xd7ed8000, 24576, 4096][3][0x75]
+[   99.298569] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libqservice.so/0][0xd7ee1000, 40960, 4096][2][0x75]
+[   99.304125] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/hw/gralloc.msm8953.so/0][0xd7ef0000, 28672, 4096][3][0x75]
+[   99.311144] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/egl/eglSubDriverAndroid.so/0][0xd7ef9000, 45056, 4096][3][0x75]
+[   99.312594] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/egl/libGLESv1_CM_adreno.so/0][0xd7f07000, 147456, 4096][3][0x75]
+[   99.317262] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libadreno_utils.so/0][0xd7f30000, 24576, 4096][3][0x75]
+[   99.326393] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/egl/libEGL_adreno.so/0][0xd7f3a000, 65536, 4096][3][0x75]
+[   99.337413] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libsbgse.so/0][0xd837b000, 1155072, 4096][3][0x75]
+[   99.344445] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libsoftkeymasterdevice.so/0][0xd84a3000, 274432, 4096][3][0x75]
+[   99.350506] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libkeymaster1.so/0][0xd84eb000, 356352, 4096][3][0x75]
+[   99.353220] [2016-12-28 01:26:26 GMT-5]lowmemorykiller: Killing 'ngs:CryptKeeper' (2625), adj 904,
+[   99.353220]    to free 54664kB on behalf of 'kswapd0' (158) because
+[   99.353220]    cache 1901480kB is below limit 322560kB for oom_score_adj 606
+[   99.353220]    Free memory is 28068kB above reserved.
+[   99.353220]    Free CMA is 0kB
+[   99.353220]    Total reserve is 29864kB
+[   99.353220]    Total free pages is 27680kB
+[   99.353220]    Total file cache is 1908784kB
+[   99.353220]    Total zcache is 0kB
+[   99.353220]    GFP mask is 0xd0
+[   99.367221] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/framework/oat/arm/BlackBerryJCA.odex/191][0xd9eac000, 512000, 4096][2][0x75]
+[   99.368498] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libkeystore_binder.so/0][0xd9f39000, 86016, 4096][3][0x75]
+[   99.373335] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libjavacrypto.so/0][0xd9f51000, 102400, 4096][3][0x75]
+[   99.376605] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libkeymaster_messages.so/0][0xd9f6e000, 49152, 4096][3][0x75]
+[   99.377546] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libkeystore-engine.so/0][0xd9f7c000, 16384, 4096][3][0x75]
+[   99.380395] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libexif.so/0][0xda0d0000, 118784, 4096][3][0x75]
+[   99.384721] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libstagefright_amrnb_common.so/0][0xda0fb000, 57344, 4096][3][0x75]
+[   99.386765] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libmedia_jni.so/0][0xda10d000, 323584, 4096][3][0x75]
+[   99.389638] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libmtp.so/0][0xda168000, 94208, 4096][3][0x75]
+[   99.389663] [2016-12-28 01:26:26 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process32:/data/dalvik-cache/arm/system@framework@tcmclient.jar@classes.dex
+[   99.391719] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libextmedia_jni.so/0][0xda194000, 16384, 4096][3][0x75]
+[   99.398418] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libvixl.so/0][0xdfa56000, 720896, 4096][3][0x75]
+[   99.413601] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libart-compiler.so/0][0xdfb1f000, 2760704, 4096][3][0x75]
+[   99.417016] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libopenjdk.so/0][0xdfe39000, 172032, 4096][2][0x75]
+[   99.417275] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libjavacore.so/0][0xdfe66000, 163840, 4096][1][0x75]
+[   99.419130] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libsdsprpc.so/0][0xdfe94000, 81920, 4096][3][0x75]
+[   99.421514] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libadsprpc.so/0][0xdfeaa000, 81920, 4096][3][0x75]
+[   99.422989] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqmi_client_qmux.so/0][0xdfec2000, 36864, 4096][3][0x75]
+[   99.433841] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libdiag.so/0][0xdff01000, 98304, 4096][3][0x75]
+[   99.436688] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libnetmgr.so/0][0xe001f000, 114688, 4096][3][0x75]
+[   99.440464] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqmiservices.so/0][0xe0041000, 73728, 4096][3][0x75]
+[   99.449152] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libdsi_netctrl.so/0][0xe005d000, 409600, 4096][3][0x75]
+[   99.461181] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/lib-imsqimf.so/0][0xe00df000, 1273856, 4096][3][0x75]
+[   99.465218] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqmi_cci.so/0][0xe0221000, 40960, 4096][3][0x75]
+[   99.467676] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/lib-imsrcscm.so/0][0xe022d000, 147456, 4096][3][0x75]
+[   99.472615] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqmi.so/0][0xe0254000, 180224, 4096][3][0x75]
+[   99.474832] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqdi.so/0][0xe02ca000, 110592, 4096][3][0x75]
+[   99.479316] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/lib-imsxml.so/0][0xe02eb000, 536576, 4096][3][0x75]
+[   99.487052] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libconfigdb.so/0][0xe037b000, 20480, 4096][3][0x75]
+[   99.491281] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/lib-imsdpl.so/0][0xe0382000, 434176, 4096][3][0x75]
+[   99.500929] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqmi_client_helper.so/0][0xe03f9000, 16384, 4096][3][0x75]
+[   99.503315] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libdsutils.so/0][0xe0400000, 73728, 4096][3][0x75]
+[   99.504899] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libCB.so/0][0xe0427000, 737280, 4096][3][0x75]
+[   99.506146] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libmdmdetect.so/0][0xe04e7000, 16384, 4096][2][0x75]
+[   99.510325] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libxml.so/0][0xe5904000, 32768, 4096][3][0x75]
+[   99.517324] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/lib-imsrcscmservice.so/0][0xe5919000, 65536, 4096][3][0x75]
+[   99.517854] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libgsl.so/0][0xe592e000, 253952, 4096][3][0x75]
+[   99.519956] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libsmemlog.so/0][0xe596f000, 12288, 4096][3][0x75]
+[   99.532847] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libart.so/0][0xe5974000, 4542464, 4096][3][0x75]
+[   99.536927] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libidl.so/0][0xe5dd9000, 16384, 4096][3][0x75]
+[   99.541370] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/lib-imsrcscmclient.so/0][0xe5de0000, 94208, 4096][3][0x75]
+[   99.547564] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libtime_genoff.so/0][0xe5f01000, 16384, 4096][3][0x75]
+[   99.550474] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/lib-ims-rcscmjni.so/0][0xe5f07000, 49152, 4096][3][0x75]
+[   99.559804] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libdng_sdk.so/0][0xe5f16000, 544768, 4096][3][0x75]
+[   99.567408] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqmi_encdec.so/0][0xe5fa3000, 20480, 4096][3][0x75]
+[   99.576638] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libbb_tokenservice.so/0][0xe5faa000, 12288, 4096][3][0x75]
+[   99.579963] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libstagefright_http_support.so/0][0xe5fc1000, 12288, 4096][3][0x75]
+[   99.585130] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libsoundtrigger.so/0][0xe5fd9000, 49152, 4096][2][0x75]
+[   99.589760] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libstagefright_avc_common.so/0][0xe5feb000, 32768, 4096][3][0x75]
+[   99.590897] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libgui.so/0][0xe5ff5000, 348160, 4096][3][0x75]
+[   99.597187] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libpng.so/0][0xe605b000, 147456, 4096][3][0x75]
+[   99.602818] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libui.so/0][0xe6082000, 86016, 4096][2][0x75]
+[   99.603155] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libcamera_client.so/0][0xe609a000, 204800, 4096][3][0x75]
+[   99.604927] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libandroid_runtime.so/0][0xe60fe000, 950272, 4096][2][0x75]
+[   99.605747] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libstagefright_yuv.so/0][0xe61fb000, 20480, 4096][3][0x75]
+[   99.609005] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libmemtrack.so/0][0xe6202000, 12288, 4096][2][0x75]
+[   99.609076] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libprocessgroup.so/0][0xe6207000, 16384, 4096][3][0x75]
+[   99.610315] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libnativeloader.so/0][0xe62be000, 32768, 4096][0][0x75]
+[   99.618935] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libicui18n.so/0][0xe6328000, 1556480, 4096][3][0x75]
+[   99.621227] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libimage_type_recognition.so/0][0xe64b7000, 28672, 4096][3][0x75]
+[   99.623455] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libwpa_client.so/0][0xe64c0000, 20480, 4096][3][0x75]
+[   99.623526] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libpowermanager.so/0][0xe64c7000, 20480, 4096][2][0x75]
+[   99.627692] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libsonivox.so/0][0xe64cf000, 348160, 4096][3][0x75]
+[   99.630167] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libradio_metadata.so/0][0xe652c000, 12288, 4096][3][0x75]
+[   99.633239] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libGLESv1_CM.so/0][0xe6531000, 32768, 4096][3][0x75]
+[   99.633362] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libRS.so/0][0xe653b000, 40960, 4096][3][0x75]
+[   99.634124] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libmediautils.so/0][0xe6547000, 36864, 4096][3][0x75]
+[   99.635093] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libhardware_legacy.so/0][0xe6553000, 32768, 4096][3][0x75]
+[   99.639096] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libaudioutils.so/0][0xe655e000, 28672, 4096][3][0x75]
+[   99.644055] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libjpeg.so/0][0xe6567000, 241664, 4096][3][0x75]
+[   99.650891] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libregionalization.so/0][0xe65a4000, 12288, 4096][2][0x75]
+[   99.659915] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libhardware.so/0][0xe65aa000, 12288, 4096][2][0x75]
+[   99.669569] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libimg_utils.so/0][0xe65af000, 57344, 4096][3][0x75]
+[   99.674601] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libETC1.so/0][0xe65c0000, 16384, 4096][3][0x75]
+[   99.678163] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libharfbuzz_ng.so/0][0xe65c6000, 311296, 4096][2][0x75]
+[   99.684779] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libnbaio.so/0][0xe6616000, 32768, 4096][3][0x75]
+[   99.685001] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libdrmframework.so/0][0xe6627000, 94208, 4096][2][0x75]
+[   99.689013] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libwilhelm.so/0][0xe6663000, 176128, 4096][3][0x75]
+[   99.705292] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libinput.so/0][0xe6697000, 118784, 4096][2][0x75]
+[   99.709339] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libbcinfo.so/0][0xe66ba000, 221184, 4096][3][0x75]
+[   99.713539] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libexpat.so/0][0xe66f3000, 86016, 4096][2][0x75]
+[   99.716187] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libstagefright.so/0][0xe670d000, 1404928, 4096][3][0x75]
+[   99.718877] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libstagefright_enc_common.so/0][0xe687e000, 12288, 4096][3][0x75]
+[   99.721937] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libtiff_directory.so/0][0xe6883000, 24576, 4096][3][0x75]
+[   99.724313] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libvorbisidec.so/0][0xe688c000, 122880, 4096][3][0x75]
+[   99.741367] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libsqlite.so/0][0xe68ad000, 495616, 4096][3][0x75]
+[   99.750134] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libRScpp.so/0][0xe6931000, 241664, 4096][3][0x75]
+[   99.751551] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libmedia.so/0][0xe698a000, 688128, 4096][2][0x75]
+[   99.754713] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libstagefright_omx.so/0][0xe6a64000, 192512, 4096][3][0x75]
+[   99.762728] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libicuuc.so/0][0xe6a99000, 1085440, 4096][2][0x75]
+[   99.770437] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libopus.so/0][0xe6bc7000, 225280, 4096][3][0x75]
+[   99.795719] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libskia.so/0][0xe6c03000, 3751936, 4096][3][0x75]
+[   99.795766] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqmi_common_so.so/0][0xe6fbd000, 4096, 4096][0][0x75]
+[   99.797594] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libminikin.so/0][0xe6fc0000, 94208, 4096][3][0x75]
+[   99.865335] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libLLVM.so/0][0xe6fdc000, 11595776, 4096][3][0x75]
+[   99.866824] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libnetutils.so/0][0xe7b46000, 28672, 4096][3][0x75]
+[   99.874581] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libGLESv2.so/0][0xe7b5b000, 65536, 4096][3][0x75]
+[   99.883336] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libradio.so/0][0xe7b6e000, 49152, 4096][3][0x75]
+[   99.891062] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libprotobuf-cpp-lite.so/0][0xe7b7f000, 106496, 4096][3][0x75]
+[   99.894927] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libinputflinger.so/0][0xe7b9c000, 274432, 4096][2][0x75]
+[   99.895037] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libcamera_metadata.so/0][0xe7be4000, 32768, 4096][3][0x75]
+[   99.899353] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libspeexresampler.so/0][0xe7c7e000, 20480, 4096][3][0x75]
+[   99.904568] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libft2.so/0][0xe7c86000, 442368, 4096][3][0x75]
+[   99.910543] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libbinary_parse.so/0][0xe7cf8000, 20480, 4096][3][0x75]
+[   99.918636] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libsync.so/0][0xe7cff000, 12288, 4096][3][0x75]
+[   99.922496] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libEGL.so/0][0xe7d04000, 94208, 4096][2][0x75]
+[   99.922938] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libRS_internal.so/0][0xe7d22000, 229376, 4096][3][0x75]
+[   99.926495] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libvulkan.so/0][0xe7d5e000, 86016, 4096][3][0x75]
+[   99.929319] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libstagefright_foundation.so/0][0xe7d78000, 135168, 4096][2][0x75]
+[   99.935442] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libhwui.so/0][0xe7d9d000, 495616, 4096][3][0x75]
+[   99.936692] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libbinder.so/0][0xe7e1d000, 331776, 4096][3][0x75]
+[   99.955923] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libmemunreachable.so/0][0xe7e79000, 94208, 4096][3][0x75]
+[   99.960401] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libz.so/0][0xe7e93000, 90112, 4096][2][0x75]
+[   99.960792] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libandroidfw.so/0][0xe7eab000, 200704, 4096][2][0x75]
+[   99.991362] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libpdfium.so/0][0xe7ee2000, 4714496, 4096][3][0x75]
+[  100.000192] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libusbhost.so/0][0xe8371000, 16384, 4096][3][0x75]
+[  100.004490] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libnativehelper.so/0][0xe8378000, 28672, 4096][2][0x75]
+[  100.013828] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libssl.so/0][0xe8381000, 151552, 4096][3][0x75]
+[  100.016199] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libnativebridge.so/0][0xe83aa000, 16384, 4096][3][0x75]
+[  100.020358] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libpiex.so/0][0xe8440000, 36864, 4096][3][0x75]
+[  100.020545] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libutils.so/0][0xe844b000, 98304, 4096][2][0x75]
+[  100.026368] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libOpenCL.so/0][0xe855d000, 69632, 4096][3][0x75]
+[  100.034032] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libmediandk.so/0][0xe8604000, 69632, 4096][3][0x75]
+[  100.051514] [2016-12-28 01:26:26 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqti-at.so/0][0xe865a000, 12288, 4096][3][0x75]
+[  100.079779] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/hw/memtrack.msm8953.so/0][0xe865f000, 12288, 4096][2][0x75]
+[  100.103615] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libmediadrm.so/0][0xe8665000, 57344, 4096][3][0x75]
+[  100.109953] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libGLESv3.so/0][0xe86dc000, 65536, 4096][3][0x75]
+[  100.110100] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libopenjdkjvm.so/0][0xe8722000, 32768, 4096][3][0x75]
+[  100.110484] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libdashplayer.so/0][0xe874c000, 155648, 4096][3][0x75]
+[  100.111795] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libmediaplayerservice.so/0][0xe877b000, 577536, 4096][3][0x75]
+[  100.114843] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqcomfm_jni.so/0][0xe8817000, 36864, 4096][3][0x75]
+[  100.120304] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqti_performance.so/0][0xe8861000, 12288, 4096][3][0x75]
+[  100.124946] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libstagefright_httplive.so/0][0xe8867000, 155648, 4096][3][0x75]
+[  100.128121] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libstagefright_wfd.so/0][0xe8893000, 188416, 4096][3][0x75]
+[  100.128541] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libavenhancements.so/0][0xe88c5000, 225280, 4096][3][0x75]
+[  100.130107] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libwebviewchromium_plat_support.so/0][0xe8933000, 16384, 4096][3][0x75]
+[  100.131200] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libOpenSLES.so/0][0xe8939000, 16384, 4096][3][0x75]
+[  100.135590] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libcamera2ndk.so/0][0xe8943000, 86016, 4096][2][0x75]
+[  100.137421] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libOpenMAXAL.so/0][0xe8962000, 16384, 4096][3][0x75]
+[  100.140171] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libandroid.so/0][0xe8968000, 77824, 4096][3][0x75]
+[  100.140277] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libprivacystats.so/0][0xe897e000, 28672, 4096][3][0x75]
+[  100.143685] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libqti-perfd-client.so/0][0xe8988000, 12288, 4096][3][0x75]
+[  100.147447] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libjnigraphics.so/0][0xe898d000, 12288, 4096][3][0x75]
+[  100.150586] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/liblz4.so/0][0xe89be000, 40960, 4096][3][0x75]
+[  100.154397] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib/libsigchain.so/0][0xe89cb000, 12288, 4096][3][0x75]
+[  100.155901] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib/libExtendedExtractor.so/0][0xe89e0000, 12288, 4096][3][0x75]
+[  100.156547] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(740, 740).
+[  100.238527] [2016-12-28 01:26:27 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  100.342596] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process32(741, 741).
+[  100.396114] [2016-12-28 01:26:27 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process32:/data/dalvik-cache/arm/system@framework@tcmclient.jar@classes.dex
+[  100.476418] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: Hashing Process: /system/bin/gatekeeperd(746, 746).
+[  100.483869] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/bin/gatekeeperd/0][0x1eb05a3000, 49152, 4096][3][0x875]
+[  100.494438] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/lib64/libgatekeeper.so/0][0x5e14c9f000, 20480, 4096][3][0x75]
+[  100.503255] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: New section being hashed [/system/vendor/lib64/hw/gatekeeper.msm8953.so/0][0x5e14dc6000, 12288, 4096][1][0x75]
+[  100.504404] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(2289, 2289).
+[  100.583770] [2016-12-28 01:26:27 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  100.690610] [2016-12-28 01:26:27 GMT-5][BIDE] DBG: Done scanning processes. rc=0.
+[  103.033038] [2016-12-28 01:26:29 GMT-5]binder: send failed reply for transaction 74382 to 3513:3513
+[  103.066996] [2016-12-28 01:26:29 GMT-5]init: Service 'dcmd' (pid 1229) exited with status 0
+[  103.517101] [2016-12-28 01:26:30 GMT-5]synaptics_dsx_i2c 6-0020: Resume free from touch for 99590 ms, start to report touch
+[  104.965036] [2016-12-28 01:26:31 GMT-5]type=1400 audit(1482906391.899:83): avc: denied { write } for pid=4237 comm="ackberry.ddt:ui" name="com.blackberry.ddt" dev="dm-1" ino=1408987 scontext=u:r:diagnostics:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=0
+[  105.212953] [2016-12-28 01:26:32 GMT-5]adm_open: Force open adm in 24-bit 
+[  105.212953]  
+[  105.880186] synaptics_dsx_i2c 6-0020: [   105.880000] INT=2 INT_S=2 T=2 REPORT_T=0 FR=0 TR=1 LO=0 STAT=0 RST=0 ERR=0
+[  105.905095] [2016-12-28 01:26:32 GMT-5]healthd: current=-140380 esr=191894 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  105.905126] [2016-12-28 01:26:32 GMT-5]healthd: battery l=99 v=4390 t=31.0 h=2 st=2 c=-140 fc=3511000 chg=u limit=-1
+[  105.912325] [2016-12-28 01:26:32 GMT-5]healthd: current=-140380 esr=191894 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  105.912356] [2016-12-28 01:26:32 GMT-5]healthd: battery l=99 v=4390 t=31.0 h=2 st=2 c=-140 fc=3511000 chg=u limit=-1
+[  110.206326] [2016-12-28 01:26:37 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  110.206611] [2016-12-28 01:26:37 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  110.364535] [2016-12-28 01:26:37 GMT-5]healthd: current=-140380 esr=191894 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  110.364567] [2016-12-28 01:26:37 GMT-5]healthd: battery l=99 v=4390 t=31.0 h=2 st=2 c=-140 fc=3511000 chg=u limit=-1
+[  110.369706] [2016-12-28 01:26:37 GMT-5]healthd: current=-140380 esr=191894 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  110.369752] [2016-12-28 01:26:37 GMT-5]healthd: battery l=99 v=4390 t=31.0 h=2 st=2 c=-140 fc=3511000 chg=u limit=-1
+[  110.624740] [2016-12-28 01:26:37 GMT-5][01:26:37.572481] [00000000838BCF9F] [WifiS]  wlan: [E :HDD] __wlan_hdd_cfg80211_ll_stats_get: 1878: Link Layer Statistics not supported by Firmware
+[  110.642702] [2016-12-28 01:26:37 GMT-5]wlan: [2256:E :CTL] Error returned WDI_ProcessInitScanRspi:0 BMPS0
+[  116.273115] [2016-12-28 01:26:43 GMT-5]adm_open: Force open adm in 24-bit 
+[  116.273115]  
+[  117.831286] binder: 4799:4807 refcount change on invalid ref 55
+[  118.497112] [2016-12-28 01:26:45 GMT-5]wlan: [2256:E :CTL] Error returned WDI_ProcessInitScanRspi:0 BMPS0
+[  118.976889] [2016-12-28 01:26:45 GMT-5]stmpe_inject_key, 56 1
+[  119.107879] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 56 0
+[  119.152463] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 11 1
+[  119.171251] [2016-12-28 01:26:46 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  119.171420] [2016-12-28 01:26:46 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  119.240136] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 11 0
+[  119.314610] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 56 1
+[  119.445713] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 56 0
+[  119.489467] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 45 1
+[  119.576953] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 45 0
+[  119.645886] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 56 1
+[  119.733346] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 56 0
+[  119.831287] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 11 1
+[  119.962503] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 11 0
+[  120.007035] [2016-12-28 01:26:46 GMT-5]stmpe_inject_key, 56 1
+[  120.094438] [2016-12-28 01:26:47 GMT-5]stmpe_inject_key, 56 0
+[  120.196173] [2016-12-28 01:26:47 GMT-5]stmpe_inject_key, 45 1
+[  120.327405] [2016-12-28 01:26:47 GMT-5]stmpe_inject_key, 45 0
+[  120.930183] [2016-12-28 01:26:47 GMT-5]synaptics_dsx_i2c 6-0020: [   120.930000] INT=12 INT_S=12 T=12 REPORT_T=18 FR=5 TR=0 LO=0 STAT=0 RST=0 ERR=0
+[  120.958318] [2016-12-28 01:26:47 GMT-5]type=1400 audit(1482906407.889:84): avc: granted { search } for pid=4882 comm="com.tcl.ota.bb" name="recovery" dev="mmcblk0p55" ino=49153 scontext=u:r:platform_app:s0 tcontext=u:object_r:cache_recovery_file:s0 tclass=dir
+[  120.959230] [2016-12-28 01:26:47 GMT-5]type=1400 audit(1482906407.889:85): avc: granted { search } for pid=4882 comm="com.tcl.ota.bb" name="recovery" dev="mmcblk0p55" ino=49153 scontext=u:r:platform_app:s0 tcontext=u:object_r:cache_recovery_file:s0 tclass=dir
+[  121.325141] [2016-12-28 01:26:48 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  121.455186] [2016-12-28 01:26:48 GMT-5]stmpe_inject_key, 56 1
+[  121.586183] [2016-12-28 01:26:48 GMT-5]stmpe_inject_key, 56 0
+[  121.645822] [2016-12-28 01:26:48 GMT-5]stmpe_inject_key, 18 1
+[  121.733507] [2016-12-28 01:26:48 GMT-5]stmpe_inject_key, 18 0
+[  121.980090] [2016-12-28 01:26:48 GMT-5]stmpe-keypad 8-0040: stmpe_keypad_timer_handler: STATS: ints: 20 ex:0 kp: 10 mk:0 sk:0 rc: 0 dc: 0 ik: 0
+[  122.063023] [2016-12-28 01:26:48 GMT-5]stmpe_inject_key, 56 1
+[  122.194366] [2016-12-28 01:26:49 GMT-5]stmpe_inject_key, 56 0
+[  122.245013] [2016-12-28 01:26:49 GMT-5]stmpe_inject_key, 11 1
+[  122.332664] [2016-12-28 01:26:49 GMT-5]stmpe_inject_key, 11 0
+[  122.425337] [2016-12-28 01:26:49 GMT-5]stmpe_inject_key, 56 1
+[  122.513217] [2016-12-28 01:26:49 GMT-5]stmpe_inject_key, 56 0
+[  122.587521] [2016-12-28 01:26:49 GMT-5]stmpe_inject_key, 11 1
+[  122.718503] [2016-12-28 01:26:49 GMT-5]stmpe_inject_key, 11 0
+[  122.811196] [2016-12-28 01:26:49 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  123.148980] [2016-12-28 01:26:50 GMT-5]stmpe_inject_key, 56 1
+[  123.280433] [2016-12-28 01:26:50 GMT-5]stmpe_inject_key, 56 0
+[  123.280476] [2016-12-28 01:26:50 GMT-5]stmpe_inject_key, 32 1
+[  123.411550] [2016-12-28 01:26:50 GMT-5]stmpe_inject_key, 32 0
+[  123.940231] [2016-12-28 01:26:50 GMT-5]synaptics_dsx_i2c 6-0020: [   123.940000] INT=170 INT_S=170 T=170 REPORT_T=334 FR=23 TR=1 LO=0 STAT=0 RST=0 ERR=0
+[  124.785853] [2016-12-28 01:26:51 GMT-5]adm_open: Force open adm in 24-bit 
+[  124.785853]  
+[  124.867822] binder: 1612:2125 transaction failed 29189, size 352-0
+[  124.990412] [2016-12-28 01:26:51 GMT-5]stmpe-keypad 8-0040: stmpe_keypad_timer_handler: STATS: ints: 31 ex:1 kp: 16 mk:0 sk:0 rc: 0 dc: 0 ik: 0
+[  125.038790] [2016-12-28 01:26:51 GMT-5][01:26:51.986533] [00000000940AAD7A] [VosMC]  wlan: [E :VOS] vos_mem_malloc: called with invalid arg 0 !!!
+[  125.038969] [2016-12-28 01:26:51 GMT-5][01:26:51.986715] [00000000940ABB24] [VosMC]  wlan: [E :PE ] limProcessAssocRspFrame: 555: Unable to allocate memory to store assoc response
+[  127.097923] [2016-12-28 01:26:54 GMT-5]mtp_open
+[  128.000147] [2026-10-04 09:24:40 GMT-5]stmpe-keypad 8-0040: stmpe_keypad_timer_handler: STATS: ints: 31 ex:1 kp: 16 mk:0 sk:0 rc: 0 dc: 0 ik: 0
+[  128.879340] [2026-10-04 09:24:41 GMT-5][RMNET:HI] rmnet_config_notify_cb(): Kernel is trying to unregister v4-wlan0
+[  128.940609] [2026-10-04 09:24:41 GMT-5][RMNET:HI] rmnet_config_notify_cb(): Kernel is trying to unregister v4-wlan0
+[  129.050383] [2026-10-04 09:24:41 GMT-5]type=1400 audit(1791123881.914:86): avc: denied { read } for pid=5580 comm="Binder:4666_5" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  129.398647] [2026-10-04 09:24:42 GMT-5]type=1400 audit(1791123882.254:87): avc: denied { read } for pid=5580 comm="Binder:4666_5" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  129.478671] [2026-10-04 09:24:42 GMT-5]------------[ cut here ]------------
+[  129.478700] [2026-10-04 09:24:42 GMT-5]WARNING: CPU: 7 PID: 5580 at /var/build/workspace/workspace/AOSP/codeaurora-bb_release_avengers_mercury_sprint_aospn-msm8953-tcl_Main/src/kernel/net/core/dev.c:3426 netif_rx_internal+0x110/0x250()
+[  129.478706] [2026-10-04 09:24:42 GMT-5]Cloned packet from dev lo
+[  129.478711] [2026-10-04 09:24:42 GMT-5]Modules linked in: wlan(O)
+[  129.478726] [2026-10-04 09:24:42 GMT-5]CPU: 7 PID: 5580 Comm: Binder:4666_5 Tainted: G        W  O   3.18.31-perf-gf38c8fb #1
+[  129.478731] [2026-10-04 09:24:42 GMT-5]Hardware name: MSM 8953 BBB100 V1 (DT)
+[  129.478737] [2026-10-04 09:24:42 GMT-5]Call trace:
+[  129.478814] [2026-10-04 09:24:42 GMT-5][<ffffffc000089ae8>] dump_backtrace+0x0/0x23c
+[  129.478821] [2026-10-04 09:24:42 GMT-5][<ffffffc000089d38>] show_stack+0x14/0x1c
+[  129.478831] [2026-10-04 09:24:42 GMT-5][<ffffffc000cdbadc>] dump_stack+0x88/0xac
+[  129.478842] [2026-10-04 09:24:42 GMT-5][<ffffffc0000a2ff0>] warn_slowpath_common+0x8c/0xb0
+[  129.478849] [2026-10-04 09:24:42 GMT-5][<ffffffc0000a3074>] warn_slowpath_fmt+0x60/0x80
+[  129.478856] [2026-10-04 09:24:42 GMT-5][<ffffffc000b18ea8>] netif_rx_internal+0x110/0x250
+[  129.478862] [2026-10-04 09:24:42 GMT-5][<ffffffc000b1906c>] netif_rx+0x84/0xbc
+[  129.478871] [2026-10-04 09:24:42 GMT-5][<ffffffc0006006b8>] loopback_xmit+0x78/0xd4
+[  129.478878] [2026-10-04 09:24:42 GMT-5][<ffffffc000b1ee98>] dev_hard_start_xmit+0xf0/0x240
+[  129.478884] [2026-10-04 09:24:42 GMT-5][<ffffffc000b1f5b0>] __dev_queue_xmit+0x3ac/0x4fc
+[  129.478890] [2026-10-04 09:24:42 GMT-5][<ffffffc000b1f714>] dev_queue_xmit+0x14/0x1c
+[  129.478898] [2026-10-04 09:24:42 GMT-5][<ffffffc000b2a58c>] neigh_resolve_output+0x160/0x184
+[  129.478907] [2026-10-04 09:24:42 GMT-5][<ffffffc000b885cc>] ip_finish_output+0x968/0x9cc
+[  129.478914] [2026-10-04 09:24:42 GMT-5][<ffffffc000b89bd4>] ip_output+0xf0/0x144
+[  129.478920] [2026-10-04 09:24:42 GMT-5][<ffffffc000b89330>] ip_local_out_sk+0x3c/0x48
+[  129.478927] [2026-10-04 09:24:42 GMT-5][<ffffffc000b897dc>] ip_queue_xmit+0x2d4/0x388
+[  129.478935] [2026-10-04 09:24:42 GMT-5][<ffffffc000b9e444>] tcp_transmit_skb+0x8d8/0x944
+[  129.478941] [2026-10-04 09:24:42 GMT-5][<ffffffc000b9f94c>] tcp_connect+0x6cc/0x7a8
+[  129.478948] [2026-10-04 09:24:42 GMT-5][<ffffffc000ba236c>] tcp_v4_connect+0x3d8/0x43c
+[  129.478957] [2026-10-04 09:24:42 GMT-5][<ffffffc000c182e0>] tcp_v6_connect+0x1fc/0x4e8
+[  129.478964] [2026-10-04 09:24:42 GMT-5][<ffffffc000bb7c64>] __inet_stream_connect+0xb4/0x2cc
+[  129.478970] [2026-10-04 09:24:42 GMT-5][<ffffffc000bb7eb8>] inet_stream_connect+0x3c/0x58
+[  129.478979] [2026-10-04 09:24:42 GMT-5][<ffffffc000b05874>] SyS_connect+0xb4/0x10c
+[  129.478984] [2026-10-04 09:24:42 GMT-5]---[ end trace da1b6c490c38f6b1 ]---
+[  129.584347] [2026-10-04 09:24:42 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  129.584446] [2026-10-04 09:24:42 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  130.039343] [2026-10-04 09:24:42 GMT-5]type=1400 audit(1791123882.894:88): avc: denied { read } for pid=5577 comm="Binder:4666_4" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  130.388221] [2026-10-04 09:24:43 GMT-5]type=1400 audit(1791123883.244:89): avc: denied { read } for pid=5577 comm="Binder:4666_4" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  131.374306] [2026-10-04 09:24:44 GMT-5]type=1400 audit(1791123884.234:90): avc: denied { read } for pid=4680 comm="Binder:4666_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  131.574273] [2026-10-04 09:24:44 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  131.574429] [2026-10-04 09:24:44 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  131.817183] [2026-10-04 09:24:44 GMT-5]type=1400 audit(1791123884.674:91): avc: denied { read } for pid=4680 comm="Binder:4666_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  131.933660] [2026-10-04 09:24:44 GMT-5]type=1400 audit(1791123884.794:92): avc: denied { write } for pid=5945 comm="ackberry.ddt:ui" name="com.blackberry.ddt" dev="dm-1" ino=1408987 scontext=u:r:diagnostics:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=0
+[  135.315988] [2026-10-04 09:24:48 GMT-5]fan5702 kp+fp:Power off
+[  136.230795] [2026-10-04 09:24:49 GMT-5]fan5702 nav+rgb:Power off
+[  137.490145] [2026-10-04 09:24:50 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  137.490367] [2026-10-04 09:24:50 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  137.952770] [2026-10-04 09:24:50 GMT-5][09:24:50.824612] [00000000A2D211F4] [VosMC]  wlan: [E :HDD] Action frame received when Scanning is in progress. Abort Scan.
+[  137.970246] [2026-10-04 09:24:50 GMT-5]wlan: [2256:E :CTL] Error returned WDI_ProcessInitScanRspi:0 BMPS0
+[  137.970342] [2026-10-04 09:24:50 GMT-5][09:24:50.842187] [00000000A2D7381B] [VosMC]  wlan: [E :PE ] Switching channel to 100
+[  138.136032] [2026-10-04 09:24:50 GMT-5][09:24:51.007874] [00000000A307C2A3] [VosMC]  wlan: [E :PE ] Switching channel to 2
+[  138.166905] [2026-10-04 09:24:51 GMT-5][09:24:51.038745] [00000000A310CDFE] [VosMC]  wlan: [E :PE ] limProcessDisassocFrame: 130: Received Disassoc frame for Addr: cc:fd:17:ea:d2:18(mlm state=eLIM_MLM_LINK_ESTABLISHED_STATE, sme state=12),with reason code 7 from 20:be:b4:ba:89:ee
+[  138.167075] [2026-10-04 09:24:51 GMT-5][09:24:51.038920] [00000000A310DB19] [VosMC]  wlan: [E :SME] csrRoamCheckForLinkStatusChange: 9987: DISASSOCIATION Indication from MAC for session 0 
+[  138.167135] [2026-10-04 09:24:51 GMT-5][09:24:51.038981] [00000000A310DFA6] [VosMC]  wlan: [E :SME] csrRoamCheckForLinkStatusChange: 9990: DISASSOCIATION from peer =20:be:b4:ba:89:ee  reason = 7 status = 576 
+[  138.167328] [2026-10-04 09:24:51 GMT-5][09:24:51.039173] [00000000A310EE16] [VosMC]  wlan: [E :SME] csrRoamOffloadScan: 16771: RSO command 2 lastSentCmd 2, RSO is out of sync in HOST-FWR
+[  138.170327] [2026-10-04 09:24:51 GMT-5][09:24:51.042172] [00000000A311CEFE] [VosMC]  wlan: [E :SME] csrRoamFTPreAuthRspProcessor: 18098: Preauth was not processed: 1 SessionID: 0
+[  138.170414] [2026-10-04 09:24:51 GMT-5][09:24:51.042259] [00000000A311D58A] [VosMC]  wlan: [E :PE ] limFTCleanup: Freeing pFTPreAuthReq= ffffffc06ec64a00
+[  138.170470] [2026-10-04 09:24:51 GMT-5][09:24:51.042315] [00000000A311D9BE] [VosMC]  wlan: [E :PE ] limFTCleanup: Setting psavedsessionEntry= ffffff800b739000 to NULL
+[  138.170544] [2026-10-04 09:24:51 GMT-5][09:24:51.042390] [00000000A311DF54] [VosMC]  wlan: [E :PE ] limFTCleanup: Deleting Preauth Session 1
+[  138.170625] [2026-10-04 09:24:51 GMT-5][09:24:51.042471] [00000000A311E56B] [VosMC]  wlan: [E :PE ] limFTCleanup: Setting pftSessionEntry= ffffff800b73a678 to NULL
+[  138.193123] [2026-10-04 09:24:51 GMT-5][09:24:51.064965] [00000000A3187C7F] [VosMC]  wlan: [E :HDD] wlan: disconnected
+[  138.228760] [2026-10-04 09:24:51 GMT-5]wlan: [2256:E :CTL] Error returned WDI_ProcessInitScanRspi:0 BMPS0
+[  138.960155] [2026-10-04 09:24:51 GMT-5][09:24:51.831995] [00000000A3F933BA] [VosMC]  wlan: [E :PMC] pmcTrafficTimerExpired: 1023: BMPS timer should not be running
+[  139.633103] [2026-10-04 09:24:52 GMT-5]fan5702 nav+rgb:Power on
+[  139.648747] [2026-10-04 09:24:52 GMT-5]fan5702 kp+fp:Power on
+[  140.710844] [2026-10-04 09:24:53 GMT-5]adm_open: Force open adm in 24-bit 
+[  140.710844]  
+[  141.020454] ------------[ cut here ]------------
+[  141.020532] [2026-10-04 09:24:53 GMT-5]WARNING: CPU: 3 PID: 2287 at /var/build/workspace/workspace/AOSP/codeaurora-bb_release_avengers_mercury_sprint_aospn-msm8953-tcl_Main/src/kernel/net/wireless/sme.c:960 cfg80211_connect+0x44/0x43c()
+[  141.020540] [2026-10-04 09:24:53 GMT-5]Modules linked in: wlan(O)
+[  141.020563] [2026-10-04 09:24:53 GMT-5]CPU: 3 PID: 2287 Comm: wpa_supplicant Tainted: G        W  O   3.18.31-perf-gf38c8fb #1
+[  141.020569] [2026-10-04 09:24:53 GMT-5]Hardware name: MSM 8953 BBB100 V1 (DT)
+[  141.020579] [2026-10-04 09:24:53 GMT-5]Call trace:
+[  141.020688] [2026-10-04 09:24:53 GMT-5][<ffffffc000089ae8>] dump_backtrace+0x0/0x23c
+[  141.020697] [2026-10-04 09:24:53 GMT-5][<ffffffc000089d38>] show_stack+0x14/0x1c
+[  141.020714] [2026-10-04 09:24:53 GMT-5][<ffffffc000cdbadc>] dump_stack+0x88/0xac
+[  141.020733] [2026-10-04 09:24:53 GMT-5][<ffffffc0000a2ff0>] warn_slowpath_common+0x8c/0xb0
+[  141.020741] [2026-10-04 09:24:53 GMT-5][<ffffffc0000a312c>] warn_slowpath_null+0x18/0x20
+[  141.020750] [2026-10-04 09:24:53 GMT-5][<ffffffc000cae05c>] cfg80211_connect+0x44/0x43c
+[  141.020757] [2026-10-04 09:24:53 GMT-5][<ffffffc000ca4d28>] nl80211_connect+0x328/0x374
+[  141.020772] [2026-10-04 09:24:53 GMT-5][<ffffffc000b50ad4>] genl_family_rcv_msg+0x260/0x2dc
+[  141.020779] [2026-10-04 09:24:53 GMT-5][<ffffffc000b50b98>] genl_rcv_msg+0x48/0x6c
+[  141.020786] [2026-10-04 09:24:53 GMT-5][<ffffffc000b4ff0c>] netlink_rcv_skb+0x60/0xc8
+[  141.020793] [2026-10-04 09:24:53 GMT-5][<ffffffc000b50860>] genl_rcv+0x34/0x48
+[  141.020798] [2026-10-04 09:24:53 GMT-5][<ffffffc000b4f88c>] netlink_unicast+0x15c/0x22c
+[  141.020805] [2026-10-04 09:24:53 GMT-5][<ffffffc000b4fd28>] netlink_sendmsg+0x304/0x374
+[  141.020820] [2026-10-04 09:24:53 GMT-5][<ffffffc000b036bc>] sock_sendmsg+0x9c/0xd0
+[  141.020827] [2026-10-04 09:24:53 GMT-5][<ffffffc000b041f0>] ___sys_sendmsg+0x1f4/0x294
+[  141.020837] [2026-10-04 09:24:53 GMT-5][<ffffffc000b05fb0>] __sys_sendmsg+0x50/0x8c
+[  141.020843] [2026-10-04 09:24:53 GMT-5][<ffffffc000b06008>] SyS_sendmsg+0x1c/0x24
+[  141.020851] [2026-10-04 09:24:53 GMT-5]---[ end trace da1b6c490c38f6b2 ]---
+[  141.162762] [2026-10-04 09:24:54 GMT-5][09:24:54.034602] [00000000A67E7F44] [VosMC]  wlan: [E :VOS] vos_mem_malloc: called with invalid arg 0 !!!
+[  141.162848] [2026-10-04 09:24:54 GMT-5][09:24:54.034693] [00000000A67E860C] [VosMC]  wlan: [E :PE ] limProcessAssocRspFrame: 555: Unable to allocate memory to store assoc response
+[  141.304697] [2026-10-04 09:24:54 GMT-5][09:24:54.176535] [00000000A6A81433] [wpa_s]  wlan: [E :HDD] __wlan_hdd_cfg80211_firmware_roaming: 5613: attr bss id failed
+[  142.263559] [2026-10-04 09:24:55 GMT-5]type=1400 audit(1791123895.114:93): avc: denied { read } for pid=5580 comm="Binder:4666_5" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  142.408545] [2026-10-04 09:24:55 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  142.408867] [2026-10-04 09:24:55 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  142.762963] [2026-10-04 09:24:55 GMT-5]type=1400 audit(1791123895.624:94): avc: denied { read } for pid=5580 comm="Binder:4666_5" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  143.321736] [2026-10-04 09:24:56 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  143.366552] [2026-10-04 09:24:56 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  144.221621] [2026-10-04 09:24:57 GMT-5]type=1400 audit(1791123897.084:95): avc: denied { read } for pid=6378 comm="IntentService[D" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  144.233403] [2026-10-04 09:24:57 GMT-5]type=1400 audit(1791123897.094:96): avc: denied { read } for pid=6378 comm="IntentService[D" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  145.679582] [2026-10-04 09:24:58 GMT-5]type=1400 audit(1791123898.534:97): avc: denied { read } for pid=5580 comm="Binder:4666_5" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  146.132450] [2026-10-04 09:24:58 GMT-5]type=1400 audit(1791123898.994:98): avc: denied { read } for pid=5580 comm="Binder:4666_5" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  146.569007] [2026-10-04 09:24:59 GMT-5]type=1400 audit(1791123899.424:99): avc: denied { write } for pid=6803 comm="ackberry.ddt:ui" name="com.blackberry.ddt" dev="dm-1" ino=1408987 scontext=u:r:diagnostics:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=0
+[  147.248320] [2026-10-04 09:25:00 GMT-5]type=1400 audit(1791123900.104:100): avc: denied { read } for pid=5580 comm="Binder:4666_5" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  147.686400] [2026-10-04 09:25:00 GMT-5]type=1400 audit(1791123900.544:101): avc: denied { read } for pid=5580 comm="Binder:4666_5" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  147.827072] [2026-10-04 09:25:00 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  148.276989] [2026-10-04 09:25:01 GMT-5]adm_open: Force open adm in 24-bit 
+[  148.276989]  
+[  151.828277] binder: 2975:6641 transaction failed 29189, size 504-8
+[  152.879861] [2026-10-04 09:25:05 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  152.880208] [2026-10-04 09:25:05 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  154.268095] [2026-10-04 09:25:07 GMT-5]binder: 7040:7048 refcount change on invalid ref 62
+[  155.402639] [2026-10-04 09:25:08 GMT-5]type=1400 audit(1791123908.264:102): avc: denied { read } for pid=4680 comm="Binder:4666_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  155.512990] [2026-10-04 09:25:08 GMT-5]type=1400 audit(1791123908.374:103): avc: denied { read } for pid=4680 comm="Binder:4666_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  158.266860] [2026-10-04 09:25:11 GMT-5]type=1400 audit(1791123911.124:104): avc: denied { read } for pid=4680 comm="Binder:4666_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  158.368652] [2026-10-04 09:25:11 GMT-5]type=1400 audit(1791123911.224:105): avc: denied { read } for pid=4680 comm="Binder:4666_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  160.655254] [2026-10-04 09:25:13 GMT-5]fan5702 kp+fp:Power off
+[  161.571174] [2026-10-04 09:25:14 GMT-5]fan5702 nav+rgb:Power off
+[  162.826836] [2026-10-04 09:25:15 GMT-5]msm_pm_qos_update_request: update request 100
+[  162.840936] msm_csid_init: CSID_VERSION = 0x30050001
+[  162.841761] [2026-10-04 09:25:15 GMT-5]msm_csid_irq CSID2_IRQ_STATUS_ADDR = 0x800
+[  162.891168] [2026-10-04 09:25:15 GMT-5]MSM-CPP cpp_init_hardware:875 CPP HW Version: 0x40030003
+[  162.891185] [2026-10-04 09:25:15 GMT-5]MSM-CPP cpp_init_hardware:893 stream_cnt:0
+[  162.910378] [2026-10-04 09:25:15 GMT-5]msm_cci_init:1385: hw_version = 0x10020005
+[  162.911049] [2026-10-04 09:25:15 GMT-5]sensor name ov8856and rc 0
+[  162.926403] msm_pm_qos_update_request: update request -1<3>[  162.935019] msm_flash_config_thermal_limits:924 Flash thermal level 0 (2000 mA), torch thermal level 0 (200 mA)
+[  163.020131] [2026-10-04 09:25:15 GMT-5]TCT_update_OTP, OTP: sensor name: ov8856
+[  163.020148] [2026-10-04 09:25:15 GMT-5]OTP: ov8856 update
+[  163.020155] [2026-10-04 09:25:15 GMT-5]ov8856 R_gain(1024), G_gain(1044), B_gain(1051) 
+[  163.022364] [2026-10-04 09:25:15 GMT-5]ov8856_update_lenc
+[  163.126846] [2026-10-04 09:25:15 GMT-5]TCT_update_OTP, ov8856 unregister OTP info here!
+[  163.316943] [2026-10-04 09:25:16 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  163.317232] [2026-10-04 09:25:16 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  163.381725] [2026-10-04 09:25:16 GMT-5]msm_pm_qos_update_request: update request 100
+[  163.393551] msm_csid_init: CSID_VERSION = 0x30050001
+[  163.395591] [2026-10-04 09:25:16 GMT-5]msm_csid_irq CSID0_IRQ_STATUS_ADDR = 0x800
+[  163.412466] [2026-10-04 09:25:16 GMT-5]MSM-CPP cpp_init_hardware:875 CPP HW Version: 0x40030003
+[  163.412481] [2026-10-04 09:25:16 GMT-5]MSM-CPP cpp_init_hardware:893 stream_cnt:0
+[  163.437771] [2026-10-04 09:25:16 GMT-5]msm_pm_qos_update_request: update request -1
+[  163.443896] msm_flash_config_thermal_limits:924 Flash thermal level 0 (2000 mA), torch thermal level 0 (200 mA)
+[  163.444224] [2026-10-04 09:25:16 GMT-5]msm_cci_init:1385: hw_version = 0x10020005
+[  163.497583] [2026-10-04 09:25:16 GMT-5]sensor name imx378and rc 0TCT_update_OTP, OTP: sensor name: imx378
+[  163.571156] [2026-10-04 09:25:16 GMT-5]TCT_update_OTP, imx378 unregister OTP info here!
+[  164.115050] [2026-10-04 09:25:16 GMT-5]IRQ7 no longer affine to CPU1
+[  164.115061] [2026-10-04 09:25:16 GMT-5]IRQ8 no longer affine to CPU1
+[  164.115066] [2026-10-04 09:25:16 GMT-5]IRQ9 no longer affine to CPU1
+[  164.115072] [2026-10-04 09:25:16 GMT-5]IRQ10 no longer affine to CPU1
+[  164.115078] [2026-10-04 09:25:16 GMT-5]IRQ11 no longer affine to CPU1
+[  164.115083] [2026-10-04 09:25:16 GMT-5]IRQ12 no longer affine to CPU1
+[  164.115089] [2026-10-04 09:25:16 GMT-5]IRQ13 no longer affine to CPU1
+[  164.115094] [2026-10-04 09:25:16 GMT-5]IRQ14 no longer affine to CPU1
+[  164.115100] [2026-10-04 09:25:16 GMT-5]IRQ15 no longer affine to CPU1
+[  164.115105] [2026-10-04 09:25:16 GMT-5]IRQ16 no longer affine to CPU1
+[  184.112907] [2026-10-04 09:25:36 GMT-5]fan5702 nav+rgb:Power on
+[  184.129228] [2026-10-04 09:25:36 GMT-5]fan5702 kp+fp:Power on
+[  196.656775] [2026-10-04 09:25:49 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  196.657220] [2026-10-04 09:25:49 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  196.666802] [2026-10-04 09:25:49 GMT-5]fan5702 kp+fp:Power off
+[  197.584323] [2026-10-04 09:25:50 GMT-5]fan5702 nav+rgb:Power off
+[  201.804592] [2026-10-04 09:25:54 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  203.536029] [2026-10-04 09:25:56 GMT-5]fan5702 nav+rgb:Power on
+[  203.552040] [2026-10-04 09:25:56 GMT-5]fan5702 kp+fp:Power on
+[  203.706710] [2026-10-04 09:25:56 GMT-5]adm_open: Force open adm in 24-bit 
+[  203.706710]  
+[  216.079677] i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  216.079820] [2026-10-04 09:26:08 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  216.956625] [2026-10-04 09:26:09 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  218.264205] [2026-10-04 09:26:11 GMT-5]adm_open: Force open adm in 24-bit 
+[  218.264205]  
+[  226.300762] i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  226.300905] [2026-10-04 09:26:19 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  228.896708] [2026-10-04 09:26:21 GMT-5]fan5702 kp+fp:Power off
+[  229.814247] [2026-10-04 09:26:22 GMT-5]fan5702 nav+rgb:Power off
+[  241.112613] [2026-10-04 09:26:33 GMT-5]healthd: current=-140074 esr=203613 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  241.112698] [2026-10-04 09:26:33 GMT-5]healthd: battery l=100 v=4390 t=31.2 h=2 st=2 c=-140 fc=3511000 chg=u limit=-1
+[  241.120356] [2026-10-04 09:26:33 GMT-5]healthd: current=-140074 esr=203613 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  241.120433] [2026-10-04 09:26:33 GMT-5]healthd: battery l=100 v=4390 t=31.2 h=2 st=2 c=-140 fc=3511000 chg=u limit=-1
+[  245.134902] [2026-10-04 09:26:37 GMT-5]fan5702 nav+rgb:Power on
+[  245.151144] [2026-10-04 09:26:38 GMT-5]fan5702 kp+fp:Power on
+[  247.355668] [2026-10-04 09:26:40 GMT-5]type=1400 audit(1791124000.214:106): avc: denied { read } for pid=7944 comm="blackberry.oobe" name="vmstat" dev="proc" ino=4026532389 scontext=u:r:oobe:s0 tcontext=u:object_r:proc:s0 tclass=file permissive=0
+[  247.366112] [2026-10-04 09:26:40 GMT-5]adm_open: Force open adm in 24-bit 
+[  247.366112]  
+[  252.921853] adm_open: Force open adm in 24-bit 
+[  252.921853]  adm_open: Force open adm in 24-bit 
+[  265.814592]  
+[  271.305740] [BIDE] DBG: Kicking process scan.
+[  271.305796] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Starting process scan.
+[  271.306288] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /init(1, 1).
+[  271.309627] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /init(382, 382).
+[  271.312014] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd(431, 431).
+[  271.318581] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd64(432, 432).
+[  271.327610] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/vold(433, 433).
+[  271.368686] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd64(435, 435).
+[  271.376028] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd(436, 436).
+[  271.380254] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /sbin/healthd(510, 510).
+[  271.381689] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/vtnvfsd_wrapper(521, 521).
+[  271.385455] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/vtnvfsd_wrapper(522, 522).
+[  271.389039] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/lmkd(529, 529).
+[  271.393637] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/tctd(532, 532).
+[  271.402031] [2026-10-04 09:27:04 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  271.409708] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/vendor/bin/perfd(682, 682).
+[  271.415087] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/spfd(689, 689).
+[  271.425684] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/selfieflash(697, 697).
+[  271.447417] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/zygoteman(700, 700).
+[  271.452607] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/installd(709, 709).
+[  271.458160] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/netd(717, 717).
+[  271.465594] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process32(739, 739).
+[  271.513922] [2026-10-04 09:27:04 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process32:/data/dalvik-cache/arm/system@framework@tcmclient.jar@classes.dex
+[  271.583938] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(740, 740).
+[  271.649863] [2026-10-04 09:27:04 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  271.747540] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process32(741, 741).
+[  271.796754] [2026-10-04 09:27:04 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process32:/data/dalvik-cache/arm/system@framework@tcmclient.jar@classes.dex
+[  271.865186] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/gatekeeperd(746, 746).
+[  271.874719] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(2289, 2289).
+[  271.941824] [2026-10-04 09:27:04 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  272.034900] [2026-10-04 09:27:04 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(5363, 5363).
+[  272.109268] [2026-10-04 09:27:04 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  272.212345] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Done scanning processes. rc=0.
+[  272.292529] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Creating bide report.
+[  272.345196] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Kicking process scan.
+[  272.345221] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Starting process scan.
+[  272.345765] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /init(1, 1).
+[  272.347777] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /init(382, 382).
+[  272.349540] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd(431, 431).
+[  272.353909] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd64(432, 432).
+[  272.360300] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/vold(433, 433).
+[  272.372314] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd64(435, 435).
+[  272.378490] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd(436, 436).
+[  272.383072] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /sbin/healthd(510, 510).
+[  272.384384] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/vtnvfsd_wrapper(521, 521).
+[  272.388894] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/vtnvfsd_wrapper(522, 522).
+[  272.393063] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/lmkd(529, 529).
+[  272.398068] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/tctd(532, 532).
+[  272.404484] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/vendor/bin/perfd(682, 682).
+[  272.409198] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/spfd(689, 689).
+[  272.419429] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/selfieflash(697, 697).
+[  272.442192] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/zygoteman(700, 700).
+[  272.449164] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/installd(709, 709).
+[  272.457203] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/netd(717, 717).
+[  272.473772] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process32(739, 739).
+[  272.530972] [2026-10-04 09:27:05 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process32:/data/dalvik-cache/arm/system@framework@tcmclient.jar@classes.dex
+[  272.744665] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(740, 740).
+[  272.820977] [2026-10-04 09:27:05 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  272.918505] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process32(741, 741).
+[  272.969991] [2026-10-04 09:27:05 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process32:/data/dalvik-cache/arm/system@framework@tcmclient.jar@classes.dex
+[  273.065267] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/gatekeeperd(746, 746).
+[  273.081224] [2026-10-04 09:27:05 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(2289, 2289).
+[  273.150697] [2026-10-04 09:27:06 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  273.250356] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(5363, 5363).
+[  273.319248] [2026-10-04 09:27:06 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  273.416317] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Done scanning processes. rc=0.
+[  273.496796] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Creating bide report.
+[  273.536728] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Kicking process scan.
+[  273.536752] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Starting process scan.
+[  273.537374] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /init(1, 1).
+[  273.539487] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /init(382, 382).
+[  273.541332] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd(431, 431).
+[  273.545547] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd64(432, 432).
+[  273.551713] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/vold(433, 433).
+[  273.563717] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd64(435, 435).
+[  273.569939] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/debuggerd(436, 436).
+[  273.574141] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /sbin/healthd(510, 510).
+[  273.575193] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/vtnvfsd_wrapper(521, 521).
+[  273.579135] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/vtnvfsd_wrapper(522, 522).
+[  273.583032] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/lmkd(529, 529).
+[  273.587499] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/tctd(532, 532).
+[  273.593973] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/vendor/bin/perfd(682, 682).
+[  273.598845] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/spfd(689, 689).
+[  273.650697] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/selfieflash(697, 697).
+[  273.674258] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/zygoteman(700, 700).
+[  273.680275] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/installd(709, 709).
+[  273.688496] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/netd(717, 717).
+[  273.699563] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process32(739, 739).
+[  273.749506] [2026-10-04 09:27:06 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process32:/data/dalvik-cache/arm/system@framework@tcmclient.jar@classes.dex
+[  273.855264] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(740, 740).
+[  273.931395] [2026-10-04 09:27:06 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  274.031709] [2026-10-04 09:27:06 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process32(741, 741).
+[  274.082125] [2026-10-04 09:27:06 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process32:/data/dalvik-cache/arm/system@framework@tcmclient.jar@classes.dex
+[  274.155023] [2026-10-04 09:27:07 GMT-5][BIDE] DBG: Hashing Process: /system/bin/gatekeeperd(746, 746).
+[  274.165500] [2026-10-04 09:27:07 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(2289, 2289).
+[  274.236765] [2026-10-04 09:27:07 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  274.337815] [2026-10-04 09:27:07 GMT-5][BIDE] DBG: Hashing Process: /system/bin/app_process64(5363, 5363).
+[  274.407851] [2026-10-04 09:27:07 GMT-5][BIDE] INF: Skipping the scan of /system/bin/app_process64:/data/dalvik-cache/arm64/system@framework@tcmclient.jar@classes.dex
+[  274.507957] [2026-10-04 09:27:07 GMT-5][BIDE] DBG: Done scanning processes. rc=0.
+[  274.571412] [2026-10-04 09:27:07 GMT-5][BIDE] DBG: Creating bide report.
+[  275.134635] [2026-10-04 09:27:07 GMT-5]Vibration req:  350 ms
+[  275.134707] [2026-10-04 09:27:07 GMT-5]Vibration used: 350 ms
+[  275.134857] [2026-10-04 09:27:07 GMT-5]ktd2026 ktd2026:Starting blink for red
+[  275.135802] [2026-10-04 09:27:07 GMT-5]ktd2026 ktd2026:Starting blink for green
+[  275.139134] [2026-10-04 09:27:07 GMT-5]ktd2026 ktd2026:Set red to 1,led_mask=1
+[  275.139148] [2026-10-04 09:27:07 GMT-5]ktd2026 ktd2026:brightness =01
+[  275.139401] [2026-10-04 09:27:07 GMT-5]ktd2026 ktd2026:Setting red 0x06 to 0x01
+[  275.139658] [2026-10-04 09:27:07 GMT-5]ktd2026 ktd2026:Setting 0x04 to 0x0A
+[  275.139846] [2026-10-04 09:27:07 GMT-5]ktd2026 ktd2026:Set green to 3,led_mask=2
+[  275.139852] [2026-10-04 09:27:07 GMT-5]ktd2026 ktd2026:brightness =03
+[  275.139992] [2026-10-04 09:27:07 GMT-5]ktd2026 ktd2026:Setting green 0x07 to 0x03
+[  275.140243] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:Setting 0x04 to 0x0A
+[  275.140408] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:Set blue to 0,led_mask=4
+[  275.140414] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:brightness =00
+[  275.140531] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:Setting blue 0x08 to 0x00
+[  275.140758] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:Setting 0x04 to 0x0A
+[  275.140879] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:Set red to 2,led_mask=1
+[  275.140884] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:brightness =02
+[  275.141004] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:Setting red 0x06 to 0x02
+[  275.141231] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:Setting 0x04 to 0x0A
+[  275.141343] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:Set green to 1,led_mask=2
+[  275.141348] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:brightness =01
+[  275.141457] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:Setting green 0x07 to 0x01
+[  275.141681] [2026-10-04 09:27:08 GMT-5]ktd2026 ktd2026:Setting 0x04 to 0x0A
+[  275.735314] [2026-10-04 09:27:08 GMT-5]Vibration req:  350 ms
+[  275.735385] [2026-10-04 09:27:08 GMT-5]Vibration used: 350 ms
+[  280.698265] [2026-10-04 09:27:13 GMT-5]type=1400 audit(1791124033.554:107): avc: denied { getattr } for pid=4024 comm="highpool[1]" path="/system/bin/ddt" dev="dm-0" ino=540 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:tcpdump_diag_file:s0 tclass=dir permissive=0
+[  280.760899] [2026-10-04 09:27:13 GMT-5]type=1400 audit(1791124033.624:108): avc: denied { getattr } for pid=4024 comm="highpool[1]" path="/system/rfs" dev="dm-0" ino=3355 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:rfs_system_file:s0 tclass=dir permissive=0
+[  283.490271] [2026-10-04 09:27:16 GMT-5]synaptics_dsx_i2c 6-0020: [   283.490000] INT=3 INT_S=3 T=3 REPORT_T=2 FR=1 TR=1 LO=0 STAT=0 RST=0 ERR=0
+[  283.599408] [2026-10-04 09:27:16 GMT-5]NOHZ: local_softirq_pending 08
+[  283.599838] [2026-10-04 09:27:16 GMT-5]NOHZ: local_softirq_pending 08
+[  283.644795] [2026-10-04 09:27:16 GMT-5]fts_input_dev_report_key_event nav_key up x=270 y=1660 touch_num=0 nav_key_is_reporting=1, nav_key_need_report=1
+[  283.644808] [2026-10-04 09:27:16 GMT-5][haojun] fts_nav_key_report_down_up 
+[  283.646515] [2026-10-04 09:27:16 GMT-5]Vibration req:  60 ms
+[  283.646588] [2026-10-04 09:27:16 GMT-5]Vibration used: 60 ms
+[  289.109654] [2026-10-04 09:27:21 GMT-5]adm_open: Force open adm in 24-bit 
+[  289.109654]  
+[  290.780856] i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  290.781014] [2026-10-04 09:27:23 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  292.169023] [2026-10-04 09:27:25 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  292.169163] [2026-10-04 09:27:25 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  294.570443] [2026-10-04 09:27:27 GMT-5]adm_open: Force open adm in 24-bit 
+[  294.570443]  
+[  296.261818] dwc3 7000000.dwc3: request 0000000000000000 was not queued to ep0out
+[  296.262279] [2026-10-04 09:27:29 GMT-5]mtp_release
+[  296.262393] [2026-10-04 09:27:29 GMT-5]bb_release: bb_release
+[  296.313275] [2026-10-04 09:27:29 GMT-5]init: Starting service 'adbd'...
+[  296.324372] [2026-10-04 09:27:29 GMT-5]read descriptors
+[  296.324397] [2026-10-04 09:27:29 GMT-5]read strings
+[  296.324432] [2026-10-04 09:27:29 GMT-5]mtp_bind_config
+[  296.431082] [2026-10-04 09:27:29 GMT-5]dwc3_gadget_suspend_interrupt(): state:0. Ignore SUSPEND.
+[  296.539022] [2026-10-04 09:27:29 GMT-5]msm-dwc3 7000000.ssusb: Avail curr from USB = 0
+[  296.539410] [2026-10-04 09:27:29 GMT-5]android_work: android_work: sent uevent USB_STATE=DISCONNECTED
+[  296.543207] [2026-10-04 09:27:29 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=0 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  296.543233] [2026-10-04 09:27:29 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  296.548550] [2026-10-04 09:27:29 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=0 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  296.548580] [2026-10-04 09:27:29 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  296.622470] [2026-10-04 09:27:29 GMT-5]android_work: android_work: sent uevent USB_STATE=CONNECTED
+[  296.658845] [2026-10-04 09:27:29 GMT-5]android_usb gadget: high-speed config #1: 86000c8.android_usb
+[  296.659012] [2026-10-04 09:27:29 GMT-5]msm-dwc3 7000000.ssusb: Avail curr from USB = 500
+[  296.663710] [2026-10-04 09:27:29 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  296.663741] [2026-10-04 09:27:29 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  296.666681] [2026-10-04 09:27:29 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  296.666712] [2026-10-04 09:27:29 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  296.710218] [2026-10-04 09:27:29 GMT-5]android_work: android_work: sent uevent USB_STATE=CONFIGURED
+[  296.810693] [2026-10-04 09:27:29 GMT-5]mtp_open
+[  297.278965] [2026-10-04 09:27:30 GMT-5]bb_open: bb_open
+[  298.723253] [2026-10-04 09:27:31 GMT-5]init: Service 'adbd' is being killed...
+[  298.723599] [2026-10-04 09:27:31 GMT-5]dwc3 7000000.dwc3: request 0000000000000000 was not queued to ep0out
+[  298.723735] [2026-10-04 09:27:31 GMT-5]bb_release: bb_release
+[  298.723980] [2026-10-04 09:27:31 GMT-5]mtp_release
+[  298.725526] [2026-10-04 09:27:31 GMT-5]init: Service 'adbd' (pid 8326) killed by signal 9
+[  298.725545] [2026-10-04 09:27:31 GMT-5]init: Service 'adbd' (pid 8326) killing any children in process group
+[  298.774171] [2026-10-04 09:27:31 GMT-5]mtp_bind_config
+[  298.880626] [2026-10-04 09:27:31 GMT-5]dwc3_gadget_suspend_interrupt(): state:0. Ignore SUSPEND.
+[  298.988671] [2026-10-04 09:27:31 GMT-5]msm-dwc3 7000000.ssusb: Avail curr from USB = 0
+[  298.991131] [2026-10-04 09:27:31 GMT-5]android_work: android_work: sent uevent USB_STATE=DISCONNECTED
+[  298.995161] [2026-10-04 09:27:31 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=0 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  298.995199] [2026-10-04 09:27:31 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  298.997842] [2026-10-04 09:27:31 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=0 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  298.997868] [2026-10-04 09:27:31 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  299.071969] [2026-10-04 09:27:31 GMT-5]android_work: android_work: sent uevent USB_STATE=CONNECTED
+[  299.105685] [2026-10-04 09:27:31 GMT-5]android_usb gadget: high-speed config #1: 86000c8.android_usb
+[  299.105799] [2026-10-04 09:27:31 GMT-5]msm-dwc3 7000000.ssusb: Avail curr from USB = 500
+[  299.110471] [2026-10-04 09:27:31 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  299.110500] [2026-10-04 09:27:31 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  299.113051] [2026-10-04 09:27:31 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  299.113078] [2026-10-04 09:27:31 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  299.160232] [2026-10-04 09:27:32 GMT-5]android_work: android_work: sent uevent USB_STATE=CONFIGURED
+[  299.176159] [2026-10-04 09:27:32 GMT-5]dwc3 7000000.dwc3: request 0000000000000000 was not queued to ep0out
+[  299.193084] [2026-10-04 09:27:32 GMT-5]mtp_open
+[  299.228279] [2026-10-04 09:27:32 GMT-5]init: Starting service 'adbd'...
+[  299.232698] [2026-10-04 09:27:32 GMT-5]read descriptors
+[  299.232713] [2026-10-04 09:27:32 GMT-5]read strings
+[  299.232731] [2026-10-04 09:27:32 GMT-5]mtp_bind_config
+[  299.339230] [2026-10-04 09:27:32 GMT-5]dwc3_gadget_suspend_interrupt(): state:0. Ignore SUSPEND.
+[  299.433899] [2026-10-04 09:27:32 GMT-5]msm-dwc3 7000000.ssusb: Avail curr from USB = 0
+[  299.434287] [2026-10-04 09:27:32 GMT-5]android_work: android_work: sent uevent USB_STATE=DISCONNECTED
+[  299.440701] [2026-10-04 09:27:32 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=0 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  299.440728] [2026-10-04 09:27:32 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  299.443903] [2026-10-04 09:27:32 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=0 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  299.443941] [2026-10-04 09:27:32 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  299.516735] [2026-10-04 09:27:32 GMT-5]android_work: android_work: sent uevent USB_STATE=CONNECTED
+[  299.551522] [2026-10-04 09:27:32 GMT-5]android_usb gadget: high-speed config #1: 86000c8.android_usb
+[  299.551664] [2026-10-04 09:27:32 GMT-5]msm-dwc3 7000000.ssusb: Avail curr from USB = 500
+[  299.554850] [2026-10-04 09:27:32 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  299.554875] [2026-10-04 09:27:32 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  299.557034] [2026-10-04 09:27:32 GMT-5]healthd: current=273893 esr=206909 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  299.557060] [2026-10-04 09:27:32 GMT-5]healthd: battery l=100 v=4282 t=31.7 h=2 st=2 c=273 fc=3511000 chg=u limit=-1
+[  299.610206] [2026-10-04 09:27:32 GMT-5]android_work: android_work: sent uevent USB_STATE=CONFIGURED
+[  299.633156] [2026-10-04 09:27:32 GMT-5]mtp_open
+[  299.633167] [2026-10-04 09:27:32 GMT-5]mtp_open: mtp_open mtp_release not called returning EBUSY
+[  299.724731] [2026-10-04 09:27:32 GMT-5]bb_open: bb_open
+[  303.868250] [2026-10-04 09:27:36 GMT-5]fts_input_dev_report_key_event nav_key up x=540 y=1660 touch_num=0 nav_key_is_reporting=1, nav_key_need_report=1
+[  303.868271] [2026-10-04 09:27:36 GMT-5][haojun] fts_nav_key_report_down_up 
+[  303.870147] [2026-10-04 09:27:36 GMT-5]Vibration req:  60 ms
+[  303.870232] [2026-10-04 09:27:36 GMT-5]Vibration used: 60 ms
+[  308.317109] [2026-10-04 09:27:41 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  308.317253] [2026-10-04 09:27:41 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  310.500971] [2026-10-04 09:27:43 GMT-5]binder: 1612:2125 transaction failed 29189, size 364-0
+[  310.515261] [2026-10-04 09:27:43 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  310.515432] [2026-10-04 09:27:43 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  311.232769] [2026-10-04 09:27:44 GMT-5]adm_open: Force open adm in 24-bit 
+[  311.232769]  
+[  319.093335] i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  319.093520] [2026-10-04 09:27:51 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  323.827768] [2026-10-04 09:27:56 GMT-5]fan5702 kp+fp:Power off
+[  324.159538] [2026-10-04 09:27:57 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  324.744310] [2026-10-04 09:27:57 GMT-5]fan5702 nav+rgb:Power off
+[  331.606730] [2026-10-04 09:28:04 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x091343c8 OPER:0x00000090
+[  331.607040] [2026-10-04 09:28:04 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  338.764070] [2026-10-04 09:28:11 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  343.681921] [2026-10-04 09:28:16 GMT-5]synaptics_dsx_i2c 6-0020: init_complete=0x01, turn_off=0, lid_state=0, fb_blank=4
+[  343.681929] [2026-10-04 09:28:16 GMT-5]synaptics_dsx_i2c 6-0020: slider=closed,  power=off, touch_obj=0, touch=normal
+[  343.684288] [2026-10-04 09:28:16 GMT-5]mdss_fb_blank_sub: mdss_fb_blank+0xd4/0xe4 mode:4
+[  343.777288] [2026-10-04 09:28:16 GMT-5]synaptics_dsx_i2c 6-0020: synaptics_rmi4_reset_device:reset_complete, is_hw=1, retval=0
+[  343.867414] [2026-10-04 09:28:16 GMT-5][FTS] fb_notifier_callback. on --> gesture
+[  343.870384] [2026-10-04 09:28:16 GMT-5]i2c-msm-v2 78b7000.i2c: NACK: slave not responding, ensure its powered: msgs(n:2 cur:0 tx) bc(rx:8 tx:1) mode:FIFO slv_addr:0x38 MSTR_STS:0x0113e3c8 OPER:0x00000010
+[  343.870436] [2026-10-04 09:28:16 GMT-5][FTS] fts_i2c_read_universal:113: i2c read error.
+[  343.870441] [2026-10-04 09:28:16 GMT-5][FTS] fts_gesture_read_data:285: fts_gesture_read_data read touchdata failed.
+[  344.191234] [2026-10-04 09:28:17 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:4) mode:FIFO slv_addr:0x28 MSTR_STS:0x091343c8 OPER:0x00000090
+[  344.191931] [2026-10-04 09:28:17 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  344.252077] [2026-10-04 09:28:17 GMT-5]migrate_irqs: 1343 callbacks suppressed
+[  344.252086] [2026-10-04 09:28:17 GMT-5]IRQ7 no longer affine to CPU1
+[  344.252092] [2026-10-04 09:28:17 GMT-5]IRQ8 no longer affine to CPU1
+[  344.252097] [2026-10-04 09:28:17 GMT-5]IRQ9 no longer affine to CPU1
+[  344.252102] [2026-10-04 09:28:17 GMT-5]IRQ10 no longer affine to CPU1
+[  344.252109] [2026-10-04 09:28:17 GMT-5]IRQ11 no longer affine to CPU1
+[  344.252114] [2026-10-04 09:28:17 GMT-5]IRQ12 no longer affine to CPU1
+[  344.252119] [2026-10-04 09:28:17 GMT-5]IRQ13 no longer affine to CPU1
+[  344.252124] [2026-10-04 09:28:17 GMT-5]IRQ14 no longer affine to CPU1
+[  344.252130] [2026-10-04 09:28:17 GMT-5]IRQ15 no longer affine to CPU1
+[  344.252135] [2026-10-04 09:28:17 GMT-5]IRQ16 no longer affine to CPU1
+[  358.326552] [2026-10-04 09:28:31 GMT-5]healthd: current=-144194 esr=209350 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  358.326581] [2026-10-04 09:28:31 GMT-5]healthd: battery l=100 v=4390 t=32.0 h=2 st=2 c=-144 fc=3511000 chg=u limit=-1
+[  358.331073] [2026-10-04 09:28:31 GMT-5]healthd: current=-144194 esr=209350 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  358.331103] [2026-10-04 09:28:31 GMT-5]healthd: battery l=100 v=4390 t=32.0 h=2 st=2 c=-144 fc=3511000 chg=u limit=-1
+[  358.489010] [2026-10-04 09:28:31 GMT-5]binder: 1612:2125 transaction failed 29189, size 364-0
+[  361.485094] [2026-10-04 09:28:34 GMT-5]binder: 1612:2125 transaction failed 29189, size 364-0
+[  361.498167] [2026-10-04 09:28:34 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  385.008043] [2026-10-04 09:28:57 GMT-5]binder: 9026 invalid dec weak, ref 471801 desc 43 s 3 w 0
+[  385.008067] [2026-10-04 09:28:57 GMT-5]binder: 9026 invalid dec weak, ref 471809 desc 48 s 3 w 0
+[  385.008083] [2026-10-04 09:28:57 GMT-5]binder: 9026 invalid dec weak, ref 471805 desc 45 s 3 w 0
+[  387.299588] [2026-10-04 09:29:00 GMT-5]migrate_irqs: 892 callbacks suppressed
+[  387.299598] [2026-10-04 09:29:00 GMT-5]IRQ7 no longer affine to CPU2
+[  387.299604] [2026-10-04 09:29:00 GMT-5]IRQ8 no longer affine to CPU2
+[  387.299609] [2026-10-04 09:29:00 GMT-5]IRQ9 no longer affine to CPU2
+[  387.299614] [2026-10-04 09:29:00 GMT-5]IRQ10 no longer affine to CPU2
+[  387.299619] [2026-10-04 09:29:00 GMT-5]IRQ11 no longer affine to CPU2
+[  387.299625] [2026-10-04 09:29:00 GMT-5]IRQ12 no longer affine to CPU2
+[  387.299630] [2026-10-04 09:29:00 GMT-5]IRQ13 no longer affine to CPU2
+[  387.299636] [2026-10-04 09:29:00 GMT-5]IRQ14 no longer affine to CPU2
+[  387.299641] [2026-10-04 09:29:00 GMT-5]IRQ15 no longer affine to CPU2
+[  387.299646] [2026-10-04 09:29:00 GMT-5]IRQ16 no longer affine to CPU2
+[  402.015228] [2026-10-04 09:29:14 GMT-5]lowmemorykiller: Killing 'oid.setupwizard' (3202), adj 906,
+[  402.015228]    to free 66616kB on behalf of 'kswapd0' (158) because
+[  402.015228]    cache 1475536kB is below limit 322560kB for oom_score_adj 606
+[  402.015228]    Free memory is 28448kB above reserved.
+[  402.015228]    Free CMA is 80kB
+[  402.015228]    Total reserve is 29864kB
+[  402.015228]    Total free pages is 28132kB
+[  402.015228]    Total file cache is 1493864kB
+[  402.015228]    Total zcache is 0kB
+[  402.015228]    GFP mask is 0xd0
+[  402.015421] [2026-10-04 09:29:14 GMT-5]process 3662 (RenderThread) no longer affine to cpu1
+[  402.015432] [2026-10-04 09:29:14 GMT-5]process 3663 (RenderThread) no longer affine to cpu2
+[  402.015450] [2026-10-04 09:29:14 GMT-5]process 3666 (RenderThread) no longer affine to cpu5
+[  402.015467] [2026-10-04 09:29:14 GMT-5]process 3668 (RenderThread) no longer affine to cpu7
+[  402.064956] [2026-10-04 09:29:14 GMT-5]lowmemorykiller: Killing 'android.gms:car' (8224), adj 906,
+[  402.064956]    to free 48884kB on behalf of 'kswapd0' (158) because
+[  402.064956]    cache 1480008kB is below limit 322560kB for oom_score_adj 606
+[  402.064956]    Free memory is 29348kB above reserved.
+[  402.064956]    Free CMA is 3912kB
+[  402.064956]    Total reserve is 29864kB
+[  402.064956]    Total free pages is 33260kB
+[  402.064956]    Total file cache is 1497888kB
+[  402.064956]    Total zcache is 0kB
+[  402.064956]    GFP mask is 0xd0
+[  457.842784] [2026-10-04 09:30:10 GMT-5]healthd: current=-99791 esr=207885 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  457.842814] [2026-10-04 09:30:10 GMT-5]healthd: battery l=100 v=4374 t=32.2 h=2 st=2 c=-99 fc=3511000 chg=u limit=-1
+[  457.844676] [2026-10-04 09:30:10 GMT-5]healthd: current=-99791 esr=207885 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  457.844697] [2026-10-04 09:30:10 GMT-5]healthd: battery l=100 v=4374 t=32.2 h=2 st=2 c=-99 fc=3511000 chg=u limit=-1
+[  471.524228] [2026-10-04 09:30:24 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  487.606861] [2026-10-04 09:30:40 GMT-5]binder: 2975:3910 transaction failed 29201, size 556852-0
+[  489.299827] [2026-10-04 09:30:42 GMT-5]binder: 2975:3884 transaction failed 29201, size 556852-0
+[  515.376259] [2026-10-04 09:31:08 GMT-5]lowmemorykiller: Killing 'gle.android.gms' (3513), adj 906,
+[  515.376259]    to free 80864kB on behalf of 'kswapd0' (158) because
+[  515.376259]    cache 1039416kB is below limit 322560kB for oom_score_adj 606
+[  515.376259]    Free memory is 27760kB above reserved.
+[  515.376259]    Free CMA is 0kB
+[  515.376259]    Total reserve is 29864kB
+[  515.376259]    Total free pages is 27760kB
+[  515.376259]    Total file cache is 1061992kB
+[  515.376259]    Total zcache is 0kB
+[  515.376259]    GFP mask is 0xd0
+[  515.787135] [2026-10-04 09:31:08 GMT-5]lowmemorykiller: Killing 'lcomm.telephony' (3858), adj 906,
+[  515.787135]    to free 33244kB on behalf of 'kswapd0' (158) because
+[  515.787135]    cache 1062088kB is below limit 322560kB for oom_score_adj 606
+[  515.787135]    Free memory is 27952kB above reserved.
+[  515.787135]    Free CMA is 3572kB
+[  515.787135]    Total reserve is 29864kB
+[  515.787135]    Total free pages is 31524kB
+[  515.787135]    Total file cache is 1084436kB
+[  515.787135]    Total zcache is 0kB
+[  515.787135]    GFP mask is 0xd0
+[  538.454664] [2026-10-04 09:31:31 GMT-5]lowmemorykiller: Killing 'pnSetterService' (5849), adj 906,
+[  538.454664]    to free 34840kB on behalf of 'kswapd0' (158) because
+[  538.454664]    cache 947316kB is below limit 322560kB for oom_score_adj 606
+[  538.454664]    Free memory is 29288kB above reserved.
+[  538.454664]    Free CMA is 0kB
+[  538.454664]    Total reserve is 29864kB
+[  538.454664]    Total free pages is 29288kB
+[  538.454664]    Total file cache is 972160kB
+[  538.454664]    Total zcache is 0kB
+[  538.454664]    GFP mask is 0xd0
+[  538.749197] [2026-10-04 09:31:31 GMT-5]lowmemorykiller: Killing 'id.gms.unstable' (4666), adj 906,
+[  538.749197]    to free 50520kB on behalf of 'kswapd0' (158) because
+[  538.749197]    cache 947668kB is below limit 322560kB for oom_score_adj 606
+[  538.749197]    Free memory is 28612kB above reserved.
+[  538.749197]    Free CMA is 0kB
+[  538.749197]    Total reserve is 29864kB
+[  538.749197]    Total free pages is 28612kB
+[  538.749197]    Total file cache is 972512kB
+[  538.749197]    Total zcache is 0kB
+[  538.749197]    GFP mask is 0xd0
+[  538.909328] [2026-10-04 09:31:31 GMT-5]lowmemorykiller: Killing 'd.configupdater' (9295), adj 906,
+[  538.909328]    to free 35332kB on behalf of 'kswapd0' (158) because
+[  538.909328]    cache 948248kB is below limit 322560kB for oom_score_adj 606
+[  538.909328]    Free memory is 31796kB above reserved.
+[  538.909328]    Free CMA is 36kB
+[  538.909328]    Total reserve is 29864kB
+[  538.909328]    Total free pages is 31832kB
+[  538.909328]    Total file cache is 973096kB
+[  538.909328]    Total zcache is 0kB
+[  538.909328]    GFP mask is 0xd0
+[  539.016493] [2026-10-04 09:31:31 GMT-5]lowmemorykiller: Killing 'com.bbm' (4119), adj 906,
+[  539.016493]    to free 28080kB on behalf of 'kswapd0' (158) because
+[  539.016493]    cache 948516kB is below limit 322560kB for oom_score_adj 606
+[  539.016493]    Free memory is 32632kB above reserved.
+[  539.016493]    Free CMA is 12kB
+[  539.016493]    Total reserve is 29864kB
+[  539.016493]    Total free pages is 32644kB
+[  539.016493]    Total file cache is 973348kB
+[  539.016493]    Total zcache is 0kB
+[  539.016493]    GFP mask is 0xd0
+[  539.032449] [2026-10-04 09:31:31 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  539.287779] [2026-10-04 09:31:32 GMT-5]lowmemorykiller: Killing 'y.batterycenter' (5864), adj 906,
+[  539.287779]    to free 36800kB on behalf of 'kswapd0' (158) because
+[  539.287779]    cache 951336kB is below limit 322560kB for oom_score_adj 606
+[  539.287779]    Free memory is 39840kB above reserved.
+[  539.287779]    Free CMA is 184kB
+[  539.287779]    Total reserve is 29864kB
+[  539.287779]    Total free pages is 40024kB
+[  539.287779]    Total file cache is 976036kB
+[  539.287779]    Total zcache is 0kB
+[  539.287779]    GFP mask is 0xd0
+[  539.556443] [2026-10-04 09:31:32 GMT-5]lowmemorykiller: Killing 'ar.fastdormancy' (5915), adj 906,
+[  539.556443]    to free 36368kB on behalf of 'kswapd0' (158) because
+[  539.556443]    cache 952496kB is below limit 322560kB for oom_score_adj 606
+[  539.556443]    Free memory is 36180kB above reserved.
+[  539.556443]    Free CMA is 0kB
+[  539.556443]    Total reserve is 29864kB
+[  539.556443]    Total free pages is 36180kB
+[  539.556443]    Total file cache is 977252kB
+[  539.556443]    Total zcache is 0kB
+[  539.556443]    GFP mask is 0xd0
+[  539.643658] [2026-10-04 09:31:32 GMT-5]lowmemorykiller: Killing 'gle.android.ims' (4031), adj 906,
+[  539.643658]    to free 50656kB on behalf of 'kswapd0' (158) because
+[  539.643658]    cache 953988kB is below limit 322560kB for oom_score_adj 606
+[  539.643658]    Free memory is 34688kB above reserved.
+[  539.643658]    Free CMA is 0kB
+[  539.643658]    Total reserve is 29864kB
+[  539.643658]    Total free pages is 34688kB
+[  539.643658]    Total file cache is 978964kB
+[  539.643658]    Total zcache is 0kB
+[  539.643658]    GFP mask is 0xd0
+[  539.664510] [2026-10-04 09:31:32 GMT-5]binder: 1612:2125 transaction failed 29189, size 364-0
+[  539.736844] [2026-10-04 09:31:32 GMT-5]lowmemorykiller: Killing 't_app_installer' (9360), adj 906,
+[  539.736844]    to free 49948kB on behalf of 'kswapd0' (158) because
+[  539.736844]    cache 963132kB is below limit 322560kB for oom_score_adj 606
+[  539.736844]    Free memory is 30868kB above reserved.
+[  539.736844]    Free CMA is 0kB
+[  539.736844]    Total reserve is 29864kB
+[  539.736844]    Total free pages is 30544kB
+[  539.736844]    Total file cache is 988176kB
+[  539.736844]    Total zcache is 0kB
+[  539.736844]    GFP mask is 0xd0
+[  539.762369] [2026-10-04 09:31:32 GMT-5]lowmemorykiller: Killing 'ar.powermanager' (5929), adj 906,
+[  539.762369]    to free 36184kB on behalf of '.blackberry.ddt' (3082) because
+[  539.762369]    cache 963712kB is below limit 322560kB for oom_score_adj 606
+[  539.762369]    Free memory is 35776kB above reserved.
+[  539.762369]    Free CMA is 788kB
+[  539.762369]    Total reserve is 29864kB
+[  539.762369]    Total free pages is 36440kB
+[  539.762369]    Total file cache is 988720kB
+[  539.762369]    Total zcache is 0kB
+[  539.762369]    GFP mask is 0x2000d0
+[  539.793671] [2026-10-04 09:31:32 GMT-5]lowmemorykiller: Killing '.atuner_service' (6062), adj 906,
+[  539.793671]    to free 36080kB on behalf of '.blackberry.ddt' (3082) because
+[  539.793671]    cache 963948kB is below limit 322560kB for oom_score_adj 606
+[  539.793671]    Free memory is 37052kB above reserved.
+[  539.793671]    Free CMA is 772kB
+[  539.793671]    Total reserve is 29864kB
+[  539.793671]    Total free pages is 37824kB
+[  539.793671]    Total file cache is 988944kB
+[  539.793671]    Total zcache is 0kB
+[  539.793671]    GFP mask is 0x2000d0
+[  540.015146] [2026-10-04 09:31:32 GMT-5]lowmemorykiller: Killing 'ng:quick_launch' (9181), adj 906,
+[  540.015146]    to free 63336kB on behalf of 'kswapd0' (158) because
+[  540.015146]    cache 966396kB is below limit 322560kB for oom_score_adj 606
+[  540.015146]    Free memory is 36140kB above reserved.
+[  540.015146]    Free CMA is 0kB
+[  540.015146]    Total reserve is 29864kB
+[  540.015146]    Total free pages is 36140kB
+[  540.015146]    Total file cache is 991392kB
+[  540.015146]    Total zcache is 0kB
+[  540.015146]    GFP mask is 0xd0
+[  540.213628] [2026-10-04 09:31:33 GMT-5]lowmemorykiller: Killing '.blackberry.sar' (6077), adj 906,
+[  540.213628]    to free 35484kB on behalf of 'kswapd0' (158) because
+[  540.213628]    cache 967004kB is below limit 322560kB for oom_score_adj 606
+[  540.213628]    Free memory is 47896kB above reserved.
+[  540.213628]    Free CMA is 0kB
+[  540.213628]    Total reserve is 29864kB
+[  540.213628]    Total free pages is 47896kB
+[  540.213628]    Total file cache is 992000kB
+[  540.213628]    Total zcache is 0kB
+[  540.213628]    GFP mask is 0xd0
+[  541.040214] [2026-10-04 09:31:33 GMT-5]lowmemorykiller: Killing 'ry.deviceconfig' (8040), adj 906,
+[  541.040214]    to free 27924kB on behalf of 'kswapd0' (158) because
+[  541.040214]    cache 970548kB is below limit 322560kB for oom_score_adj 606
+[  541.040214]    Free memory is 41480kB above reserved.
+[  541.040214]    Free CMA is 0kB
+[  541.040214]    Total reserve is 29864kB
+[  541.040214]    Total free pages is 41528kB
+[  541.040214]    Total file cache is 995552kB
+[  541.040214]    Total zcache is 0kB
+[  541.040214]    GFP mask is 0xd0
+[  541.208044] [2026-10-04 09:31:34 GMT-5]lowmemorykiller: Killing 'roid.hiddenmenu' (6753), adj 906,
+[  541.208044]    to free 26204kB on behalf of 'kswapd0' (158) because
+[  541.208044]    cache 971156kB is below limit 322560kB for oom_score_adj 606
+[  541.208044]    Free memory is 42600kB above reserved.
+[  541.208044]    Free CMA is 0kB
+[  541.208044]    Total reserve is 29864kB
+[  541.208044]    Total free pages is 42600kB
+[  541.208044]    Total file cache is 996140kB
+[  541.208044]    Total zcache is 0kB
+[  541.208044]    GFP mask is 0xd0
+[  541.960777] [2026-10-04 09:31:34 GMT-5]lowmemorykiller: Killing 'errymobile.aota' (7317), adj 906,
+[  541.960777]    to free 49516kB on behalf of 'kswapd0' (158) because
+[  541.960777]    cache 974228kB is below limit 322560kB for oom_score_adj 606
+[  541.960777]    Free memory is 48756kB above reserved.
+[  541.960777]    Free CMA is 672kB
+[  541.960777]    Total reserve is 29864kB
+[  541.960777]    Total free pages is 49428kB
+[  541.960777]    Total file cache is 999468kB
+[  541.960777]    Total zcache is 0kB
+[  541.960777]    GFP mask is 0xd0
+[  542.044603] [2026-10-04 09:31:34 GMT-5]lowmemorykiller: Killing 'id.apps.tachyon' (9522), adj 906,
+[  542.044603]    to free 56068kB on behalf of 'kswapd0' (158) because
+[  542.044603]    cache 974788kB is below limit 322560kB for oom_score_adj 606
+[  542.044603]    Free memory is 54524kB above reserved.
+[  542.044603]    Free CMA is 2556kB
+[  542.044603]    Total reserve is 29864kB
+[  542.044603]    Total free pages is 57080kB
+[  542.044603]    Total file cache is 1000028kB
+[  542.044603]    Total zcache is 0kB
+[  542.044603]    GFP mask is 0xd0
+[  542.062781] [2026-10-04 09:31:34 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  542.646529] [2026-10-04 09:31:35 GMT-5]lowmemorykiller: Killing 'id.partnersetup' (7876), adj 906,
+[  542.646529]    to free 37084kB on behalf of 'kswapd0' (158) because
+[  542.646529]    cache 979428kB is below limit 322560kB for oom_score_adj 606
+[  542.646529]    Free memory is 55520kB above reserved.
+[  542.646529]    Free CMA is 5140kB
+[  542.646529]    Total reserve is 29864kB
+[  542.646529]    Total free pages is 60660kB
+[  542.646529]    Total file cache is 1004680kB
+[  542.646529]    Total zcache is 0kB
+[  542.646529]    GFP mask is 0xd0
+[  542.672912] [2026-10-04 09:31:35 GMT-5]lowmemorykiller: Killing 'ndroid.keychain' (7812), adj 906,
+[  542.672912]    to free 27380kB on behalf of 'kswapd0' (158) because
+[  542.672912]    cache 979612kB is below limit 322560kB for oom_score_adj 606
+[  542.672912]    Free memory is 57160kB above reserved.
+[  542.672912]    Free CMA is 5400kB
+[  542.672912]    Total reserve is 29864kB
+[  542.672912]    Total free pages is 62560kB
+[  542.672912]    Total file cache is 1004848kB
+[  542.672912]    Total zcache is 0kB
+[  542.672912]    GFP mask is 0xd0
+[  542.918631] [2026-10-04 09:31:35 GMT-5]lowmemorykiller: Killing 'oid.apps.photos' (7900), adj 904,
+[  542.918631]    to free 47408kB on behalf of 'kswapd0' (158) because
+[  542.918631]    cache 981504kB is below limit 322560kB for oom_score_adj 606
+[  542.918631]    Free memory is 57476kB above reserved.
+[  542.918631]    Free CMA is 4588kB
+[  542.918631]    Total reserve is 29864kB
+[  542.918631]    Total free pages is 62064kB
+[  542.918631]    Total file cache is 1006464kB
+[  542.918631]    Total zcache is 0kB
+[  542.918631]    GFP mask is 0xd0
+[  543.007670] [2026-10-04 09:31:35 GMT-5]lowmemorykiller: Killing 'com.tcl.ota.bb' (6824), adj 906,
+[  543.007670]    to free 45780kB on behalf of 'kswapd0' (158) because
+[  543.007670]    cache 986232kB is below limit 322560kB for oom_score_adj 606
+[  543.007670]    Free memory is 57540kB above reserved.
+[  543.007670]    Free CMA is 5900kB
+[  543.007670]    Total reserve is 29864kB
+[  543.007670]    Total free pages is 63440kB
+[  543.007670]    Total file cache is 1011168kB
+[  543.007670]    Total zcache is 0kB
+[  543.007670]    GFP mask is 0xd0
+[  543.283701] [2026-10-04 09:31:36 GMT-5]lowmemorykiller: Killing 'android.musicfx' (7829), adj 906,
+[  543.283701]    to free 35500kB on behalf of 'kswapd0' (158) because
+[  543.283701]    cache 1009652kB is below limit 322560kB for oom_score_adj 606
+[  543.283701]    Free memory is 37740kB above reserved.
+[  543.283701]    Free CMA is 0kB
+[  543.283701]    Total reserve is 29864kB
+[  543.283701]    Total free pages is 37740kB
+[  543.283701]    Total file cache is 1034596kB
+[  543.283701]    Total zcache is 0kB
+[  543.283701]    GFP mask is 0xd0
+[  543.383434] [2026-10-04 09:31:36 GMT-5]lowmemorykiller: Killing '.android.chrome' (9811), adj 904,
+[  543.383434]    to free 36624kB on behalf of 'kswapd0' (158) because
+[  543.383434]    cache 1010340kB is below limit 322560kB for oom_score_adj 606
+[  543.383434]    Free memory is 38672kB above reserved.
+[  543.383434]    Free CMA is 716kB
+[  543.383434]    Total reserve is 29864kB
+[  543.383434]    Total free pages is 39388kB
+[  543.383434]    Total file cache is 1035272kB
+[  543.383434]    Total zcache is 0kB
+[  543.383434]    GFP mask is 0xd0
+[  543.572543] [2026-10-04 09:31:36 GMT-5]lowmemorykiller: Killing 'equicksearchbox' (9882), adj 906,
+[  543.572543]    to free 87172kB on behalf of 'kswapd0' (158) because
+[  543.572543]    cache 1011844kB is below limit 322560kB for oom_score_adj 606
+[  543.572543]    Free memory is 39116kB above reserved.
+[  543.572543]    Free CMA is 852kB
+[  543.572543]    Total reserve is 29864kB
+[  543.572543]    Total free pages is 40068kB
+[  543.572543]    Total file cache is 1034732kB
+[  543.572543]    Total zcache is 0kB
+[  543.572543]    GFP mask is 0xd0
+[  543.654271] [2026-10-04 09:31:36 GMT-5]lowmemorykiller: Killing 'id.printspooler' (3215), adj 906,
+[  543.654271]    to free 35832kB on behalf of 'kswapd0' (158) because
+[  543.654271]    cache 1012388kB is below limit 322560kB for oom_score_adj 606
+[  543.654271]    Free memory is 48948kB above reserved.
+[  543.654271]    Free CMA is 1812kB
+[  543.654271]    Total reserve is 29864kB
+[  543.654271]    Total free pages is 50760kB
+[  543.654271]    Total file cache is 1035260kB
+[  543.654271]    Total zcache is 0kB
+[  543.654271]    GFP mask is 0xd0
+[  543.755850] [2026-10-04 09:31:36 GMT-5]lowmemorykiller: Killing '.apps.messaging' (3500), adj 904,
+[  543.755850]    to free 56036kB on behalf of 'kswapd0' (158) because
+[  543.755850]    cache 1013204kB is below limit 322560kB for oom_score_adj 606
+[  543.755850]    Free memory is 49616kB above reserved.
+[  543.755850]    Free CMA is 2412kB
+[  543.755850]    Total reserve is 29864kB
+[  543.755850]    Total free pages is 52028kB
+[  543.755850]    Total file cache is 1036064kB
+[  543.755850]    Total zcache is 0kB
+[  543.755850]    GFP mask is 0xd0
+[  544.028990] [2026-10-04 09:31:36 GMT-5]lowmemorykiller: Killing 'ackberry.ddt:ui' (6803), adj 902,
+[  544.028990]    to free 35924kB on behalf of 'kswapd0' (158) because
+[  544.028990]    cache 1015740kB is below limit 322560kB for oom_score_adj 606
+[  544.028990]    Free memory is 56640kB above reserved.
+[  544.028990]    Free CMA is 3664kB
+[  544.028990]    Total reserve is 29864kB
+[  544.028990]    Total free pages is 60304kB
+[  544.028990]    Total file cache is 1038616kB
+[  544.028990]    Total zcache is 0kB
+[  544.028990]    GFP mask is 0xd0
+[  544.140371] [2026-10-04 09:31:37 GMT-5]lowmemorykiller: Killing 'gle.android.gms' (9942), adj 900,
+[  544.140371]    to free 77644kB on behalf of 'kswapd0' (158) because
+[  544.140371]    cache 1016428kB is below limit 322560kB for oom_score_adj 606
+[  544.140371]    Free memory is 58040kB above reserved.
+[  544.140371]    Free CMA is 3792kB
+[  544.140371]    Total reserve is 29864kB
+[  544.140371]    Total free pages is 61800kB
+[  544.140371]    Total file cache is 1039280kB
+[  544.140371]    Total zcache is 0kB
+[  544.140371]    GFP mask is 0xd0
+[  546.949910] [2026-10-04 09:31:39 GMT-5]lowmemorykiller: Killing 'd.process.media' (3248), adj 800,
+[  546.949910]    to free 55656kB on behalf of 'kswapd0' (158) because
+[  546.949910]    cache 1041164kB is below limit 322560kB for oom_score_adj 606
+[  546.949910]    Free memory is 41364kB above reserved.
+[  546.949910]    Free CMA is 0kB
+[  546.949910]    Total reserve is 29864kB
+[  546.949910]    Total free pages is 41364kB
+[  546.949910]    Total file cache is 1063988kB
+[  546.949910]    Total zcache is 0kB
+[  546.949910]    GFP mask is 0xd0
+[  546.965241] [2026-10-04 09:31:39 GMT-5]mtp_release
+[  547.620523] [2026-10-04 09:31:40 GMT-5]binder: 2975:3884 transaction failed 29201, size 556852-0
+[  549.105762] [2026-10-04 09:31:41 GMT-5]lowmemorykiller: Killing 's.messaging:rcs' (3888), adj 800,
+[  549.105762]    to free 53188kB on behalf of 'kswapd0' (158) because
+[  549.105762]    cache 1049504kB is below limit 322560kB for oom_score_adj 606
+[  549.105762]    Free memory is 27840kB above reserved.
+[  549.105762]    Free CMA is 128kB
+[  549.105762]    Total reserve is 29864kB
+[  549.105762]    Total free pages is 27968kB
+[  549.105762]    Total file cache is 1072328kB
+[  549.105762]    Total zcache is 0kB
+[  549.105762]    GFP mask is 0xd0
+[  549.225567] [2026-10-04 09:31:42 GMT-5]lowmemorykiller: Killing 'rry.ddt.checkin' (8027), adj 800,
+[  549.225567]    to free 41692kB on behalf of 'kswapd0' (158) because
+[  549.225567]    cache 1049544kB is below limit 322560kB for oom_score_adj 606
+[  549.225567]    Free memory is 27836kB above reserved.
+[  549.225567]    Free CMA is 84kB
+[  549.225567]    Total reserve is 29864kB
+[  549.225567]    Total free pages is 27920kB
+[  549.225567]    Total file cache is 1072368kB
+[  549.225567]    Total zcache is 0kB
+[  549.225567]    GFP mask is 0xd0
+[  549.252910] [2026-10-04 09:31:42 GMT-5]lowmemorykiller: Killing 'pnSetterService' (10057), adj 800,
+[  549.252910]    to free 40276kB on behalf of 'kswapd0' (158) because
+[  549.252910]    cache 1050404kB is below limit 322560kB for oom_score_adj 606
+[  549.252910]    Free memory is 28884kB above reserved.
+[  549.252910]    Free CMA is 0kB
+[  549.252910]    Total reserve is 29864kB
+[  549.252910]    Total free pages is 28884kB
+[  549.252910]    Total file cache is 1073220kB
+[  549.252910]    Total zcache is 0kB
+[  549.252910]    GFP mask is 0xd0
+[  549.313441] [2026-10-04 09:31:42 GMT-5]lowmemorykiller: Killing 'kberry.calendar' (4292), adj 800,
+[  549.313441]    to free 40048kB on behalf of 'kswapd0' (158) because
+[  549.313441]    cache 1052028kB is below limit 322560kB for oom_score_adj 606
+[  549.313441]    Free memory is 28152kB above reserved.
+[  549.313441]    Free CMA is 0kB
+[  549.313441]    Total reserve is 29864kB
+[  549.313441]    Total free pages is 27968kB
+[  549.313441]    Total file cache is 1074844kB
+[  549.313441]    Total zcache is 0kB
+[  549.313441]    GFP mask is 0xd0
+[  549.342567] [2026-10-04 09:31:42 GMT-5]lowmemorykiller: Killing 'settings:remote' (5670), adj 800,
+[  549.342567]    to free 35656kB on behalf of 'kswapd0' (158) because
+[  549.342567]    cache 1052512kB is below limit 322560kB for oom_score_adj 606
+[  549.342567]    Free memory is 29856kB above reserved.
+[  549.342567]    Free CMA is 76kB
+[  549.342567]    Total reserve is 29864kB
+[  549.342567]    Total free pages is 29932kB
+[  549.342567]    Total file cache is 1075328kB
+[  549.342567]    Total zcache is 0kB
+[  549.342567]    GFP mask is 0xd0
+[  553.728295] [2026-10-04 09:31:46 GMT-5]type=1400 audit(1791124306.584:109): avc: denied { write } for pid=10187 comm="ackberry.ddt:ui" name="com.blackberry.ddt" dev="dm-1" ino=1408987 scontext=u:r:diagnostics:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=0
+[  554.574155] [2026-10-04 09:31:47 GMT-5]i2c-msm-v2 7af5000.i2c: NACK: slave not responding, ensure its powered: msgs(n:1 cur:0 tx) bc(rx:0 tx:46) mode:FIFO slv_addr:0x28 MSTR_STS:0x0d1300c8 OPER:0x00000090
+[  554.574422] [2026-10-04 09:31:47 GMT-5]nq-nci 5-0028: nfc_write: failed to write -107
+[  556.507446] [2026-10-04 09:31:49 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  558.315695] [2026-10-04 09:31:51 GMT-5]mtp_open
+[  560.751724] [2026-10-04 09:31:53 GMT-5]qtaguid: ctrl_tag(t -1 4428111282176 -1): failed to lookup sock_fd=-1 err=-9 pid=10422 tgid=10125 uid=10016
+[  564.502189] [2026-10-04 09:31:57 GMT-5]type=1400 audit(1791124317.364:110): avc: denied { read } for pid=10423 comm="Binder:10409_1" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  565.044446] [2026-10-04 09:31:57 GMT-5]type=1400 audit(1791124317.904:111): avc: denied { read } for pid=10423 comm="Binder:10409_1" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  567.426613] [2026-10-04 09:32:00 GMT-5]migrate_irqs: 892 callbacks suppressed
+[  567.426624] [2026-10-04 09:32:00 GMT-5]IRQ7 no longer affine to CPU2
+[  567.426629] [2026-10-04 09:32:00 GMT-5]IRQ8 no longer affine to CPU2
+[  567.426635] [2026-10-04 09:32:00 GMT-5]IRQ9 no longer affine to CPU2
+[  567.426640] [2026-10-04 09:32:00 GMT-5]IRQ10 no longer affine to CPU2
+[  567.426646] [2026-10-04 09:32:00 GMT-5]IRQ11 no longer affine to CPU2
+[  567.426652] [2026-10-04 09:32:00 GMT-5]IRQ12 no longer affine to CPU2
+[  567.426658] [2026-10-04 09:32:00 GMT-5]IRQ13 no longer affine to CPU2
+[  567.426663] [2026-10-04 09:32:00 GMT-5]IRQ14 no longer affine to CPU2
+[  567.426669] [2026-10-04 09:32:00 GMT-5]IRQ15 no longer affine to CPU2
+[  567.426674] [2026-10-04 09:32:00 GMT-5]IRQ16 no longer affine to CPU2
+[  568.883162] [2026-10-04 09:32:01 GMT-5]type=1400 audit(1791124321.744:112): avc: denied { read } for pid=10424 comm="Binder:10409_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  568.990198] [2026-10-04 09:32:01 GMT-5]type=1400 audit(1791124321.844:113): avc: denied { read } for pid=10424 comm="Binder:10409_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  569.864848] [2026-10-04 09:32:02 GMT-5]type=1400 audit(1791124322.724:114): avc: denied { read } for pid=10424 comm="Binder:10409_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  570.052596] [2026-10-04 09:32:02 GMT-5]type=1400 audit(1791124322.914:115): avc: denied { read } for pid=10424 comm="Binder:10409_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  571.389395] [2026-10-04 09:32:04 GMT-5]type=1400 audit(1791124324.244:116): avc: denied { read } for pid=10424 comm="Binder:10409_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  571.583179] [2026-10-04 09:32:04 GMT-5]type=1400 audit(1791124324.444:117): avc: denied { read } for pid=10424 comm="Binder:10409_2" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  572.000470] [2026-10-04 09:32:04 GMT-5]type=1400 audit(1791124324.864:118): avc: denied { read } for pid=10739 comm="lowpool[2]" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  573.324877] [2026-10-04 09:32:06 GMT-5]type=1400 audit(1791124326.184:119): avc: denied { read } for pid=10739 comm="lowpool[2]" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  573.973728] [2026-10-04 09:32:06 GMT-5]type=1400 audit(1791124326.834:120): avc: denied { read } for pid=10423 comm="Binder:10409_1" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  574.251278] [2026-10-04 09:32:07 GMT-5]type=1400 audit(1791124327.104:121): avc: denied { read } for pid=10423 comm="Binder:10409_1" name="/" dev="tmpfs" ino=15566 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  591.398717] [2026-10-04 09:32:24 GMT-5]audit: audit_lost=1 audit_rate_limit=20 audit_backlog_limit=64
+[  591.398729] [2026-10-04 09:32:24 GMT-5]audit: rate limit exceeded
+[  591.400335] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:122): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/dm-0" dev="sysfs" ino=36380 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401221] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:123): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/dm-1" dev="sysfs" ino=39819 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401328] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:124): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram0" dev="sysfs" ino=25525 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401399] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:125): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram1" dev="sysfs" ino=25588 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401465] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:126): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram2" dev="sysfs" ino=25651 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401531] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:127): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram3" dev="sysfs" ino=25714 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401598] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:128): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram4" dev="sysfs" ino=25777 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401669] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:129): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram5" dev="sysfs" ino=25840 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401738] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:130): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram6" dev="sysfs" ino=25903 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401807] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:131): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram7" dev="sysfs" ino=25966 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401872] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:132): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram8" dev="sysfs" ino=26029 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.401939] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:133): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram9" dev="sysfs" ino=26092 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402005] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:134): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/loop0" dev="sysfs" ino=26545 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402071] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:135): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/loop1" dev="sysfs" ino=26608 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402138] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:136): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/loop2" dev="sysfs" ino=26671 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402204] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:137): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/loop3" dev="sysfs" ino=26734 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402272] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:138): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/loop4" dev="sysfs" ino=26797 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402340] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:139): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/loop5" dev="sysfs" ino=26860 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402407] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:140): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/loop6" dev="sysfs" ino=26923 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402473] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:141): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/loop7" dev="sysfs" ino=26986 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402541] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:142): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram10" dev="sysfs" ino=26155 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402608] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:143): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram11" dev="sysfs" ino=26218 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  591.402676] [2026-10-04 09:32:24 GMT-5]type=1400 audit(1791124344.254:144): avc: denied { getattr } for pid=11369 comm="ls" path="/sys/block/ram12" dev="sysfs" ino=26281 scontext=u:r:shell:s0 tcontext=u:object_r:sysfs:s0 tclass=lnk_file permissive=0
+[  607.517493] [2026-10-04 09:32:40 GMT-5]healthd: current=32195 esr=167724 usb=1 usb_t=USB otg=0 in_max=1500000 usb_max=500000 bchg_e=1 chg_e=1 temp_lvl=0 pl_chg_e=0 pl_max=0 pl_chg_max=1000000 pl_lmt=0 bchg_max=1600000 hvdcp3=1 res_chg=0 pl_st=Discharging 
+[  607.517522] [2026-10-04 09:32:40 GMT-5]healthd: battery l=100 v=4345 t=32.5 h=2 st=2 c=32 fc=3511000 chg=u limit=-1
+[  612.516200] [2026-10-04 09:32:45 GMT-5]binder: release 10125:10136 transaction 591003 in, still active
+[  612.516214] [2026-10-04 09:32:45 GMT-5]binder: send failed reply for transaction 591003 to 10248:11257
+[  612.516245] [2026-10-04 09:32:45 GMT-5]binder: release 10125:10137 transaction 591022 in, still active
+[  612.516251] [2026-10-04 09:32:45 GMT-5]binder: send failed reply for transaction 591022 to 10657:11496
+[  612.516270] [2026-10-04 09:32:45 GMT-5]binder: release 10125:10243 transaction 591016 in, still active
+[  612.516276] [2026-10-04 09:32:45 GMT-5]binder: send failed reply for transaction 591016 to 10859:11495
+[  612.516306] [2026-10-04 09:32:45 GMT-5]binder: release 10125:10433 transaction 591032 in, still active
+[  612.516313] [2026-10-04 09:32:45 GMT-5]binder: send failed reply for transaction 591032 to 10846:11497
+[  612.523406] [2026-10-04 09:32:45 GMT-5]binder: 1612:2125 transaction failed 29189, size 352-0
+[  613.550231] [2026-10-04 09:32:46 GMT-5]qtaguid: ctrl_tag(t -1 4428111282176 -1): failed to lookup sock_fd=-1 err=-9 pid=11533 tgid=11500 uid=10016
+[  627.476272] [2026-10-04 09:33:00 GMT-5]migrate_irqs: 441 callbacks suppressed
+[  627.476283] [2026-10-04 09:33:00 GMT-5]IRQ7 no longer affine to CPU7
+[  627.476289] [2026-10-04 09:33:00 GMT-5]IRQ8 no longer affine to CPU7
+[  627.476295] [2026-10-04 09:33:00 GMT-5]IRQ9 no longer affine to CPU7
+[  627.476300] [2026-10-04 09:33:00 GMT-5]IRQ10 no longer affine to CPU7
+[  627.476306] [2026-10-04 09:33:00 GMT-5]IRQ11 no longer affine to CPU7
+[  627.476311] [2026-10-04 09:33:00 GMT-5]IRQ12 no longer affine to CPU7
+[  627.476317] [2026-10-04 09:33:00 GMT-5]IRQ13 no longer affine to CPU7
+[  627.476322] [2026-10-04 09:33:00 GMT-5]IRQ14 no longer affine to CPU7
+[  627.476328] [2026-10-04 09:33:00 GMT-5]IRQ15 no longer affine to CPU7
+[  627.476333] [2026-10-04 09:33:00 GMT-5]IRQ16 no longer affine to CPU7

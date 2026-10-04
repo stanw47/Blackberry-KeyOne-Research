@@ -1,0 +1,42 @@
+﻿ls: /sys/block//dm-0: Permission denied
+ls: /sys/block//dm-1: Permission denied
+ls: /sys/block//ram0: Permission denied
+ls: /sys/block//ram1: Permission denied
+ls: /sys/block//ram2: Permission denied
+ls: /sys/block//ram3: Permission denied
+ls: /sys/block//ram4: Permission denied
+ls: /sys/block//ram5: Permission denied
+ls: /sys/block//ram6: Permission denied
+ls: /sys/block//ram7: Permission denied
+ls: /sys/block//ram8: Permission denied
+ls: /sys/block//ram9: Permission denied
+ls: /sys/block//loop0: Permission denied
+ls: /sys/block//loop1: Permission denied
+ls: /sys/block//loop2: Permission denied
+ls: /sys/block//loop3: Permission denied
+ls: /sys/block//loop4: Permission denied
+ls: /sys/block//loop5: Permission denied
+ls: /sys/block//loop6: Permission denied
+ls: /sys/block//loop7: Permission denied
+ls: /sys/block//ram10: Permission denied
+ls: /sys/block//ram11: Permission denied
+ls: /sys/block//ram12: Permission denied
+ls: /sys/block//ram13: Permission denied
+ls: /sys/block//ram14: Permission denied
+ls: /sys/block//ram15: Permission denied
+ls: /sys/block//zram0: Permission denied
+ls: /sys/block//mmcblk0rpmb: Permission denied
+ls: /sys/block//mmcblk0: Permission denied
+/sys/block/:
+total 0
+drwxr-xr-x  2 root root 0 1970-01-03 01:24 .
+dr-xr-xr-x 15 root root 0 1970-01-03 01:24 ..
+ls: /sys/class/mmc_host//mmc0: Permission denied
+ls: /sys/class/mmc_host//mmc1: Permission denied
+
+/sys/class/mmc_host/:
+total 0
+drwxr-xr-x  2 root root 0 1970-01-03 01:24 .
+drwxr-xr-x 82 root root 0 1970-01-03 01:24 ..
+---
+ls: /dev/block/bootdevice/by-name/: Permission denied

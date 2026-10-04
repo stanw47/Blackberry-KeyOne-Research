@@ -40,3 +40,6 @@ id_rsa.pub
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Third-party reference source (cloned, not redistributed)
+ref/lk_msm8953/

@@ -22,7 +22,7 @@
 
 | Field | Value |
 |---|---|
-| Model | BlackBerry KEYone **BBB100-3** |
+| Model | BlackBerry KEYone **BBB100-3 V015** |
 | Codename | `bbb100` / "Mercury" |
 | SoC | Qualcomm **MSM8953** (Snapdragon 625), arm64-v8a |
 | OS / software | **Android 7.1.1** |
@@ -44,7 +44,7 @@ service** today, with an exploitation path under analysis.
 
 ## Completed
 
-- **Boot-chain model** — PBL→SBL1→aboot with fused root key; patched `aboot`
+- **Boot-chain model** — PBL->SBL1->aboot with fused root key; patched `aboot`
   rejected by SBL1 (confirmed: it bricks until recovered).
 - **`authboot`/RTAS2 protocol** — full command-permission model decoded.
 - **Reachable-surface map** — WLAN, Diag/QMI, TrustZone, Binder, KGSL.
@@ -54,17 +54,17 @@ service** today, with an exploitation path under analysis.
 
 ## Achieved
 
-- ✅ **KGSL/IOMMU bug reproduced live** (CVE-2020-11261 / CVE-2023-33107 class)
+- **KGSL/IOMMU bug reproduced live** (CVE-2020-11261 / CVE-2023-33107 class)
   from unprivileged `shell` — safe PoC accepted an out-of-SVM address.
-- ✅ **Kernel panic primitive** — global-region overlap overwrites the GPU's
+- **Kernel panic primitive** — global-region overlap overwrites the GPU's
   global page-table entries.
-- ✅ **Signed firehose programmer extracted** from the official autoloader (EDL-ready).
-- ✅ **`devinfo` unlock byte mapped** (offset `0x10`).
+- **Signed firehose programmer extracted** from the official autoloader (EDL-ready).
+- **`devinfo` unlock byte mapped** (offset `0x10`).
 
 ## In Progress
 
-- **KGSL → kernel R/W.** Turning the DoS primitive into a controllable read/write
-  to reach root. → [`notes/24–31`](notes/)
+- **KGSL kernel R/W.** Turning the DoS primitive into a controllable read/write
+  to reach root. [`notes/24–31`](notes/)
 
 ## Failed
 
@@ -77,19 +77,24 @@ service** today, with an exploitation path under analysis.
 
 ## Future Plans
 
-1. Complete the **KGSL exploitation chain** → root.
-2. Or **physical EDL** (test points) → patch `devinfo` → unlock.
+1. Complete the **KGSL exploitation chain** root.
+2. Or **physical EDL** (test points) patch `devinfo` unlock.
 
 ---
 
 ## Community Activity
 
-- **No public unlock or root** for the KEYone; the community reaches only
-  debloat/FRP-bypass and stock autoloader restore.
-- The KGSL IOMMU class (CVE-2020-11261) is publicly known and was exploited in
-  the wild on other MSM8953 devices; this repo documents its reachability here.
-
----
+- **No public unlock or root.** XDA threads exist ("Unlock Blackberry Keyone
+  (AT&T)") but there is no retail method; the community reaches only **debloat**,
+  **FRP bypass**, and stock restore.
+- **TWRP 3.2.1** exists for the KEYone but only runs on
+  **engineering/factory-unlocked** units - not retail.
+- **Sugar QCT** (an Alcatel/TCL OS-flash tool) can reload stock firmware; the
+  BBB100-3 product model is **63118**.
+- Custom ROMs: **none stable**; the community focuses on de-Googling/debloat,
+  and an enthusiast "Frankenstein" revival has been discussed.
+- The KGSL/IOMMU class (CVE-2020-11261) is publicly known and was exploited in
+  the wild on other MSM8953 devices.
 
 ## Repository layout
 

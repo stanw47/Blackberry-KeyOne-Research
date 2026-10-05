@@ -92,8 +92,9 @@ fastboot exploit works on the KEY2 but **not** the KEYone.
 ## Repository layout
 
 - `notes/` — session research notes (device recon, security stack, LK analysis, TCL FOTA verification)
-- `docs/` — write-ups ([index](docs/README.md)): the [KEYone KGSL IOMMU vulnerability article](docs/KEYone-kgsl-IOMMU-public-writeup.md), the [complete research arc](docs/KEYone-research-arc.md), the [full technical write-up](docs/KEYone-kgsl-IOMMU-vulnerability.md), and the [KEY2 LineageOS guide](docs/KEY2-LineageOS-Guide.md)
-- `tools/` — analysis helpers: `lk_analyze.py`, `elf_triage.py`, `fastboot_libusb.py`, `fb_probe.py`
+- `docs/` — write-ups ([index](docs/README.md)): the [KEYone KGSL IOMMU vulnerability article](docs/KEYone-kgsl-IOMMU-public-writeup.md), the [complete research arc](docs/KEYone-research-arc.md), the [full technical write-up](docs/KEYone-kgsl-IOMMU-vulnerability.md), the [complete device map](docs/KEYone-device-map.md), and the [KEY2 LineageOS guide](docs/KEY2-LineageOS-Guide.md)
+- `devmaps/` — machine-readable device maps + [`docs/devmap/STANDARD.md`](docs/devmap/STANDARD.md)
+- `tools/` — analysis helpers: `devmap.py`, `lk_analyze.py`, `elf_triage.py`, `fastboot_libusb.py`, `fb_probe.py`
 - `recon/` — raw recon captures (props, partitions, kallsyms, SELinux policy) and pulled security libs
 - `firmware/` — **not committed** (large blobs); extraction instructions in notes
 - `abl/`, `edl/`, `exploit/`, `kernel/` — work areas

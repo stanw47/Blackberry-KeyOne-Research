@@ -17,6 +17,9 @@ research.
 - [KEYone — kgsl IOMMU vulnerability (full technical write-up)](KEYone-kgsl-IOMMU-vulnerability.md)
   — source analysis, the safe and corruption PoCs, the global-region-overlap
   primitive (§14), and the io-pgtable guard impact scoping (§15).
+- [KEYone — complete device map](KEYone-device-map.md)
+  — the live L0–L2 map produced with devmap: hardware, storage, boot,
+  security, and attack surface in one machine-readable schema.
 
 ## Device guides
 

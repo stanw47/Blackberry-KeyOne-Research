@@ -41,6 +41,10 @@ Thumbs.db
 desktop.ini
 .DS_Store
 
+# Python bytecode
+__pycache__/
+*.pyc
+
 # Third-party reference source (cloned, not redistributed)
 ref/lk_msm8953/
 artifacts/

@@ -23,6 +23,13 @@ research.
 - [KEY2 — LineageOS install guide](KEY2-LineageOS-Guide.md)
   — unlock via CVE-2021-1931 and flashing LineageOS 22.2.
 
+## Device mapping
+
+- [devmap — standardized device mapping standard](devmap/STANDARD.md)
+  — one schema for every device, OS, and access level (USB → fastboot → ADB →
+  root → QNX → EDL); maps live in [`../devmaps/`](../devmaps/) and compare with
+  `py tools/devmap.py diff a.json b.json`.
+
 ## Session notes
 
 The chronological research trail lives in [`../notes/`](../notes/): device recon,

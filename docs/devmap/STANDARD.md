@@ -139,8 +139,9 @@ of the same family (e.g. KEYone vs KEY2, Classic vs Passport).
 ## 6. Example maps
 
 - `devmaps/keyone-bbb100-3.json` — Android 7.1.1, unprivileged ADB (L2).
+- `devmaps/key2-bbf100-6.json` — LineageOS 22.2 (Android 15), unprivileged ADB (L2).
 - `devmaps/classic-sqn100-1.json` — BB10 QNX, root + EDL (L4/L5), corpus-import.
 - `devmaps/passport-sqw100-1.json` — BB10 QNX, root (L4), corpus-import.
 
-These three demonstrate the same schema spanning two operating systems and two
-very different security models.
+These four demonstrate the same schema spanning two operating systems, three
+device generations, and two very different security models.

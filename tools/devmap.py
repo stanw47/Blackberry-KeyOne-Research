@@ -11,6 +11,7 @@ Usage:
   py devmap.py usb     [--out FILE]                 # L0 only
   py devmap.py fastboot[--out FILE]                 # L1 only
   py devmap.py adb     [--serial S] [--out FILE]    # L2 only
+  py devmap.py merge A.json B.json ... [--out FILE] # combine mode maps
   py devmap.py diff A.json B.json
 
 Read-only by default. No writes to the device.
@@ -158,10 +159,15 @@ def probe_fastboot(serial):
     if "FAILED" not in info:
         out["oem_info_raw"] = info[:4000]
         parsed = {}
-        for line in info.replace("INFO", "\n").splitlines():
-            if ":" in line:
+        for line in info.splitlines():
+            line = line.strip()
+            for prefix in ("(bootloader)", "INFO"):
+                if line.startswith(prefix):
+                    line = line[len(prefix):].strip()
+            if ":" in line and not line.startswith("Finished"):
                 k, _, v = line.partition(":")
-                parsed[k.strip()] = v.strip()
+                if k.strip():
+                    parsed[k.strip()] = v.strip()
         out["oem_info"] = parsed
     return out
 
@@ -291,6 +297,40 @@ def normalize(usb, fb, adb, level):
 
 
 # ----------------------------------------------------------------------------
+# merge
+# ----------------------------------------------------------------------------
+LEVEL_ORDER = ["usb", "fastboot", "adb", "adb-root", "root", "qnx", "edl"]
+
+
+def deep_merge(a, b):
+    if isinstance(a, dict) and isinstance(b, dict):
+        out = dict(a)
+        for k, v in b.items():
+            out[k] = deep_merge(a[k], v) if k in a else v
+        return out
+    if isinstance(a, list) and isinstance(b, list):
+        seen = {json.dumps(x, sort_keys=True) for x in a}
+        return a + [x for x in b if json.dumps(x, sort_keys=True) not in seen]
+    if a in (None, "", [], {}):
+        return b
+    return a
+
+
+def cmd_merge(paths, out_path):
+    m = {}
+    for p in paths:
+        m = deep_merge(m, json.load(open(p, encoding="utf-8")))
+    seen = m.get("access", {}).get("levels_seen", [])
+    if seen:
+        m["access"]["level"] = max(
+            seen, key=lambda l: LEVEL_ORDER.index(l) if l in LEVEL_ORDER else -1)
+    m["generated_utc"] = datetime.datetime.utcnow().isoformat() + "Z"
+    m.setdefault("provenance", {})["method"] = "live-probe (merged)"
+    m["provenance"]["notes"] = "merged from: " + ", ".join(os.path.basename(p) for p in paths)
+    return m
+
+
+# ----------------------------------------------------------------------------
 # diff
 # ----------------------------------------------------------------------------
 def cmd_diff(a_path, b_path):
@@ -319,6 +359,14 @@ def cmd_diff(a_path, b_path):
 # ----------------------------------------------------------------------------
 # main
 # ----------------------------------------------------------------------------
+def first_device(txt, state):
+    for line in txt.splitlines():
+        parts = line.split()
+        if len(parts) >= 2 and parts[1] == state:
+            return parts[0]
+    return None
+
+
 def cmd_probe(args):
     level = "usb"
     usb = probe_usb()
@@ -326,23 +374,13 @@ def cmd_probe(args):
     adb = None
 
     serial = args.serial
-    adb_devices = run([ADB, "devices"])
-    fb_devices = run([FASTBOOT, "devices"])
-    if "\tdevice" in adb_devices:
-        if not serial:
-            for line in adb_devices.splitlines():
-                if "\tdevice" in line:
-                    serial = line.split()[0]
-                    break
-        adb = probe_adb(serial)
+    adb_serial = first_device(run([ADB, "devices"]), "device")
+    fb_serial = first_device(run([FASTBOOT, "devices"]), "fastboot")
+    if adb_serial:
+        adb = probe_adb(serial or adb_serial)
         level = "adb"
-    elif "\tfastboot" in fb_devices:
-        if not serial:
-            for line in fb_devices.splitlines():
-                if "\tfastboot" in line:
-                    serial = line.split()[0]
-                    break
-        fb = probe_fastboot(serial)
+    elif fb_serial:
+        fb = probe_fastboot(serial or fb_serial)
         level = "fastboot"
     else:
         if args.serial:
@@ -363,13 +401,18 @@ def main():
     d = sub.add_parser("diff")
     d.add_argument("a")
     d.add_argument("b")
+    g = sub.add_parser("merge")
+    g.add_argument("maps", nargs="+")
+    g.add_argument("--out")
     args = ap.parse_args()
 
     if args.cmd == "diff":
         cmd_diff(args.a, args.b)
         return 0
 
-    if args.cmd == "probe":
+    if args.cmd == "merge":
+        m = cmd_merge(args.maps, args.out)
+    elif args.cmd == "probe":
         m = cmd_probe(args)
     elif args.cmd == "usb":
         m = normalize(probe_usb(), None, None, "usb")

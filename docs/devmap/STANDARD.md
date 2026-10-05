@@ -115,6 +115,18 @@ records the level it ran at. Every probe is read-only unless explicitly marked
 
 ## 5. Comparison
 
+A device can only be in one mode at a time, so a complete map is built from
+per-mode probes and combined:
+
+```
+py tools/devmap.py probe  --out keyone-adb.json      # L0+L2 while booted
+py tools/devmap.py probe  --out keyone-fastboot.json # L0+L1 in bootloader
+py tools/devmap.py merge keyone-adb.json keyone-fastboot.json --out keyone.json
+```
+
+`merge` unions lists (interfaces, mounts, findings), fills empty fields, and
+recomputes `access.level` as the highest level seen.
+
 `devmap diff a.json b.json` reports:
 - identity/build changes,
 - new/removed access levels,

@@ -48,3 +48,13 @@ __pycache__/
 # Third-party reference source (cloned, not redistributed)
 ref/lk_msm8953/
 artifacts/
+
+# never commit firmware / big binaries
+firmware/
+*.zip
+*.7z
+*.rar
+*.raw
+*.img
+*.mbn
+*.elf

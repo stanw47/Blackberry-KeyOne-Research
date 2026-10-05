@@ -2,10 +2,10 @@
 
 > Boot-chain enforcement, full attack-surface mapping, and a reachable Adreno
 > **KGSL/IOMMU kernel vulnerability** on the BlackBerry **KEYone** (Android 7.1.1,
-> MSM8953). A permanently-locked, server-authenticated Android phone.
+> MSM8953) — a permanently-locked, server-authenticated Android phone.
 >
 > Part of the **[Blackberry-Research](https://github.com/stanw47/Blackberry-Research)**
-> collection. Cross-device mechanisms live in the hub; this repo is KEYone-specific.
+> collection · [Williamson Security Solutions](https://williamsonsecuritysolutions.com)
 
 ---
 
@@ -18,93 +18,76 @@
 
 ---
 
-## Status
+## Device Details
 
 | Field | Value |
 |---|---|
-| Device / model | BlackBerry KEYone (BBB100-3, Sprint/CDMA) |
-| SoC | Qualcomm MSM8953 (Snapdragon 625), arm64-v8a |
-| OS / build | Android 7.1.1, `NMF26F` / display `ABL766`, patch 2018-12-05 |
-| Bootloader | **locked** — LK `aboot` + `authboot` 2.0, secure boot on |
-| Root | **none** (`id` = uid 2000 shell; no `su`) |
-| Access levels reached | L0 usb, L1 fastboot, L2 adb |
-| Status | no software unlock; **reachable KGSL/IOMMU bug (DoS, not yet root)** |
-
-**Current state:** The boot chain is silicon-rooted and server-authenticated; no
-software-only unlock or root exists. The one genuine hole is an unpatched
-KGSL/IOMMU range-validation bug reachable from an unprivileged `shell` — a
-denial-of-service today, with an exploitation path under active analysis.
+| Model | BlackBerry KEYone **BBB100-3** |
+| Codename | `bbb100` / "Mercury" |
+| SoC | Qualcomm **MSM8953** (Snapdragon 625), arm64-v8a |
+| OS / software | **Android 7.1.1** |
+| Current build | `NMF26F` / display **`ABL766`**, patch 2018-12-05 |
+| Previous builds | (Sprint/CDMA variant never received Oreo) |
+| Carrier / unlock | **Sprint (CDMA)**; carrier-locked; bootloader locked |
+| SIM | single |
 
 ---
 
-## TL;DR
+## Current Status
 
-- **The boot chain is silicon.** PBL (mask ROM) verifies SBL1 against fused
-  QFPROM hashes; SBL1 verifies `aboot`; `aboot` verifies boot/recovery.
-  Patching `aboot` is rejected by SBL1 (confirmed — it bricks until recovered).
-- **`authboot`/RTAS2 gates every privileged command.** Unlocking, token
-  provisioning, and protected reads require a signed, server-issued
-  authorization from BlackBerry servers that are **dead**.
-- **Every peripheral was mapped.** WLAN CVEs fixed; Diag/QMI/TrustZone
-  SELinux-gated; Binder/ashmem UAFs neutralised by grsecurity slab isolation.
-- **One real hole: Adreno KGSL IOMMU** (`kgsl_iommu_set_svm_region`). `/dev/kgsl-3d0`
-  is world-writable (`0666`) and the range validation is missing — **CVE-2020-11261**
-  / **CVE-2023-33107** class. Reproduced live from `shell`; currently a DoS.
-- **EDL** is the only bypass, needing physical entry + a signed firehose
-  programmer (a BlackBerry MSM8953 programmer was extracted from the autoloader).
+The boot chain is **silicon-rooted and server-authenticated** — no software-only
+unlock or root exists. The one genuine hole is an **unpatched KGSL/IOMMU
+range-validation bug** reachable from an unprivileged `shell`: a **denial of
+service** today, with an exploitation path under analysis.
 
 ---
 
-## Key findings
+## Completed
 
-*Numbered, stable — append only. Each links to detail.*
+- **Boot-chain model** — PBL→SBL1→aboot with fused root key; patched `aboot`
+  rejected by SBL1 (confirmed: it bricks until recovered).
+- **`authboot`/RTAS2 protocol** — full command-permission model decoded.
+- **Reachable-surface map** — WLAN, Diag/QMI, TrustZone, Binder, KGSL.
+- **KGSL/IOMMU bug** — confirmed live from `shell` (safe + corruption PoCs).
+- **Autoloader teardown** — signed MSM8953 firehose programmer + symbolized `aboot`.
+- **TCL FOTA analysis** — system-UID OTA agent; recovery trust anchor.
 
-1. **Boot chain is silicon-rooted** — PBL→SBL1→aboot with fused root key;
-   `flash.locked=1`, `bbss_wp_type=permanent`, `bbss_insecure=false`.
-   → [`notes/23-bootchain-model-and-patch-rationale.md`](notes/23-bootchain-model-and-patch-rationale.md)
-2. **`authboot`/RTAS2 command gate** — the whole permission model decoded.
-   → [`notes/11-keyone-token-and-rtas2-architecture.md`](notes/11-keyone-token-and-rtas2-architecture.md),
-   [`notes/16-keyone-rtas2-protocol-spec.md`](notes/16-keyone-rtas2-protocol-spec.md)
-3. **`oem set-factory-mode` is RTAS-gated** — the KEY2-style factory route is closed.
-   → [`notes/15-keyone-token-bypass-map.md`](notes/15-keyone-token-bypass-map.md)
-4. **Reachable surface map** — WLAN, Diag/QMI, TrustZone, Binder, KGSL.
-   → [`notes/21-wcnss-wlan-and-reachable-surface-map.md`](notes/21-wcnss-wlan-and-reachable-surface-map.md)
-5. **KGSL/IOMMU vulnerability — CONFIRMED live** (the headline; below).
-   → [`docs/KEYone-kgsl-IOMMU-vulnerability.md`](docs/KEYone-kgsl-IOMMU-vulnerability.md)
-6. **TCL FOTA (`com.tcl.ota.bb`) runs as system UID** with `RECOVERY`; recovery
-   still verifies against BlackBerry's otacerts (valid to 2053).
-   → [`notes/tcl-fota-surface.md`](notes/tcl-fota-surface.md)
-7. **Autoloader teardown** — extracted the signed MSM8953 firehose programmer +
-   symbolized `aboot`. → [`notes/autoloader-teardown.md`](notes/autoloader-teardown.md)
+## Achieved
 
----
+- ✅ **KGSL/IOMMU bug reproduced live** (CVE-2020-11261 / CVE-2023-33107 class)
+  from unprivileged `shell` — safe PoC accepted an out-of-SVM address.
+- ✅ **Kernel panic primitive** — global-region overlap overwrites the GPU's
+  global page-table entries.
+- ✅ **Signed firehose programmer extracted** from the official autoloader (EDL-ready).
+- ✅ **`devinfo` unlock byte mapped** (offset `0x10`).
 
-## The KGSL / IOMMU vulnerability (headline)
+## In Progress
 
-`kgsl_iommu_set_svm_region()` validates only the **endpoints** of a requested GPU
-address range against the 8 MB "global" region — it does not validate the
-interior, does not check the KGSL SVM range, and has no wraparound guard. These
-are **CVE-2020-11261** (exploited in the wild, CISA KEV) and **CVE-2023-33107**.
+- **KGSL → kernel R/W.** Turning the DoS primitive into a controllable read/write
+  to reach root. → [`notes/24–31`](notes/)
 
-- Confirmed **verbatim** in BlackBerry's own GPL kernel source
-  (`ref/bb-kernel-msm8953-ABY299/`) and reproduced **live on a retail KEYone**
-  from an unprivileged `shell` (`/dev/kgsl-3d0` is `0666`).
-- **Safe PoC** (`tools/kgsl_bugA_poc.c`): an out-of-SVM address is accepted where
-  a patched kernel returns `-ENOMEM`.
-- **Corruption/DoS PoC** (`tools/kgsl_global_overlap_poc.c`): a range whose
-  endpoints are outside the global region but which spans it is accepted; the map
-  overwrites the GPU's global page-table entries and **panics the kernel**.
-- Not blocked by grsecurity (the primitive is IOMMU page-table aliasing, not
-  slab reuse). Full chain analysis: [`notes/24–31`](notes/).
+## Failed
+
+- **Software unlock** — `authboot` denies every privileged command; `oem
+  set-factory-mode` is RTAS-gated; `oem unlock` is not even whitelisted.
+- **Patching `aboot`** — rejected by SBL1's re-verification.
+- **Binder/ashmem UAFs** — neutralised by grsecurity slab isolation.
+- **WLAN CVEs** — fixed in BlackBerry's build.
+- **EDL by software** — no software trigger; entry is hardware-only.
+
+## Future Plans
+
+1. Complete the **KGSL exploitation chain** → root.
+2. Or **physical EDL** (test points) → patch `devinfo` → unlock.
 
 ---
 
-## How to connect
+## Community Activity
 
-Android device: `adb` (USB `0fca:8042`), `fastboot` (`0fca:8040`). The bootloader
-is `authboot`-gated — `fastboot oem device-info` returns
-`authboot command permission denied`, but `fastboot getvar all` works.
-Shared tooling: hub [`toolchain/`](https://github.com/stanw47/Blackberry-Research/tree/main/toolchain).
+- **No public unlock or root** for the KEYone; the community reaches only
+  debloat/FRP-bypass and stock autoloader restore.
+- The KGSL IOMMU class (CVE-2020-11261) is publicly known and was exploited in
+  the wild on other MSM8953 devices; this repo documents its reachability here.
 
 ---
 
@@ -112,11 +95,11 @@ Shared tooling: hub [`toolchain/`](https://github.com/stanw47/Blackberry-Researc
 
 | Path | Contents |
 |---|---|
-| `notes/` | KEYone session notes (numbered `01–31` + the 2026-10 audit) |
-| `docs/` | [`KEYone-research-arc.md`](docs/KEYone-research-arc.md), the [KGSL public write-up](docs/KEYone-kgsl-IOMMU-public-writeup.md) + [full technical write-up](docs/KEYone-kgsl-IOMMU-vulnerability.md), [`KEYone-device-map.md`](docs/KEYone-device-map.md) |
+| `notes/` | KEYone session notes (`01–31` + the 2026-10 audit) |
+| `docs/` | [research arc](docs/KEYone-research-arc.md), [KGSL public write-up](docs/KEYone-kgsl-IOMMU-public-writeup.md), [KGSL full technical](docs/KEYone-kgsl-IOMMU-vulnerability.md), [device map](docs/KEYone-device-map.md) |
 | `tools/` | KGSL PoCs (`kgsl_bugA_poc.c`, `kgsl_global_overlap_poc.c`, …), `keyone_unlock.py`, `authboot_client.py` |
 | `ref/` | BlackBerry msm8953 `ABY299` KGSL/IOMMU kernel sources |
-| `recon/` | live recon (props, partitions, SELinux policy, kallsyms, security libs) + the 2026-10-02 audit |
+| `recon/` | live recon (props, partitions, SELinux policy, kallsyms) + 2026-10 audit |
 | `devmaps/` | KEYone device maps (schema v1.0) |
 | `firmware/`, `abl/`, `edl/`, `exploit/`, `kernel/` | work areas (firmware not committed) |
 
@@ -130,14 +113,13 @@ Shared tooling: hub [`toolchain/`](https://github.com/stanw47/Blackberry-Researc
 
 ---
 
-## References
+## Citations & Acknowledgements
 
 | Source | URL | Relevance |
 |---|---|---|
-| CVE-2020-11261 / CVE-2023-33107 | Qualcomm | KGSL IOMMU range-validation bug |
+| Qualcomm | CVE-2020-11261 / CVE-2023-33107 | KGSL IOMMU range-validation bug |
 | Christopher Wade — Breaking Mobile Bootloaders | https://www.qualcomm.com/.../qpss22-christopher-wade.pdf | ABL fastboot overflow (KEY2) |
-| CVE-2021-1931 | Qualcomm | KEY2 unlock vector (not KEYone) |
-| bkerler/Loaders | https://github.com/bkerler/Loaders | firehose programmers |
+| bkerler / Loaders | https://github.com/bkerler/Loaders | firehose programmers |
 
 ---
 

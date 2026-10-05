@@ -9,53 +9,19 @@
     "level": "adb",
     "levels_seen": [
       "usb",
-      "adb",
-      "fastboot"
+      "adb"
     ]
   },
   "boot": {
-    "oem_info": {
-      "BSN": "1164118297",
-      "Backup Version": "",
-      "Bootchain Software": "",
-      "Build": "ABL766",
-      "Debug Tokens (nvuser)": "",
-      "Debug Tokens (perm)": "",
-      "HLOS boot Signature Information": "",
-      "HLOS boot image Information": "",
-      "HLOS recovery Signature Information": "",
-      "HLOS recovery image Information": "",
-      "Hardware Information": "",
-      "ID": "APBI",
-      "IMEI": "990004630122962",
-      "Insecure": "false",
-      "MEID": "99000463012296",
-      "Name": "ec_agent",
-      "PIN": "0x2c48d4c8",
-      "Primary Version": "",
-      "Product": "bbb100",
-      "Product Identifiers": "",
-      "Security": "",
-      "Subvariant": "sprint",
-      "Tag": "sprint",
-      "Time": "20181127.133122",
-      "Type": "sfi",
-      "Variant": "usa",
-      "WP Type": "permanent"
-    },
     "verification": {
       "dm_verity": "enforcing",
       "flash_locked": "1",
       "verified_boot_state": ""
-    },
-    "write_protect": {
-      "insecure": "false",
-      "wp_type": "permanent"
     }
   },
   "devmap_version": "1.0",
   "findings": [],
-  "generated_utc": "2026-10-05T16:53:12.819002Z",
+  "generated_utc": "2026-10-05T16:52:59.586410Z",
   "hardware": {
     "peripherals": [
       {
@@ -178,12 +144,11 @@
     }
   },
   "provenance": {
-    "method": "live-probe (merged)",
-    "notes": "merged from: keyone-bbb100-3.adb.json, keyone-bbb100-3.fastboot.json",
+    "method": "live-probe",
+    "notes": "",
     "sources": [
       "usb",
-      "adb",
-      "fastboot"
+      "adb"
     ]
   },
   "security": {
@@ -484,73 +449,11 @@
         "selinux": ""
       }
     ],
-    "fastboot_vars": {
-      "authboot_api_ver": "2.0",
-      "battery-soc-ok": "yes",
-      "battery-voltage": "4251000",
-      "bootmode": "PRODUCT_MODE",
-      "charger-screen-enabled": "1",
-      "device": "bbb100",
-      "display-panel": "",
-      "gpt_version": "0x0005",
-      "hlos-sig-tag": "sprint",
-      "hlos_signature.tkn": "NONE",
-      "hlos_unsigned.tkn": "disabled",
-      "is-password-set": "no",
-      "jdm_bsn": "AAKH11BPDKA00VV",
-      "kernel": "lk",
-      "max-download-size": "0x20000000",
-      "max-upload-size": "0x20000000",
-      "off-mode-charge": "1",
-      "partition-size:cache": "0x40000000",
-      "partition-size:oem": "0x20000000",
-      "partition-size:system": "0x120000000",
-      "partition-size:userdata": "0x5a7bfbe00",
-      "partition-type:cache": "ext4",
-      "partition-type:oem": "ext4",
-      "partition-type:system": "ext4",
-      "partition-type:userdata": "ext4",
-      "prd": "PRD-63118-003",
-      "product": "MSM8953",
-      "security": "enabled",
-      "serialno": "1164118297",
-      "subvariant": "sprint",
-      "variant": "usa",
-      "version": "0.5"
-    },
     "interfaces": [
       {
         "ifaces": [],
         "name": "ADB composite",
         "pid": "0x8042",
-        "reachable_at": "usb",
-        "vid": "0x0fca"
-      },
-      {
-        "ifaces": [
-          {
-            "class": "0xff",
-            "endpoints": [
-              "0x81",
-              "0x01"
-            ],
-            "num": 0,
-            "protocol": "0x03",
-            "subclass": "0x42"
-          },
-          {
-            "class": "0xff",
-            "endpoints": [
-              "0x82",
-              "0x02"
-            ],
-            "num": 1,
-            "protocol": "0xff",
-            "subclass": "0x02"
-          }
-        ],
-        "name": "fastboot (KEY2/KEYone)",
-        "pid": "0x8040",
         "reachable_at": "usb",
         "vid": "0x0fca"
       }

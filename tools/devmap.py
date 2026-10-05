@@ -184,16 +184,51 @@ def parse_getprop(txt):
     return props
 
 
+DEVICE_CANDIDATES = [
+    "/dev/binder", "/dev/hwbinder", "/dev/vndbinder", "/dev/ashmem",
+    "/dev/kgsl-3d0", "/dev/kgsl-3d1", "/dev/ion", "/dev/dri/renderD128",
+    "/dev/qseecom", "/dev/tee0", "/dev/teepriv0", "/dev/adsprpc-smd",
+    "/dev/smd7", "/dev/smem_log", "/dev/pathtrust", "/dev/nvram",
+    "/dev/block/bootdevice/by-name", "/dev/block/bootdevice",
+    "/dev/block/mmcblk0", "/dev/block/mmcblk0boot0", "/dev/block/mmcblk0boot1",
+    "/dev/ttyHSL0", "/dev/diag", "/dev/radio0", "/dev/watchdog",
+    "/dev/random", "/dev/urandom", "/dev/zero", "/dev/null",
+    "/dev/emmc/boot0", "/dev/emmc/boot1", "/dev/emmc/rpmb0",
+    "/dev/emmc/nvram0", "/dev/emmc/dmi0", "/dev/emmc/os0", "/dev/emmc/os1",
+    "/dev/emmc/uda0", "/dev/emmc/user0", "/dev/emmc/cal_work0",
+    "/dev/emmc/radio0", "/dev/emmc/sd0",
+    "/proc/boot/pathtrust", "/proc/boot/hold_boot",
+]
+
+
+def probe_devices(serial):
+    paths = " ".join(DEVICE_CANDIDATES)
+    txt = sh(serial, f"for p in {paths}; do stat -c '%n %a %U %G' $p 2>/dev/null; done")
+    out = []
+    for line in txt.splitlines():
+        parts = line.split()
+        if len(parts) >= 4:
+            out.append({
+                "path": parts[0],
+                "mode": parts[1],
+                "owner": f"{parts[2]}:{parts[3]}",
+                "selinux": "",
+                "reachable": "present",
+            })
+    return out
+
+
 def probe_adb(serial):
     out = {}
     out["getprop"] = parse_getprop(sh(serial, "getprop"))
     out["cpuinfo"] = sh(serial, "cat /proc/cpuinfo")
-    out["devices"] = sh(serial, "cat /proc/devices")
+    out["proc_devices"] = sh(serial, "cat /proc/devices")
     out["misc"] = sh(serial, "cat /proc/misc")
     out["mounts"] = sh(serial, "cat /proc/mounts")
     out["selinux"] = sh(serial, "getenforce").strip()
     out["id"] = sh(serial, "id").strip()
     out["i2c"] = sh(serial, "for d in /sys/bus/i2c/devices/*/name; do echo \"$d: $(cat $d 2>/dev/null)\"; done")
+    out["devices"] = probe_devices(serial)
     out["block"] = sh(serial, "ls -la /dev/block/bootdevice/by-name/ 2>&1")
     out["services"] = sh(serial, "service list 2>/dev/null")
     out["packages"] = sh(serial, "pm list packages 2>/dev/null")
@@ -254,6 +289,8 @@ def normalize(usb, fb, adb, level):
             mm = re.match(r"(/sys/bus/i2c/devices/[\w-]+)/name:\s*(\S+)", line)
             if mm:
                 m["hardware"]["peripherals"].append({"bus": "i2c", "path": mm.group(1), "name": mm.group(2)})
+        # device nodes
+        m["surface"]["devices"] = adb.get("devices", [])
         # mounts
         for line in adb.get("mounts", "").splitlines():
             parts = line.split()

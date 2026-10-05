@@ -56,8 +56,10 @@ ro.boot.system_dbg             = false
 ```
 
 > The `bbss.*` (BlackBerry Secure Boot Signature) fields mirror the BB10
-> `bbss.insecure` research. Here `bbss_wp_type = permanent` — same theme as the
-> Passport `B_PERM_WP_EN` finding: the secure-boot config is hardware-protected.
+> `bbss.insecure` research. Here `bbss_wp_type = permanent` — BlackBerry's own
+> Android-side secure-boot field. (Note: the BB10 Passport's boot partitions are
+> in fact `B_PWR_WP_EN` — a power-on/temporary protect that software cannot clear
+> — not a fused `B_PERM_WP_EN`; `bbss_wp_type` is a separate Android field.)
 
 ## Partition map (A-only, 56 partitions, mmcblk0)
 

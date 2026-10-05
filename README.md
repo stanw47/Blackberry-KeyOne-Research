@@ -44,8 +44,10 @@ service** today, with an exploitation path under analysis.
 
 ## Completed
 
-- **Boot-chain model** — PBL->SBL1->aboot with fused root key; patched `aboot`
-  rejected by SBL1 (confirmed: it bricks until recovered).
+- **Boot-chain model** — PBL->SBL1->aboot with fused root key; a patched `aboot`
+  is rejected by SBL1 (inferred from the Priv eMMC incident, where a patched
+  `aboot` bricked the device until recovered — not directly tested on the
+  KEYone, whose `flash` path is authboot-gated).
 - **`authboot`/RTAS2 protocol** — full command-permission model decoded.
 - **Reachable-surface map** — WLAN, Diag/QMI, TrustZone, Binder, KGSL.
 - **KGSL/IOMMU bug** — confirmed live from `shell` (safe + corruption PoCs).
@@ -70,9 +72,13 @@ service** today, with an exploitation path under analysis.
 
 - **Software unlock** — `authboot` denies every privileged command; `oem
   set-factory-mode` is RTAS-gated; `oem unlock` is not even whitelisted.
-- **Patching `aboot`** — rejected by SBL1's re-verification.
+- **Patching `aboot`** — rejected by SBL1's re-verification (mechanism; the brick
+  was observed on the Priv, not directly on the KEYone).
 - **Binder/ashmem UAFs** — neutralised by grsecurity slab isolation.
-- **WLAN CVEs** — fixed in BlackBerry's build.
+- **WLAN CVEs** — status unresolved: [`notes/21`](notes/21-wcnss-wlan-and-reachable-surface-map.md)
+  reports CVE-2019-10526 unpatched (and the best remaining LPE candidate), while
+  [`notes/23`](notes/23-bootchain-model-and-patch-rationale.md) claims the fix is
+  present. See [`notes/22`](notes/22-wlan-cve-2019-10526-status.md).
 - **EDL by software** — no software trigger; entry is hardware-only.
 
 ## Future Plans

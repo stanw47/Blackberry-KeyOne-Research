@@ -44,9 +44,11 @@ ro.boot.veritymode           = enforcing
 ro.boot.binfo.primary_bc_ver = ABL766
 ```
 
-`bbss_wp_type=permanent` is the **exact same finding as the BB10 Passport** in the main
-repo (`BOOT_WP[173]=0x04`, bit2 B_PERM_WP_EN, permanent). The KEYone Android bootloader
-reuses BlackBerry's `bbss` (BlackBerry Secure Boot Signature) design.
+`bbss_wp_type=permanent` is BlackBerry's own Android-side secure-boot field, analogous
+in spirit to the BB10 boot-partition write-protect. (The BB10 Passport's boot partitions
+are in fact `B_PWR_WP_EN` — a power-on/temporary protect that software cannot clear — not
+a fused `B_PERM_WP_EN`.) The KEYone Android bootloader reuses BlackBerry's `bbss`
+(BlackBerry Secure Boot Signature) design.
 
 ## LK bootloader reverse-engineering (emmc_appsboot.mbn)
 

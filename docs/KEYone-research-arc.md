@@ -33,8 +33,9 @@ The KEYone's root of trust is silicon, not software:
   server-issued authorization. Those servers are long dead.
 
 **Consequence:** you cannot flash a different bootchain, and patching `aboot` is
-rejected by SBL1's re-verification (confirmed experimentally — it bricks until
-recovered). The eMMC chip-off route that unlocked the Passport/Priv works only
+rejected by SBL1's re-verification (observed on the Priv eMMC incident, where a
+patched `aboot` bricked the device until recovered; not directly tested on the
+KEYone, whose `flash` path is authboot-gated). The eMMC chip-off route that unlocked the Passport/Priv works only
 because those devices have prototype bootloaders and a leaked `imggen` toolchain;
 no equivalent exists publicly for the KEYone.
 

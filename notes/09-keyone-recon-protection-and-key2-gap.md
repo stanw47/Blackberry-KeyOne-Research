@@ -26,7 +26,7 @@ to skip `boot_authenticator.c`. That switch is stored in the **write-protected**
 (`bbss_wp_type = permanent`), which is the actual chokepoint.
 
 ### What we still cannot do
-- **Flip `bbss.insecure`** (boot0 is permanent HW WP — `B_PERM_WP_EN`). This is the *one*
+- **Flip `bbss.insecure`** (boot0 is HW write-protected; `bbss_wp_type=permanent`). This is the *one*
   byte that would make SBL1 skip verification.
 - **Get a modified aboot accepted** — SBL1's `boot_authenticator.c` checks SHA256 of ELF
   segments against the fused OEM key (`auth_hash_seg_*`, `elf_segs_hash_verify_entry`).

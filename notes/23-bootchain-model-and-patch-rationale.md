@@ -2,7 +2,7 @@
 
 Date: 2026-10-05
 Related: notes/19 (kernel survey), notes/20 (hardware), notes/21 (surface map),
-notes/22 (CVE-2019-10526 patched).
+notes/22 (WLAN CVE-2019-10526 status — unresolved).
 
 ## 1. What actually enforces the boot chain (silicon, not software)
 
@@ -38,7 +38,7 @@ a patched `aboot` bricked the device (Priv incident, and SBL1 re-verify is real)
 | CVE-2019-2025 | Binder | improper locking in `binder_thread_read` -> UAF | fixed upstream pre-snapshot; grsec slab |
 | CVE-2020-0009 | ashmem | `ashmem_mmap` VMA prot mask undone by `remap_file_pages()`; `ASHMEM_UNPIN` unauthenticated -> RO bypass (Chrome/ART JIT) | RO-bypass/DoS class; no root primitive alone |
 | CVE-2020-0041/0035 | Binder | transaction-queue OOB / refcount bugs | grsec slab |
-| CVE-2019-10526 | WLAN (prima) | NULL not placed after SSID name -> OOB write | **fix verified present** (notes/22) |
+| CVE-2019-10526 | WLAN (prima) | NULL not placed after SSID name -> OOB write | **unresolved** — notes/21 reports unpatched; the original "fix present" claim cited a notes/22 that did not exist (see notes/22) |
 | CVE-2019-14074 | Diag | heap overflow in diag cmd handler (attacker packet length) | `/dev/diag` EACCES to shell |
 | CVE-2019-14114 | WLAN fw | GTK IE overflow | firmware-side/remote |
 | CVE-2020-11116/17/18 | WLAN HOST | WMI event / array index | qcacld-3.0-era, not in prima 3.0.11.66 |
@@ -50,8 +50,8 @@ a patched `aboot` bricked the device (Priv incident, and SBL1 re-verify is real)
 - Every one is a **UAF / OOB / unauthenticated-ioctl** class.
 - BlackBerry's **grsec + SELinux** build neutralizes the *primitive* (slab reuse,
   ptrace, TPE, device ACLs) for precisely those classes.
-- The withheld-patch CVEs (e.g. 10526) signal a **clean reusable primitive** — worth
-  targeting for the *pattern*, even when that instance is patched.
+- CVEs like 10526 (WLAN, possibly unpatched here — notes/21/22) signal a **clean
+  reusable primitive** — worth targeting for the *pattern*.
 
 => The patch list is a **map of what the vendors feared was reachable**. The
 un-patched residue is where to hunt: surfaces with **no known bug**, or bugs whose

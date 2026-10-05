@@ -1,0 +1,225 @@
+ls: /system/rfs: Permission denied
+total 216
+drwxr-xr-x 20 root root   4096 1970-01-01 08:00 .
+drwxrwxrwt 23 root root   1400 1970-01-01 08:00 ..
+-rw-r--r--  1 root root    716 2018-11-21 16:55 adbkey.pub
+drwxr-xr-x 94 root root   4096 2018-11-21 17:18 app
+drwxr-xr-x  4 root shell  8192 2018-11-21 17:15 bin
+-rw-r--r--  1 root root  11162 2018-11-21 16:54 build.prop
+drwxr-xr-x 26 root root   4096 2018-11-21 17:22 etc
+drwxr-xr-x  2 root root   4096 2018-11-21 17:07 fake-libs
+drwxr-xr-x  2 root root   4096 2018-11-21 17:07 fake-libs64
+drwxr-xr-x  2 root root   8192 2018-11-21 17:03 fonts
+drwxr-xr-x  5 root root   4096 2018-11-21 17:16 framework
+drwxr-xr-x  6 root root   8192 2018-11-21 17:09 lib
+drwxr-xr-x  6 root root  12288 2018-11-21 17:09 lib64
+drwx------  2 root root   4096 1970-01-01 08:00 lost+found
+drwxr-xr-x  3 root root   4096 2018-11-21 16:55 media
+drwxr-xr-x 91 root root   4096 2018-11-21 17:18 priv-app
+drwxr-xr-x  3 root root   4096 2018-11-21 17:07 removeable-app
+drwxr-xr-x  3 root root   4096 2018-11-21 16:55 tts
+drwxr-xr-x  9 root root   4096 2018-11-21 16:58 usr
+drwxr-xr-x 16 root shell  4096 2018-11-21 17:07 vendor
+drwxr-xr-x  2 root shell  4096 2018-11-21 17:08 xbin
+===
+ls: /system/bin/ATFWD-daemon: Permission denied
+ls: /system/bin/DR_AP_Service: Permission denied
+ls: /system/bin/PktRspTest: Permission denied
+ls: /system/bin/RetainsDataSpace: Permission denied
+ls: /system/bin/StoreKeybox: Permission denied
+ls: /system/bin/adsprpcd: Permission denied
+ls: /system/bin/assdserviced: Permission denied
+ls: /system/bin/athdiag: Permission denied
+ls: /system/bin/audiod: Permission denied
+ls: /system/bin/audioserver: Permission denied
+ls: /system/bin/bb_tokenserviced: Permission denied
+ls: /system/bin/bbauthtoold: Permission denied
+ls: /system/bin/bkup_bc_update: Permission denied
+ls: /system/bin/blkid: Permission denied
+ls: /system/bin/bootanimation: Permission denied
+ls: /system/bin/bootstat: Permission denied
+ls: /system/bin/btnvtool: Permission denied
+ls: /system/bin/bugreport_service: Permission denied
+ls: /system/bin/cameraserver: Permission denied
+ls: /system/bin/clatd: Permission denied
+ls: /system/bin/cnd: Permission denied
+ls: /system/bin/cnss-daemon: Permission denied
+ls: /system/bin/cnss_diag: Permission denied
+ls: /system/bin/coregzip: Permission denied
+ls: /system/bin/dcmd: Permission denied
+ls: /system/bin/ddt: Permission denied
+ls: /system/bin/debuggerd: Permission denied
+ls: /system/bin/debuggerd64: Permission denied
+ls: /system/bin/diag_dci_sample: Permission denied
+ls: /system/bin/diag_klog: Permission denied
+ls: /system/bin/diag_mdlog: Permission denied
+ls: /system/bin/diag_proxy: Permission denied
+ls: /system/bin/diag_socket_log: Permission denied
+ls: /system/bin/diag_uart_log: Permission denied
+ls: /system/bin/diagnosticsd: Permission denied
+ls: /system/bin/dnsmasq: Permission denied
+ls: /system/bin/dpmd: Permission denied
+ls: /system/bin/drmserver: Permission denied
+ls: /system/bin/ds_launcher: Permission denied
+ls: /system/bin/dumpstate: Permission denied
+ls: /system/bin/e2fsck: Permission denied
+ls: /system/bin/energy-awareness: Permission denied
+ls: /system/bin/fingerprintd: Permission denied
+ls: /system/bin/fmhal_service: Permission denied
+ls: /system/bin/fsck.exfat: Permission denied
+ls: /system/bin/fsck.f2fs: Permission denied
+ls: /system/bin/fsck_msdos: Permission denied
+ls: /system/bin/fstman: Permission denied
+ls: /system/bin/garden_app: Permission denied
+ls: /system/bin/gatekeeperd: Permission denied
+ls: /system/bin/gpsone_daemon: Permission denied
+ls: /system/bin/hal_proxy_daemon: Permission denied
+ls: /system/bin/hostapd: Permission denied
+ls: /system/bin/hostapd_cli: Permission denied
+ls: /system/bin/hs20-osu-client: Permission denied
+ls: /system/bin/hvdcp_opti: Permission denied
+ls: /system/bin/idmap: Permission denied
+ls: /system/bin/ims_rtp_daemon: Permission denied
+ls: /system/bin/imscmservice: Permission denied
+ls: /system/bin/imsdatadaemon: Permission denied
+ls: /system/bin/imsqmidaemon: Permission denied
+ls: /system/bin/install-recovery.sh: Permission denied
+ls: /system/bin/installd: Permission denied
+ls: /system/bin/iop: Permission denied
+ls: /system/bin/ipacm: Permission denied
+ls: /system/bin/ipacm-diag: Permission denied
+ls: /system/bin/irsc_util: Permission denied
+ls: /system/bin/iwpriv: Permission denied
+ls: /system/bin/keystore: Permission denied
+ls: /system/bin/lmkd: Permission denied
+ls: /system/bin/loc_launcher: Permission denied
+ls: /system/bin/logd: Permission denied
+ls: /system/bin/lowi-server: Permission denied
+ls: /system/bin/mdnsd: Permission denied
+ls: /system/bin/mediacodec: Permission denied
+ls: /system/bin/mediadrmserver: Permission denied
+ls: /system/bin/mediaextractor: Permission denied
+ls: /system/bin/mediaserver: Permission denied
+ls: /system/bin/mfg_battery: Permission denied
+ls: /system/bin/mfg_battery_monitor: Permission denied
+ls: /system/bin/mfg_dc: Permission denied
+ls: /system/bin/mfg_memory: Permission denied
+ls: /system/bin/mfg_properties: Permission denied
+ls: /system/bin/mfgradiosrvqc: Permission denied
+ls: /system/bin/mm-qcamera-daemon: Permission denied
+ls: /system/bin/mmi: Permission denied
+ls: /system/bin/mplogsvc: Permission denied
+ls: /system/bin/msm_irqbalance: Permission denied
+ls: /system/bin/mtpd: Permission denied
+ls: /system/bin/ndc: Permission denied
+ls: /system/bin/netd: Permission denied
+ls: /system/bin/netmgrd: Permission denied
+ls: /system/bin/pktlogconf: Permission denied
+ls: /system/bin/pm-proxy: Permission denied
+ls: /system/bin/pm-service: Permission denied
+ls: /system/bin/port-bridge: Permission denied
+ls: /system/bin/powerup_reason: Permission denied
+ls: /system/bin/pppd: Permission denied
+ls: /system/bin/profman: Permission denied
+ls: /system/bin/ptt_socket_app: Permission denied
+ls: /system/bin/pubmfgdata: Permission denied
+ls: /system/bin/qseecom_sample_client: Permission denied
+ls: /system/bin/qseecomd: Permission denied
+ls: /system/bin/racoon: Permission denied
+ls: /system/bin/reset_cause: Permission denied
+ls: /system/bin/resize2fs: Permission denied
+ls: /system/bin/rild: Permission denied
+ls: /system/bin/rmt_storage: Permission denied
+ls: /system/bin/sar_daemon: Permission denied
+ls: /system/bin/sdcard: Permission denied
+ls: /system/bin/secsvr: Permission denied
+ls: /system/bin/secure_ui_sample_client: Permission denied
+ls: /system/bin/selfieflash: Permission denied
+ls: /system/bin/sensors.qcom: Permission denied
+ls: /system/bin/servicemanager: Permission denied
+ls: /system/bin/sgdisk: Permission denied
+ls: /system/bin/sigma_dut: Permission denied
+ls: /system/bin/smcd: Permission denied
+ls: /system/bin/sns_dsps_tc0001: Permission denied
+ls: /system/bin/sns_proximity_test: Permission denied
+ls: /system/bin/spf: Permission denied
+ls: /system/bin/spf-engine: Permission denied
+ls: /system/bin/spfd: Permission denied
+ls: /system/bin/ssr_diag: Permission denied
+ls: /system/bin/ssr_setup: Permission denied
+ls: /system/bin/stp_server: Permission denied
+ls: /system/bin/subsystem_ramdump: Permission denied
+ls: /system/bin/surfaceflinger: Permission denied
+ls: /system/bin/sys_ramdump: Permission denied
+ls: /system/bin/tctd: Permission denied
+ls: /system/bin/tdc: Permission denied
+ls: /system/bin/test_diag: Permission denied
+ls: /system/bin/tftp_server: Permission denied
+ls: /system/bin/time_daemon: Permission denied
+ls: /system/bin/tzdatacheck: Permission denied
+ls: /system/bin/uncrypt: Permission denied
+ls: /system/bin/vdc: Permission denied
+ls: /system/bin/vold: Permission denied
+ls: /system/bin/vtnvfsd: Permission denied
+ls: /system/bin/vtnvfsd_wrapper: Permission denied
+ls: /system/bin/wcnss_filter: Permission denied
+ls: /system/bin/wcnss_service: Permission denied
+ls: /system/bin/wfdservice: Permission denied
+ls: /system/bin/wpa_supplicant: Permission denied
+total 15384
+drwxr-xr-x  4 root shell   8192 2018-11-21 17:15 .
+drwxr-xr-x 20 root root    4096 1970-01-01 08:00 ..
+-rwxr-xr-x  1 root shell  22624 2018-11-21 17:08 WifiLogger_app
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 acpi -> toybox
+-rwxr-xr-x  1 root shell    210 2018-11-21 16:57 am
+-rwxr-xr-x  1 root shell   5523 2018-11-21 16:57 app-list-file.sh
+lrwxr-xr-x  1 root shell     13 2018-11-21 16:40 app_process -> app_process64
+-rwxr-xr-x  1 root shell  22040 2018-11-21 17:09 app_process32
+-rwxr-xr-x  1 root shell  18600 2018-11-21 17:09 app_process64
+-rwxr-xr-x  1 root shell 165144 2018-11-21 17:08 applypatch
+-rwxr-xr-x  1 root shell     14 2018-11-21 16:57 appops
+-rwxr-xr-x  1 root shell    215 2018-11-21 16:57 appwidget
+-rwxr-xr-x  1 root shell  31136 2018-11-21 17:08 atrace
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 base64 -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 basename -> toybox
+-rwxr-xr-x  1 root shell  47272 2018-11-21 17:08 bcc
+-rwxr-xr-x  1 root shell  22200 2018-11-21 17:08 bdt
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 blockdev -> toybox
+-rwxr-xr-x  1 root shell    199 2018-11-21 16:55 bmgr
+-rwxr-xr-x  1 root shell  30896 2018-11-21 17:08 brctl
+-rwxr-xr-x  1 root shell    156 2018-11-21 16:57 bu
+-rwxr-xr-x  1 root shell  10264 2018-11-21 17:08 bugreport
+-rwxr-xr-x  1 root shell  10264 2018-11-21 17:08 bugreportz
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 bzcat -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 cal -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 cat -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 chcon -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 chgrp -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 chmod -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 chown -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 chroot -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 cksum -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 clear -> toybox
+-rwxr-xr-x  1 root shell  30824 2018-11-21 17:08 cmd
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 cmp -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 comm -> toybox
+-rwxr-xr-x  1 root shell    207 2018-11-21 16:57 content
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 cp -> toybox
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 cpio -> toybox
+-rwxr-xr-x  1 root shell  14432 2018-11-21 17:08 cplay
+-rwxr-xr-x  1 root shell 371016 2018-11-21 17:07 curl
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 cut -> toybox
+lrwxr-xr-x  1 root shell     10 2018-11-21 16:41 dalvikvm -> dalvikvm64
+-rwxr-xr-x  1 root shell  17940 2018-11-21 17:08 dalvikvm32
+-rwxr-xr-x  1 root shell  14432 2018-11-21 17:08 dalvikvm64
+lrwxr-xr-x  1 root shell      6 2018-11-21 17:08 date -> toybox
+lrwxr-xr-x  1 root shell      7 2018-11-21 17:08 dd -> toolbox
+-rwxr-xr-x  1 root shell 132628 2018-11-21 17:09 dex2oat
+-rwxr-xr-x  1 root shell  76388 2018-11-21 17:08 dexdump
+ls: write: Broken pipe
+===
+total 72
+drwxr-xr-x  2 root shell  4096 2018-11-21 17:08 .
+drwxr-xr-x 20 root root   4096 1970-01-01 08:00 ..
+-rwxr-xr-x  1 root shell 10344 2018-11-21 17:08 antradio_app
+-rwxr-xr-x  1 root shell 14432 2018-11-21 17:08 dexlist

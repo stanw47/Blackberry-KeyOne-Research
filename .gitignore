@@ -58,3 +58,11 @@ firmware/
 *.img
 *.mbn
 *.elf
+
+# --- large recon artifacts (not committed) ---
+recon/**/autoloader/
+recon/**/ota/*.apk
+recon/**/ota/**/*.dex
+recon/**/ota/*.jar
+recon/**/re/*.disasm.txt
+recon/**/re/*.img

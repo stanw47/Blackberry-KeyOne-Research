@@ -1,0 +1,113 @@
+Processor	: AArch64 Processor rev 4 (aarch64)
+processor	: 0
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 1
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 2
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 3
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 4
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 5
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 6
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 7
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+Hardware	: Qualcomm Technologies, Inc MSM8953
+---
+MemTotal:        2926300 kB
+MemFree:           64324 kB
+MemAvailable:    1211364 kB
+Buffers:           21300 kB
+Cached:          1167912 kB
+SwapCached:        22040 kB
+Active:          1495184 kB
+Inactive:         676764 kB
+Active(anon):     735220 kB
+Inactive(anon):   261624 kB
+Active(file):     759964 kB
+Inactive(file):   415140 kB
+Unevictable:         460 kB
+Mlocked:             460 kB
+SwapTotal:        524284 kB
+SwapFree:         213548 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:        979540 kB
+Mapped:           558204 kB
+Shmem:             14056 kB
+Slab:             163368 kB
+SReclaimable:      56428 kB
+SUnreclaim:       106940 kB
+KernelStack:       36752 kB
+PageTables:        54640 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     1987432 kB
+Committed_AS:   108594156 kB
+VmallocTotal:   258998208 kB
+VmallocUsed:      145400 kB
+VmallocChunk:   258714628 kB
+---
+Linux localhost 3.18.31-perf-gf38c8fb #1 SMP PREEMPT Wed Nov 21 04:52:44 EST 2018 aarch64
+---
+Linux version 3.18.31-perf-gf38c8fb (ec_agent@br602cnc) (gcc version 4.9 20150123 (prerelease) (GCC) ) #1 SMP PREEMPT Wed Nov 21 04:52:44 EST 2018

@@ -1,0 +1,77 @@
+### KEYONE FASTBOOT RECON 2026-10-02T12:21:16-04:00 ###
+
+== fastboot devices ==
+1164118297	 fastboot
+
+== fastboot getvar product ==
+product: MSM8953
+Finished. Total time: 0.012s
+
+== fastboot getvar all (may be unsupported on authboot) ==
+(bootloader) version:0.5
+(bootloader) battery-soc-ok:yes
+(bootloader) battery-voltage:4325000
+(bootloader) display-panel:
+(bootloader) off-mode-charge:1
+(bootloader) charger-screen-enabled:1
+(bootloader) max-upload-size:	0x20000000
+(bootloader) max-download-size:	0x20000000
+(bootloader) partition-type:oem:ext4
+(bootloader) partition-size:oem:	 0x20000000
+(bootloader) partition-type:cache:ext4
+(bootloader) partition-size:cache:	 0x40000000
+(bootloader) partition-type:userdata:ext4
+(bootloader) partition-size:userdata:	 0x5a7bfbe00
+(bootloader) partition-type:system:ext4
+(bootloader) partition-size:system:	 0x120000000
+(bootloader) gpt_version:0x0005
+(bootloader) jdm_bsn:AAKH11BPDKA00VV
+(bootloader) bootmode:PRODUCT_MODE
+(bootloader) subvariant:sprint
+(bootloader) variant:usa
+(bootloader) device:bbb100
+(bootloader) authboot_api_ver:2.0
+(bootloader) is-password-set:no
+(bootloader) hlos_unsigned.tkn:disabled
+(bootloader) hlos-sig-tag:sprint
+(bootloader) hlos_signature.tkn:NONE
+(bootloader) serialno:1164118297
+(bootloader) kernel:lk
+(bootloader) prd:PRD-63118-003
+(bootloader) security:enabled
+all: 
+Finished. Total time: 0.425s
+
+== fastboot oem device-info ==
+FAILED (remote: 'authboot command permission denied')
+fastboot: error: Command failed
+
+== fastboot oem device-info preflash ==
+FAILED (remote: 'authboot command permission denied')
+fastboot: error: Command failed
+
+== fastboot oem gptinfo ==
+FAILED (remote: 'authboot command permission denied')
+fastboot: error: Command failed
+
+== fastboot oem lks ==
+FAILED (remote: 'unknown command')
+fastboot: error: Command failed
+
+== fastboot flashing get_unlock_ability ==
+FAILED (remote: 'authboot command permission denied')
+fastboot: error: Command failed
+
+== fastboot getvar unlocked ==
+unlocked: 
+Finished. Total time: 0.019s
+
+== fastboot getvar secure ==
+secure: 
+Finished. Total time: 0.015s
+
+== fastboot getvar version-bootloader ==
+version-bootloader: 
+Finished. Total time: 0.019s
+
+### DONE ###

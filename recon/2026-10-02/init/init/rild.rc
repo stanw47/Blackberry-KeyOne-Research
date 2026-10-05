@@ -1,0 +1,10 @@
+service ril-daemon /system/bin/rild
+    class main
+    socket rild stream 660 root radio
+    socket sap_uim_socket1 stream 660 bluetooth bluetooth
+    socket rild-debug stream 660 radio system
+    user root
+    # start:BBRY_ANDROID
+    #group radio cache inet misc audio log readproc wakelock qcom_diag
+    group radio cache inet misc audio log readproc wakelock qcom_diag swoop_radio token_service_native_consumer
+    # end:BBRY_ANDROID

@@ -1,0 +1,12 @@
+on post-fs
+    mkdir /oempersist/minilog 0755 system system
+    chmod 0755 /oempersist/minilog
+    mkdir /oempersist/minilog/powerup_reason 0755 root system
+    chmod 0775 /oempersist/minilog/powerup_reason
+    mkdir /oempersist/minilog/kernel_crash 0775 root system
+    chmod 0775 /oempersist/minilog/kernel_crash
+    start powerup_reason
+
+service powerup_reason /system/bin/powerup_reason
+    seclabel u:r:powerup_reason:s0
+    oneshot

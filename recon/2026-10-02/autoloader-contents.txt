@@ -1,0 +1,163 @@
+
+7-Zip 25.01 (x64) : Copyright (c) 1999-2025 Igor Pavlov : 2025-08-03
+ 64-bit locale=en_US.UTF-8 Threads:4 OPEN_MAX:524288, ASM
+
+Scanning the drive for archives:
+1 file, 2192926052 bytes (2092 MiB)
+
+Listing archive: /media/stanw47/Ventoy/bbry_qc8953_autoloader_user-common-ABL766.rar
+
+--
+Path = /media/stanw47/Ventoy/bbry_qc8953_autoloader_user-common-ABL766.rar
+Type = Rar5
+Physical Size = 2192926052
+Characteristics = Locator QuickOpen:2192921337
+Encrypted = -
+Solid = -
+Blocks = 138
+Method = v6:32M:m0:m3
+Multivolume = -
+Volumes = 1
+
+   Date      Time    Attr         Size   Compressed  Name
+------------------- ----- ------------ ------------  ------------------------
+2018-11-20 17:59:22 ....A       517632       224596  ABL766 - Hn03/autoloader/7zip_4_57.exe
+2018-11-20 17:59:22 ....A          147          140  ABL766 - Hn03/autoloader/autoloader_create.bat
+2018-11-20 17:59:22 ....A        31006         6412  ABL766 - Hn03/autoloader/autoloader_create.lua
+2018-11-20 17:59:22 ....A          416          303  ABL766 - Hn03/autoloader/autoloader_create.sh
+2018-11-20 17:59:22 ....A        36098         7297  ABL766 - Hn03/avecommon.lua
+2018-11-20 17:59:22 ....A        18831         5179  ABL766 - Hn03/aveflash.lua
+2018-11-20 17:59:22 ....A          435          287  ABL766 - Hn03/bbfil.sh
+2018-11-20 17:41:50 ....A           30           30  ABL766 - Hn03/config.bat
+2018-11-20 17:41:50 ....A          672          277  ABL766 - Hn03/config.lua
+2018-11-20 17:41:50 ....A           67           67  ABL766 - Hn03/config.sh
+2018-11-20 17:59:22 ....A          151          146  ABL766 - Hn03/flashall.bat
+2018-11-20 17:58:42 ....A          427          315  ABL766 - Hn03/flashall.sh
+2018-11-20 17:59:22 ....A      1720172       486820  ABL766 - Hn03/host/darwin-x86/bin/adb
+2018-11-20 17:59:22 ....A       379764       142314  ABL766 - Hn03/host/darwin-x86/bin/authboot
+2018-11-20 17:59:22 ....A       352644       136129  ABL766 - Hn03/host/darwin-x86/bin/fastboot
+2018-11-20 17:59:22 ....A       148124        33028  ABL766 - Hn03/host/darwin-x86/bin/libxpmux.dylib
+2018-11-20 17:59:22 ....A       212104        82821  ABL766 - Hn03/host/darwin-x86/lre/bin/lua
+2018-11-20 17:59:22 ....A       150144        60346  ABL766 - Hn03/host/darwin-x86/lre/bin/luac
+2018-11-20 17:59:22 ....A         2204         1099  ABL766 - Hn03/host/darwin-x86/lre/man/man1/lua.1
+2018-11-20 17:59:22 ....A         3071         1440  ABL766 - Hn03/host/darwin-x86/lre/man/man1/luac.1
+2018-11-20 17:55:56 ....A     13625504      2856779  ABL766 - Hn03/host/linux-x86/bin/adb
+2018-11-20 18:00:32 ....A     12062876      2900268  ABL766 - Hn03/host/linux-x86/bin/authboot
+2018-11-20 18:00:26 ....A      8518320      1683462  ABL766 - Hn03/host/linux-x86/bin/fastboot
+2018-11-20 18:00:32 ....A       638260       288692  ABL766 - Hn03/host/linux-x86/bin/pcauthtool
+2018-11-20 17:59:22 ....A       227286        88040  ABL766 - Hn03/host/linux-x86/lre/bin/lua
+2018-11-20 17:59:22 ....A       158240        63738  ABL766 - Hn03/host/linux-x86/lre/bin/luac
+2018-11-20 17:59:22 ....A         2204         1099  ABL766 - Hn03/host/linux-x86/lre/man/man1/lua.1
+2018-11-20 17:59:22 ....A         3071         1440  ABL766 - Hn03/host/linux-x86/lre/man/man1/luac.1
+2015-03-31 05:05:16 ....A     12709981      3429683  ABL766 - Hn03/host/windows-x86/bin/adb.exe
+2015-03-31 05:05:16 ....A        97792        43269  ABL766 - Hn03/host/windows-x86/bin/AdbWinApi.dll
+2015-03-31 05:05:16 ....A        62976        28608  ABL766 - Hn03/host/windows-x86/bin/AdbWinUsbApi.dll
+2015-03-31 05:05:16 ....A      6409950      1770447  ABL766 - Hn03/host/windows-x86/bin/authboot.exe
+2015-03-31 05:05:16 ....A      7248908      2000573  ABL766 - Hn03/host/windows-x86/bin/fastboot.exe
+2018-11-20 17:59:22 ....A      2815488       933075  ABL766 - Hn03/host/windows-x86/bin/libcurl.dll
+2018-11-20 17:59:22 ....A       119808        50340  ABL766 - Hn03/host/windows-x86/bin/libusbauth.dll
+2018-11-20 17:59:22 ....A        94208        42363  ABL766 - Hn03/host/windows-x86/bin/libxpmux.dll
+2015-03-31 05:05:16 ....A      1806949       886187  ABL766 - Hn03/host/windows-x86/bin/pcauthtool.exe
+2018-11-20 17:59:22 ....A        15374         6034  ABL766 - Hn03/host/windows-x86/lre/bin/lua.exe
+2018-11-20 17:59:22 ....A       155141        66437  ABL766 - Hn03/host/windows-x86/lre/bin/lua52.dll
+2018-11-20 17:59:22 ....A       151292        61293  ABL766 - Hn03/host/windows-x86/lre/bin/luac.exe
+2018-11-20 17:59:22 ....A         3043          897  ABL766 - Hn03/pcauthtool.ps1
+2018-11-20 16:27:14 ....A     16777216      2256392  ABL766 - Hn03/target/product/bbry_qc8953/adspso.bin
+2018-11-20 18:23:02 ....A        36510         4683  ABL766 - Hn03/target/product/bbry_qc8953/apkversion.list
+2018-11-20 18:07:00 ....A      4591860          927  ABL766 - Hn03/target/product/bbry_qc8953/bbpersist.img
+2018-11-20 18:23:02 ....A     29011968     19883360  ABL766 - Hn03/target/product/bbry_qc8953/boot.img
+2018-11-20 18:07:00 ....A     19251684         2276  ABL766 - Hn03/target/product/bbry_qc8953/cache.img
+2018-11-20 17:55:58 ....A      6398184          982  ABL766 - Hn03/target/product/bbry_qc8953/cache_256m.img
+2018-11-20 17:55:22 ....A          218          157  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100cnchina.prop
+2018-11-20 17:55:22 ....A          222          156  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100dscnchina.prop
+2018-11-20 17:55:22 ....A          213          154  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100emea.prop
+2018-11-20 17:55:22 ....A          217          156  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100global.prop
+2018-11-20 17:55:22 ....A          220          155  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100globalatt.prop
+2018-11-20 17:55:22 ....A          215          155  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100japan.prop
+2018-11-20 17:55:22 ....A          219          155  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100protomtp.prop
+2018-11-20 17:55:22 ....A          221          155  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100protoqrd3.prop
+2018-11-20 17:55:22 ....A          211          153  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100usa.prop
+2018-11-20 17:55:22 ....A          223          155  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100usasprint.prop
+2018-11-20 17:55:22 ....A          214          154  ABL766 - Hn03/target/product/bbry_qc8953/device_properties/bbb100usavzw.prop
+2018-11-20 16:05:10 ....A      1952062       823769  ABL766 - Hn03/target/product/bbry_qc8953/emmc_appsboot.mbn
+2018-11-20 14:25:24 ....A        16896         2636  ABL766 - Hn03/target/product/bbry_qc8953/gpt/gpt_backup0.bin
+2018-11-20 14:25:24 ....A        34304         2694  ABL766 - Hn03/target/product/bbry_qc8953/gpt/gpt_both0.bin
+2018-11-20 14:25:24 ....A        17408          169  ABL766 - Hn03/target/product/bbry_qc8953/gpt/gpt_empty0.bin
+2018-11-20 14:25:24 ....A        17408         2661  ABL766 - Hn03/target/product/bbry_qc8953/gpt/gpt_main0.bin
+2018-11-20 14:25:24 ....A         6293          769  ABL766 - Hn03/target/product/bbry_qc8953/gpt/patch.xml
+2018-11-20 14:25:24 ....A         6255          749  ABL766 - Hn03/target/product/bbry_qc8953/gpt/patch0.xml
+2018-11-20 14:25:24 ....A         1079          387  ABL766 - Hn03/target/product/bbry_qc8953/gpt/rawprogram.xml
+2018-11-20 14:25:24 ....A        16812         1542  ABL766 - Hn03/target/product/bbry_qc8953/gpt/rawprogram0.xml
+2018-11-20 14:25:24 ....A          494          338  ABL766 - Hn03/target/product/bbry_qc8953/gpt/rawprogram0_BLANK_GPT.xml
+2018-11-20 14:25:24 ....A        17850         1402  ABL766 - Hn03/target/product/bbry_qc8953/gpt/rawprogram0_WIPE_PARTITIONS.xml
+2018-11-20 14:25:24 ....A         7322          987  ABL766 - Hn03/target/product/bbry_qc8953/gpt/rawprogram_mfg.xml
+2018-11-20 14:25:24 ....A         1090          385  ABL766 - Hn03/target/product/bbry_qc8953/gpt/wipe_rawprogram_PHY0.xml
+2018-11-20 14:25:24 ....A         1090          384  ABL766 - Hn03/target/product/bbry_qc8953/gpt/wipe_rawprogram_PHY1.xml
+2018-11-20 14:25:24 ....A         1090          385  ABL766 - Hn03/target/product/bbry_qc8953/gpt/wipe_rawprogram_PHY2.xml
+2018-11-20 14:25:24 ....A         1090          386  ABL766 - Hn03/target/product/bbry_qc8953/gpt/wipe_rawprogram_PHY4.xml
+2018-11-20 14:25:24 ....A         1090          385  ABL766 - Hn03/target/product/bbry_qc8953/gpt/wipe_rawprogram_PHY5.xml
+2018-11-20 14:25:24 ....A         1090          386  ABL766 - Hn03/target/product/bbry_qc8953/gpt/wipe_rawprogram_PHY6.xml
+2018-11-20 14:25:24 ....A         1090          386  ABL766 - Hn03/target/product/bbry_qc8953/gpt/wipe_rawprogram_PHY7.xml
+2018-11-20 14:25:24 ....A          512           13  ABL766 - Hn03/target/product/bbry_qc8953/gpt/zeros_1sector.bin
+2018-11-20 14:25:24 ....A        16896           20  ABL766 - Hn03/target/product/bbry_qc8953/gpt/zeros_33sectors.bin
+2018-09-03 00:47:32 ....A    100663296     42003478  ABL766 - Hn03/target/product/bbry_qc8953/NON-HLOS-usa.bin
+2018-11-20 18:07:00 ....A      5083380          932  ABL766 - Hn03/target/product/bbry_qc8953/oempersist.img
+2018-11-20 18:18:42 ....A    104936952     56534967  ABL766 - Hn03/target/product/bbry_qc8953/oem_att.img
+2018-11-20 18:18:48 ....A     47035488     25391628  ABL766 - Hn03/target/product/bbry_qc8953/oem_china.img
+2018-11-20 18:18:40 ....A    373418420    252748058  ABL766 - Hn03/target/product/bbry_qc8953/oem_common.img
+2018-09-03 01:13:26 ....A    206184548    126941887  ABL766 - Hn03/target/product/bbry_qc8953/oem_sprint.img
+2018-11-20 18:18:44 ....A     34825648     14405066  ABL766 - Hn03/target/product/bbry_qc8953/oem_vzw.img
+2018-11-20 18:00:32 ....A      4829452         7718  ABL766 - Hn03/target/product/bbry_qc8953/persist.img
+2018-11-20 14:25:26 ....A        13248         2771  ABL766 - Hn03/target/product/bbry_qc8953/qcbc/apdp.mbn
+2018-11-20 14:25:38 ....A        41228        12586  ABL766 - Hn03/target/product/bbry_qc8953/qcbc/devcfg.mbn
+2018-11-20 14:25:28 ....A        41228        12585  ABL766 - Hn03/target/product/bbry_qc8953/qcbc/devcfg_cn.mbn
+2018-11-20 16:05:04 ....A       340532       186663  ABL766 - Hn03/target/product/bbry_qc8953/qcbc/fh/prog_emmc_firehose_8953_ddr.mbn
+2018-11-20 16:01:20 ....A       174468        88283  ABL766 - Hn03/target/product/bbry_qc8953/qcbc/rpm.mbn
+2018-11-20 14:25:38 ....A      1535872       389457  ABL766 - Hn03/target/product/bbry_qc8953/qcbc/tz.mbn
+2018-11-20 18:23:02 ....A     29011968     19883360  ABL766 - Hn03/target/product/bbry_qc8953/recovery.img
+2018-11-20 16:05:14 ....A       357520       200387  ABL766 - Hn03/target/product/bbry_qc8953/sbl1_signed.mbn
+2018-11-21 10:26:12 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/boot.img.beta.sig
+2018-11-21 20:42:26 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/boot.img.carrier-sprint.sig
+2018-11-21 20:42:26 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/boot.img.carrier.sig
+2018-11-27 02:31:22 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/boot.img.production-sprint.sig
+2018-11-27 02:31:20 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/boot.img.production.sig
+2018-11-20 18:23:02 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/boot.img.sig
+2018-11-21 10:26:12 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/recovery.img.beta.sig
+2018-11-21 20:42:26 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/recovery.img.carrier-sprint.sig
+2018-11-21 20:42:26 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/recovery.img.carrier.sig
+2018-11-27 02:31:22 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/recovery.img.production-sprint.sig
+2018-11-27 02:31:22 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/recovery.img.production.sig
+2018-11-20 18:23:02 ....A          208          208  ABL766 - Hn03/target/product/bbry_qc8953/sig/recovery.img.sig
+2018-11-20 18:23:00 ....A   4160532252   1612463247  ABL766 - Hn03/target/product/bbry_qc8953/system.img
+2018-11-20 18:08:54 ....A    141015816       250692  ABL766 - Hn03/target/product/bbry_qc8953/userdata.img
+2018-11-20 17:59:22 ....A          155          150  ABL766 - Hn03/update.bat
+2018-11-20 17:59:22 ....A          345          261  ABL766 - Hn03/update.sh
+2018-12-13 06:18:25 D....            0            0  ABL766 - Hn03/host/darwin-x86/lre/man/man1
+2018-12-13 06:18:24 D....            0            0  ABL766 - Hn03/host/linux-x86/lre/man/man1
+2018-12-13 06:15:06 D....            0            0  ABL766 - Hn03/target/product/bbry_qc8953/qcbc/fh
+2018-12-13 06:18:25 D....            0            0  ABL766 - Hn03/host/darwin-x86/lre/bin
+2018-12-13 06:18:25 D....            0            0  ABL766 - Hn03/host/darwin-x86/lre/man
+2018-12-13 06:18:24 D....            0            0  ABL766 - Hn03/host/linux-x86/lre/bin
+2018-12-13 06:18:24 D....            0            0  ABL766 - Hn03/host/linux-x86/lre/man
+2018-12-13 06:18:25 D....            0            0  ABL766 - Hn03/host/windows-x86/lre/bin
+2018-12-13 06:15:07 D....            0            0  ABL766 - Hn03/target/product/bbry_qc8953/device_properties
+2018-11-20 14:25:24 D....            0            0  ABL766 - Hn03/target/product/bbry_qc8953/gpt
+2018-12-13 06:15:06 D....            0            0  ABL766 - Hn03/target/product/bbry_qc8953/qcbc
+2018-12-13 06:18:29 D....            0            0  ABL766 - Hn03/target/product/bbry_qc8953/sig
+2018-12-13 06:18:25 D....            0            0  ABL766 - Hn03/host/darwin-x86/bin
+2018-12-13 06:18:25 D....            0            0  ABL766 - Hn03/host/darwin-x86/lre
+2018-12-13 06:17:29 D....            0            0  ABL766 - Hn03/host/linux-x86/bin
+2018-12-13 06:18:24 D....            0            0  ABL766 - Hn03/host/linux-x86/lre
+2018-12-13 06:18:28 D....            0            0  ABL766 - Hn03/host/windows-x86/bin
+2018-12-13 06:18:25 D....            0            0  ABL766 - Hn03/host/windows-x86/lre
+2018-12-13 06:18:24 D....            0            0  ABL766 - Hn03/target/product/bbry_qc8953
+2018-12-13 06:18:25 D....            0            0  ABL766 - Hn03/host/darwin-x86
+2018-12-13 06:18:24 D....            0            0  ABL766 - Hn03/host/linux-x86
+2018-12-13 06:18:25 D....            0            0  ABL766 - Hn03/host/windows-x86
+2018-12-13 06:15:06 D....            0            0  ABL766 - Hn03/target/product
+2018-12-13 06:18:27 D....            0            0  ABL766 - Hn03/autoloader
+2018-12-13 06:18:24 D....            0            0  ABL766 - Hn03/host
+2018-12-13 06:15:06 D....            0            0  ABL766 - Hn03/target
+2018-12-13 06:18:26 D....            0            0  ABL766 - Hn03
+------------------- ----- ------------ ------------  ------------------------
+2018-12-13 06:18:29         5358734158   2192909600  111 files, 27 folders

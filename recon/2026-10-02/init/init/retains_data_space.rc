@@ -1,0 +1,21 @@
+service spacecheck /system/bin/RetainsDataSpace -r
+    class main
+    user root
+    group system
+    disabled
+    oneshot
+
+service retainsspace /system/bin/RetainsDataSpace -c
+    class late_start
+    user root
+    group system
+    disabled
+    oneshot
+
+on property:sys.data.retains=create
+    start retainsspace
+
+# Defect-4365833, ensure spacecheck running before class main services
+on property:vold.decrypt=trigger_load_persist_props
+    mkdir /data/retainsdataspace 0700 system system
+    start spacecheck

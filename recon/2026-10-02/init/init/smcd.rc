@@ -1,0 +1,31 @@
+service smcd /system/bin/smcd
+ class main
+ disabled
+ oneshot
+ group system system
+ socket smcd seqpacket 0660 system system
+
+service tct_diag_mdlog /system/bin/diag_mdlog -b -s 128 -n 20 -f /data/endusertest/Diag.cfg -o /sdcard/BugReport/diag_logs/ -c
+ disabled
+ oneshot
+ seclabel u:r:qlogd:s0
+service tct_kill_dm /system/bin/diag_mdlog -k
+ disabled
+ oneshot
+ seclabel u:r:qlogd:s0
+
+on property:sys.boot_completed=1
+ start smcd
+
+on charger
+ start smcd
+
+on property:tct.mdlog.enable=1
+ start tct_diag_mdlog
+
+on property:tct.mdlog.enable=0
+ start tct_kill_dm
+
+# add for Feedback->crash->Tombstone Dumpable to control Tombstone Enable/Disable
+on property:persist.sys.tombstone.enable=*
+ write /proc/sys/fs/suid_dumpable ${persist.sys.tombstone.enable} 

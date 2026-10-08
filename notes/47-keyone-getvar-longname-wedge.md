@@ -245,3 +245,33 @@ candidate**, not a mere host artifact. Rules until understood:
 3. If the device boots normally, classify as non-persistent (RAM) state.
 4. If it does not boot: bootloader menu -> fastboot; official ABL766
    autoloader restore; EDL only as last resort (test points required).
+
+## download-path campaign - FINAL (2026-10-08)
+
+Results (raw harness, protocol-correct single transfers):
+
+| Probe | Result |
+|---|---|
+| getvar:version sanity | OKAY0.5 |
+| download:0 | DATA00000000 -> then endpoint dead, USB malfunction on host, white LED (assertion halt) |
+| download:16 + 16B data | DATA00000016 -> data sent -> device consumes writes but never replies again |
+| flash:boot after that | no reply (session cannot be completed without auth) |
+| oversize sizes (20000001/ffffffff/7fffffff) | never reached (device already silent) |
+
+Root cause for download:0 (static): the fastboot rx wrapper  x8f62eb0c
+has an explicit assert/panic path for size == 0 (file/line constants at
+ x8f62ec14); cmd_download does not reject zero size before calling it.
+=> pre-auth assertion-halt (DoS), not memory corruption.
+
+Post-crash verification: nothing persistent changed (Insecure: false,
+WP Type: permanent, all 26 getvars identical modulo battery voltage).
+
+Conclusions:
+- The flash/download path is NOT a usable pre-auth fuzzing surface: a
+  download session can only be finished by an auth-gated lash: command,
+  so every attempt strands the device (reset required).
+- One clean pre-auth DoS: download:0 -> assertion halt. Documented; no
+  further probing of this path.
+
+Next surface (queued): capture a live RTAS/authbroker exchange with the raw
+harness (trigger via a gated command) and fuzz the parsed message fields.

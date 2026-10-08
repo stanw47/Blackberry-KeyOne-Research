@@ -94,3 +94,48 @@ tables in a sprayed physical page → arbitrary physical R/W → kernel patch.
   (recoverable; GPU reset on fault).
 - A wrong landing offset may execute half-overwritten driver ops → GPU fault
   (recoverable). Keep payloads small and idempotent during bring-up.
+
+## S3.0 result (live, 2026-10-10): cross-rb release does NOT work
+
+`tools/kgsl_race_harness.c` (rb0 stall IB: flag=0, `CP_WAIT_REG_MEM` for
+0xFFFFFFFF; rb2 release IB: flag=0xFFFFFFFF):
+
+```
+[2] stall submit ret=0
+[3] stall entered -> yes
+[4] release submit ret=0
+[5] stall released -> NO
+```
+
+- A `CP_WAIT_REG_MEM` in a user IB is **not preemptible** by a higher-priority
+  ringbuffer; the release command never ran. The stall was later cleared by the
+  driver's own timeout/recovery (timestamp timeout → GPU reset), and the GPU
+  works again (stage-0 re-verified OK).
+- Implication: the race needs a *bounded* stall (wait on a condition the
+  exploit itself satisfies) or no stall at all (rely on RB queue depth).
+- Bonus discovered: **`dmesg` is readable from shell** → real-time KGSL
+  fault/recovery monitoring for race tuning.
+
+## Profiling route (original CVE-2019-10567) — status
+
+- Full kallsyms dump (127,029 symbols) written to
+  `recon/kallsyms-abl766.txt` (from `artifacts/kernel.bin`).
+- The shipped kernel contains **none** of the IB-based profiling helpers
+  (`_ib_cmd_mem_write`, `_ib_cmd_reg_to_mem`, `_build_pre_ib_cmds`,
+  `_create_ib_ref`, `adreno_profile_assignments_ready`) and no `shared_buffer`
+  global name string → strongly suggests the **pre-fix implementation that
+  writes profiling PM4 directly into the ringbuffer** (the CVE-2019-10567
+  smuggling primitive), i.e. no race needed.
+- Caveat found late: kallsyms3 name mapping is **unreliable for the
+  adreno_profile/ringbuffer address cluster** (functions at the named addresses
+  do not match the expected shapes; likely a name-decode/ordering issue). Must
+  re-anchor by code structure (e.g., scan the `addcmds` caller for calls into
+  the 0x548xxx cluster, or match the perfcounter ioctl path) before building
+  the ioctl harness.
+- Next: reliable anchor for `adreno_profile_preib_processing` /
+  `adreno_perfcounter_read_group`, then:
+  1. create perfcounter assignments (`IOCTL_KGSL_PERFCOUNTER_GET` 0x38 etc.),
+  2. confirm profile pre-IB dwords appear in the RB (via RPTR desync + WAIT
+     probes),
+  3. align execution so those dwords run as ops (misaligned-entry smuggle).
+

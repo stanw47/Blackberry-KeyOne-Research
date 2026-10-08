@@ -200,3 +200,27 @@ Lessons recorded:
   analysis.
 - The harness itself is retained as a useful base for future fuzzing
   (download sizes, oem handlers, RTAS capture).
+
+## RTAS-era probe note: download:0 behavior (new lead?)
+
+Raw harness: download:0 -> device replies DATA00000000 (parser fine), then the
+endpoint stops consuming (write 10060). Two candidate explanations:
+
+1. Protocol requirement: after DATA, the device expects a data-phase transfer;
+   for size 0 that would be a zero-length packet (ZLP). Our client sent none.
+2. Device-side hang on download:0 (a legal-looking command) - would be a
+   pre-auth hang primitive.
+
+Decisive test (after replug): download:0 -> DATA -> send ZLP (ep_out.write(b''))
+-> liveness. If liveness OK, it is protocol; if stalled, download:0 is a hang.
+
+Also queued: download:16 with a proper 16-byte data phase, and the
+FAIL-path sizes (0x20000001/0xffffffff) which need no data phase.
+
+## authboot_client.py status
+
+Read: it is a capture/replay framework (scan/sniff/frame/send) with a
+working-hypothesis frame layout (cookie/size/version/code, events
+HANDSHAKE..DISCONNECTED). Next step for RTAS fuzzing: capture a real exchange
+(trigger an RTAS-gated command over the raw harness and record all IN/OUT
+traffic), then fuzz the parsed fields.

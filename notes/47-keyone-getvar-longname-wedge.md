@@ -10,7 +10,33 @@ still enumerates (`fastboot devices` OK) but every command write times out
 (`AdbWriteEndpointSync failed ... 121`); only a physical reset recovers.
 Same signature as the `oem gptinfo` wedge (notes/42).
 
-### Reliable data points (verified by post-hoc state, not by echo matching)
+### Reliable data points (correction, third pass)
+
+Success criterion must be `Finished` present **and** `FAILED` absent — several
+earlier "OK" reads were truncated-echo misreads.
+
+| Command line | Result |
+|---|---|
+| `getvar` + 200-char name (207 B) | **OK** (`Finished`, fast) |
+| `getvar` + 1000-char name (1,007 B) | echo only → wedge |
+| `getvar` + 1500-char name (1,507 B) | echo only → wedge |
+| `getvar` + 2041-char name (2,048 B) | echo only → wedge |
+| `getvar` + 4000-char name (4,007 B) | echo only → wedge |
+
+→ Boundary lies in **(207, 1,007]** — much smaller than the 0x800 line limit;
+consistent with a small fixed buffer (e.g. 0x100/0x200/0x400) in the getvar
+name path or the 64-byte-chunk reassembly.
+
+Recovery note (confirmed by operator): the on-device bootloader menu remains
+usable; selecting "continue boot" restarts the OS and fastboot works normally
+again on the next entry — no hardware reset needed.
+
+### Bisect plan (one probe per fresh fastboot entry)
+
+Success = response contains `Finished` and not `FAILED`.
+Order: 400 → (as needed) 600, 300, 500, 700 → pin the exact byte.
+
+### Earlier data (method-corrected)
 
 | Command line | Result |
 |---|---|
@@ -18,7 +44,7 @@ Same signature as the `oem gptinfo` wedge (notes/42).
 | `getvar` + 1000-char name (1,007 B) | responded; device alive |
 | `getvar` + 2041-char name (2,048 B) | **device wedged** (writes time out; adb empty) |
 
-→ Boundary lies in **(1,007, 2,048]**.
+(Kept for history; superseded by the corrected table above.)
 
 Method note: a second batch attempted 2048 / 8007 / `oem`-long probes with a
 liveness check that matched the *echoed command* (`getvar:version` in stderr)

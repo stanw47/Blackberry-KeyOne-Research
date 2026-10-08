@@ -40,6 +40,14 @@ Notes:
   are **signed + downgradeable** → the kibo playbook (downgrade → exploit)
   has concrete targets.
 
+> **CORRECTION (2026-10-09, evening):** the "pre-fix code" framing is weakened.
+> AAK399 (April 2017) already carries the `Integer overflow in boot image
+> header` / `Integer overflow detected in bootimage header fields` guards
+> (xrefs `0x8f62acfc`…`0x8f62ad7c`, `0x8f62bb0c`, `0x8f62bb2c`), and live
+> malformed-sparse probes against the AAK171 backup chain all rejected
+> gracefully (notes/52). The 2018 diff is a refinement, not a first fix; the
+> CVE-2018-5854 mapping stays a hypothesis, currently unsupported.
+
 ## Next
 
 1. Instruction-level diff of the top pairs (sparse write, boot image load,

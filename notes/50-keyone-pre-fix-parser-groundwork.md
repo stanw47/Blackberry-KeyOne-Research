@@ -4,6 +4,11 @@ Date: 2026-10-09
 Related: notes/45 (fix list), notes/46 (fix diffs + reachability), notes/49
 (write channel + token crypto). Evidence: `recon/fixdiff-aan355-bootparse.txt`.
 
+> **CORRECTION (2026-10-09, evening):** AAK399 (April 2017) already contains the
+> integer-overflow guards, and live malformed-sparse probes on the AAK171
+> backup-chain sandbox were all rejected gracefully. Treat the "pre-fix" premise
+> as weakened — see notes/52.
+
 ## What was done
 
 Instruction-level diff of the boot-image parse/load path:

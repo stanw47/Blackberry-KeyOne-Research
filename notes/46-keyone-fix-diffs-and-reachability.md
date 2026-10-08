@@ -42,6 +42,9 @@ Instruction-level diffs (AAN355 → ABL766), normalized:
   signed bootchains (downgrade target).
 - The **flash-path fixes** are reachable during any `flash:` of those partitions
   (which on ABL766 is open) — the fixes matter when downgrading to an old aboot.
+- **CORRECTION (2026-10-09):** old builds already contain the overflow guards
+  (notes/45 correction, notes/52); the 2018 delta is refinement. Downgrade
+  exploit premise downgraded accordingly.
 - Pre-auth surfaces that *are* reachable from a hostile host:
   - `getvar:` / `oem` command parsers (read-only probes fuzzable safely)
   - `download:` size handling (buffer = fastboot scratch; published max

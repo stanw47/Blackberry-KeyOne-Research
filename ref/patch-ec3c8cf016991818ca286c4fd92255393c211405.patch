@@ -1,0 +1,171 @@
+From ec3c8cf016991818ca286c4fd92255393c211405 Mon Sep 17 00:00:00 2001
+From: Pankaj Gupta <gpankaj@codeaurora.org>
+Date: Wed, 6 Jan 2021 15:52:52 +0530
+Subject: [PATCH] msm: kgsl: Protect the memdesc->gpuaddr in SVM use cases
+
+When SVM is being used there can only be one GPU address assigned
+to the memory descriptor. Don't allow the GPU address to be changed
+after it has been negotiated the first time by a process.
+
+Bug: 178809945
+Change-Id: Ic0dedbad2a1b3ccdc2c1598a6c501b2be288d64e
+Signed-off-by: Jordan Crouse <jcrouse@codeaurora.org>
+Signed-off-by: Harshitha Sai Neelati <hsaine@codeaurora.org>
+Signed-off-by: Pankaj Gupta <gpankaj@codeaurora.org>
+Signed-off-by: linjoey <linjoey@google.com>
+---
+ drivers/gpu/msm/kgsl.c           | 29 ++++++++++++++++++++++++++---
+ drivers/gpu/msm/kgsl.h           |  5 +++++
+ drivers/gpu/msm/kgsl_iommu.c     |  7 ++++++-
+ drivers/gpu/msm/kgsl_mmu.c       | 13 ++++++++++---
+ drivers/gpu/msm/kgsl_sharedmem.c |  1 +
+ 5 files changed, 48 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/msm/kgsl.c b/drivers/gpu/msm/kgsl.c
+index 39b2786c85fd8..9d9024765d26f 100644
+--- a/drivers/gpu/msm/kgsl.c
++++ b/drivers/gpu/msm/kgsl.c
+@@ -4507,19 +4507,34 @@ static unsigned long _gpu_set_svm_region(struct kgsl_process_private *private,
+ {
+ 	int ret;
+ 
++	/*
++	 * Protect access to the gpuaddr here to prevent multiple vmas from
++	 * trying to map a SVM region at the same time
++	 */
++	spin_lock(&entry->memdesc.lock);
++
++	if (entry->memdesc.gpuaddr) {
++		spin_unlock(&entry->memdesc.lock);
++		return (unsigned long) -EBUSY;
++	}
++
+ 	ret = kgsl_mmu_set_svm_region(private->pagetable, (uint64_t) addr,
+ 		(uint64_t) size);
+ 
+-	if (ret != 0)
+-		return ret;
++	if (ret != 0) {
++		spin_unlock(&entry->memdesc.lock);
++		return (unsigned long) ret;
++	}
+ 
+ 	entry->memdesc.gpuaddr = (uint64_t) addr;
++	spin_unlock(&entry->memdesc.lock);
++
+ 	entry->memdesc.pagetable = private->pagetable;
+ 
+ 	ret = kgsl_mmu_map(private->pagetable, &entry->memdesc);
+ 	if (ret) {
+ 		kgsl_mmu_put_gpuaddr(&entry->memdesc);
+-		return ret;
++		return (unsigned long) ret;
+ 	}
+ 
+ 	kgsl_memfree_purge(private->pagetable, entry->memdesc.gpuaddr,
+@@ -4583,6 +4598,14 @@ static unsigned long _search_range(struct kgsl_process_private *private,
+ 		result = _gpu_set_svm_region(private, entry, cpu, len);
+ 		if (!IS_ERR_VALUE(result))
+ 			break;
++		/*
++		 * _gpu_set_svm_region will return -EBUSY if we tried to set up
++		 * SVM on an object that already has a GPU address. If
++		 * that happens don't bother walking the rest of the
++		 * region
++		 */
++		if ((long) result == -EBUSY)
++			return -EBUSY;
+ 
+ 		trace_kgsl_mem_unmapped_area_collision(entry, cpu, len);
+ 
+diff --git a/drivers/gpu/msm/kgsl.h b/drivers/gpu/msm/kgsl.h
+index af59f89306e73..93b59a83a1fa9 100644
+--- a/drivers/gpu/msm/kgsl.h
++++ b/drivers/gpu/msm/kgsl.h
+@@ -233,6 +233,11 @@ struct kgsl_memdesc {
+ 	struct page **pages;
+ 	unsigned int page_count;
+ 	unsigned int cur_bindings;
++	/*
++	 * @lock: Spinlock to protect the gpuaddr from being accessed by
++	 * multiple entities trying to map the same SVM region at once
++	 */
++	spinlock_t lock;
+ };
+ 
+ /*
+diff --git a/drivers/gpu/msm/kgsl_iommu.c b/drivers/gpu/msm/kgsl_iommu.c
+index 68afb45ed149b..0759f85cce644 100644
+--- a/drivers/gpu/msm/kgsl_iommu.c
++++ b/drivers/gpu/msm/kgsl_iommu.c
+@@ -1,4 +1,4 @@
+-/* Copyright (c) 2011-2019, The Linux Foundation. All rights reserved.
++/* Copyright (c) 2011-2021, The Linux Foundation. All rights reserved.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License version 2 and
+@@ -2599,6 +2599,11 @@ static int kgsl_iommu_get_gpuaddr(struct kgsl_pagetable *pagetable,
+ 		goto out;
+ 	}
+ 
++	/*
++	 * This path is only called in a non-SVM path with locks so we can be
++	 * sure we aren't racing with anybody so we don't need to worry about
++	 * taking the lock
++	 */
+ 	ret = _insert_gpuaddr(pagetable, addr, size);
+ 	if (ret == 0) {
+ 		memdesc->gpuaddr = addr;
+diff --git a/drivers/gpu/msm/kgsl_mmu.c b/drivers/gpu/msm/kgsl_mmu.c
+index a0fd3ece4e78c..cb72887c58a8b 100644
+--- a/drivers/gpu/msm/kgsl_mmu.c
++++ b/drivers/gpu/msm/kgsl_mmu.c
+@@ -1,4 +1,4 @@
+-/* Copyright (c) 2002,2007-2017, The Linux Foundation. All rights reserved.
++/* Copyright (c) 2002,2007-2017,2020-2021, The Linux Foundation. All rights reserved.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License version 2 and
+@@ -439,7 +439,8 @@ void kgsl_mmu_put_gpuaddr(struct kgsl_memdesc *memdesc)
+ 	if (memdesc->size == 0 || memdesc->gpuaddr == 0)
+ 		return;
+ 
+-	if (!kgsl_memdesc_is_global(memdesc))
++	if (!kgsl_memdesc_is_global(memdesc) &&
++		(KGSL_MEMDESC_MAPPED & memdesc->priv))
+ 		unmap_fail = kgsl_mmu_unmap(pagetable, memdesc);
+ 
+ 	/*
+@@ -450,10 +451,16 @@ void kgsl_mmu_put_gpuaddr(struct kgsl_memdesc *memdesc)
+ 	if (PT_OP_VALID(pagetable, put_gpuaddr) && (unmap_fail == 0))
+ 		pagetable->pt_ops->put_gpuaddr(memdesc);
+ 
++	memdesc->pagetable = NULL;
++
++	/*
++	 * If SVM tries to take a GPU address it will lose the race until the
++	 * gpuaddr returns to zero so we shouldn't need to worry about taking a
++	 * lock here
++	 */
+ 	if (!kgsl_memdesc_is_global(memdesc))
+ 		memdesc->gpuaddr = 0;
+ 
+-	memdesc->pagetable = NULL;
+ }
+ EXPORT_SYMBOL(kgsl_mmu_put_gpuaddr);
+ 
+diff --git a/drivers/gpu/msm/kgsl_sharedmem.c b/drivers/gpu/msm/kgsl_sharedmem.c
+index 898f4526889ce..8f00f82291550 100644
+--- a/drivers/gpu/msm/kgsl_sharedmem.c
++++ b/drivers/gpu/msm/kgsl_sharedmem.c
+@@ -847,6 +847,7 @@ void kgsl_memdesc_init(struct kgsl_device *device,
+ 		(memdesc->flags & KGSL_MEMALIGN_MASK) >> KGSL_MEMALIGN_SHIFT,
+ 		ilog2(PAGE_SIZE));
+ 	kgsl_memdesc_set_align(memdesc, align);
++	spin_lock_init(&memdesc->lock);
+ }
+ 
+ int
+-- 
+GitLab
+

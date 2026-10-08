@@ -173,3 +173,30 @@ Consequences:
   600B OK (Google), 1000B untested-strictly, 1500B fails on a fresh pipe.
 - b_longcmd_probe.py rewritten: single-transfer mode with optional second
   size, liveness checks, and clear stall reporting.
+
+## FINAL VERDICT (eighth pass) - NO DEVICE-SIDE LENGTH BUG
+
+Raw libusb single-transfer results (each followed by liveness, all OKAY):
+
+| Command | Result |
+|---|---|
+| getvar:version | OKAY0.5 |
+| getvar 1025 B / 1507 B | OKAY |
+| getvar 4007 / 4096 / 4107 / 8199 / 16391 / 65543 B | OKAY |
+| getvar 1,048,583 B (1 MB) | OKAY |
+| oem + 4089-char arg | FAILunknown command (clean rejection) |
+
+The device handles arbitrarily large single-transfer commands; no stall, no
+state change. Conclusion: **the entire "long getvar wedge" was a Google
+fastboot client artifact** (its write/read management), not an aboot bug.
+No memory-corruption primitive here. Thread closed.
+
+Lessons recorded:
+- LK treats **one bulk OUT transfer as one command**; chunked writes are
+  invalid fastboot (each chunk = a new command) and cause host-side stalls.
+- Prefer the raw libusb harness (	ools/fb_longcmd_probe.py,
+  astboot_libusb.py) with explicit backend path for probing; Google
+  fastboot's error semantics (echo on stderr, 121 timeouts) misled earlier
+  analysis.
+- The harness itself is retained as a useful base for future fuzzing
+  (download sizes, oem handlers, RTAS capture).

@@ -189,4 +189,56 @@ Next (smuggler build):
 3. Payload with PM off: program `CONTEXT_SWITCH_SAVE_ADDR` / SMMU TTBR0 →
    physical R/W (stage 4).
 
+## STAGE 3c — whitepaper chain fully mapped onto our kernel (2026-10-10)
+
+Fetched Guang Gong's USENIX-2020 whitepaper
+(`ref/tiyunzong-wp.pdf`); its pages 16–19 describe this exact attack. Mapped to
+our shipped kernel:
+
+1. **`adreno_ringbuffer_allocspace` RPTR desync** (whitepaper Listing 13) —
+   identical code, RPTR control already live (stage 2a).
+2. **The smuggle primitive**: user cmdbatch profiling
+   (`adreno_ringbuffer.c:919-1020`). With `KGSL_CMDBATCH_PROFILING` (0x10) and
+   an objlist entry flagged `KGSL_OBJLIST_PROFILE` (0x10), the driver calls
+
+   ```c
+   _get_alwayson_counter(adreno_dev, cmds,
+        cmdbatch->profiling_buffer_gpuaddr + offsetof(..., gpu_ticks_submitted))
+   → [CP_REG_TO_MEM hdr][ALWAYSON_COUNTER_LO regsel][addr_lo][addr_hi]
+   ```
+
+   i.e. **two consecutive, fully user-chosen dwords** (the 64-bit profiling
+   buffer GPU address) are written into the RB — **twice per submission**
+   (pre/post IB). Whitepaper: "GPU address is 8 bytes. It's enough to write a
+   CP_NOP or CP_SET_PROTECTED_MODE instruction into it."
+3. **Preemption**: `nopreempt=N` at runtime → preemption enabled; A506 features
+   `ADRENO_PREEMPTION` (adreno-gpulist.h).
+4. **Attack flow (whitepaper fig. 9-11)**:
+   - victim context (low-priority RB3) executes an IB containing a
+     `CP_WAIT_REG_MEM` on an attacker-controlled flag;
+   - while stalled, attacker's high-priority rb0 context corrupts the RPTR
+     (scratch+0) and issues two `IOCTL_KGSL_GPU_COMMAND`s whose profiling
+     gpuaddrs are crafted as `CP_NOP` and `CP_SET_PROTECTED_MODE 0`;
+     `allocspace` (fooled) overwrites the victim's pending RB instructions
+     with those dwords;
+   - attacker satisfies the wait → victim resumes from the original RPTR →
+     unaligned execution hits the smuggled `CP_NOP` (skips ahead) then
+     `CP_SET_PROTECTED_MODE` → PM off → the next driver-inserted
+     `CP_INDIRECT_BUFFER_PFE` jumps to the attacker IB **with protected mode
+     off** → rewrite TTBR0 (SMMU) → arbitrary physical R/W → kernel patch.
+5. **S3.0/S3.1 note**: our simple "lowest-prio stall + rb0 release" test did
+   not release the WAIT (both directions tried). The whitepaper's release is
+   the *overwriting commands themselves* (their user IB writes the flag) —
+   revisit with a wait that has a finite timeout / a flag written by the
+   overwriting submission.
+
+Next session:
+1. Extend the harness: submit with `kgsl_gpu_command.flags = KGSL_CMDBATCH_PROFILING`
+   and an objlist entry `{gpuaddr = crafted, size, flags = KGSL_OBJLIST_PROFILE}`;
+   confirm the crafted 8 bytes appear in the RB (RPTR/WAIT probes at expected
+   offsets).
+2. Implement the whitepaper race with the correct release condition.
+3. Then stage 4 (TTBR0 → phys R/W).
+
+
 

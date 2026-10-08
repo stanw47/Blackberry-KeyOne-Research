@@ -342,6 +342,39 @@ Next session (static, no device):
      GMX route would be the profiling-write alone (needs a different
      misalignment mechanism).
 
+## STAGE 3f conclusion (static anchor, 2026-10-10)
+
+Structural anchor (constant scan for the wrap mask, bypassing the kallsyms
+name drift):
+
+- **Real `adreno_ringbuffer_allocspace` = `0xffffffc0005259a0`** — disassembly
+  matches the C source exactly: `ldr w3,[rb+0x88]` (`_wptr`), rptr via
+  `bl 0x540708`, `#0x1ffe` end check, `cmp dwords,rptr`, and the wrap path
+  builds the CP_NOP header incl. the `0x9669` odd-parity table and returns
+  hostptr (offset 0) with `_wptr = dwords`.
+- **rptr getter (`0x540708`)**: walks a pointer/state chain
+  (`[x+0xf10] → [..+0x38] → [..] → [..] → w[+0x24]`, plus a state check
+  `w-0x12c ≤ 0x63`) — it does **not** look like a `kgsl_sharedmem_readl` of
+  `device->scratch`. Combined with the decisive live probe (fake
+  `scratch+12 = 0x1FFF` was not consumed; attacker submit still ret=0), the
+  conclusion is:
+  **on ABL766 the kernel's RPTR for `allocspace` is not sourced from the
+  scratch page** (cached/IRQ/memstore-driven), so the CVE-2019-10567 /
+  CVE-2020-11179 *desync* step is not reachable on this build.
+
+Status of the chain on ABL766:
+- live, proven: GPU cmd exec, scratch addr, profiling 8-dword RB write,
+  perfcounter 1-dword RB write, cross-RB interleaving, control overwrite
+  choreography.
+- blocked: the allocspace RPTR desync (kernel ignores the scratch shadow), so
+  the RB overwrite cannot be steered at pending instructions.
+- Remaining ideas: (a) find another kernel consumer of the scratch RPTR that
+  *is* authoritative (e.g., timestamp/retire path), (b) exploit the
+  profiling-write primitive through a different misalignment mechanism, or
+  (c) fall back to the other kernel lanes (KGSL IOMMU primitive from
+  notes/24-32 remains DoS-bounded; vold/SD parsers; etc.).
+
+
 
 ## add_profiling_buffer decoded (2026-10-10): arbitrary 64-bit RB value
 

@@ -240,5 +240,43 @@ Next session:
 2. Implement the whitepaper race with the correct release condition.
 3. Then stage 4 (TTBR0 → phys R/W).
 
+## STAGE 3d — DONE (live, 2026-10-10): user profiling path active
+
+`tools/kgsl_profile_submit.c`:
+
+```
+[1] cmd=0x300000 out=0x301000 prof=0x302000
+[2] GPU_COMMAND(profiling) ret=0
+[3] command marker -> OK
+[4] profiling buffer: wall_s=0x6ac80ede wall_ns=0x25d6ee3c
+    ticks queued=0x9c87 submitted=0x9dbd retired=0x9de7
+[5] USER PROFILING ACTIVE -> 8 user-controlled bytes were in the RB
+```
+
+- Submission with `flags = KGSL_CMDBATCH_PROFILING` (0x10) and objlist entry
+  `{gpuaddr = user buffer VA, flags = KGSL_OBJLIST_MEMOBJ|KGSL_OBJLIST_PROFILE}`
+  succeeds; the kernel executes `_get_alwayson_counter` with
+  `cmdbatch->profiling_buffer_gpuaddr` — our user buffer was used and had its
+  tick fields filled by the GPU.
+- Therefore the driver wrote **two consecutive user-chosen dwords**
+  (`addr_lo`, `addr_hi`) of the profiling buffer address into the ringbuffer
+  (twice per submission: pre/post IB) via the pre-fix, non-IB path.
+- This is exactly the whitepaper's smuggling primitive, live on ABL766.
+
+### Primitive set — all live
+
+| # | primitive | status |
+|---|---|---|
+| 1 | arbitrary GPU command execution (shell) | notes/56 stage 0 |
+| 2 | scratch @0xf8009000 + RPTR control (rb0) | notes/56 stages 1/2a |
+| 3a | perfcounter GET injects 1 arbitrary dword into rb0 | notes/57 stage 3b |
+| 3b | cmdbatch profiling injects 8 arbitrary dwords (2×) | notes/57 stage 3d |
+| 4 | dmesg monitoring from shell | notes/57 |
+
+Remaining: whitepaper race orchestration (victim wait + rb0 RPTR desync +
+overwrite with crafted profiling gpuaddrs encoding CP_NOP /
+CP_SET_PROTECTED_MODE) and stage 4 (PM-off TTBR0 → physical R/W).
+
+
 
 

@@ -47,7 +47,7 @@ def open_fb():
 
 def liveness(fb, label):
     try:
-        out = fb.command("getvar version", seconds=4)
+        out = fb.command("getvar:version", seconds=4)
     except usb.core.USBError as e:
         print(f"  [{label}] liveness: STALL ({e})")
         return False
@@ -68,15 +68,17 @@ def single(fb, text, seconds=8):
 
 def chunked(fb, text, chunk=64, delay=0.02, seconds=10):
     b = text.encode()
+    written = 0
     try:
         for i in range(0, len(b), chunk):
             fb.ep_out.write(b[i:i + chunk], timeout=5000)
+            written = i + len(b[i:i + chunk])
             time.sleep(delay)
         out = fb.collect(seconds=seconds)
         print(f"  chunked write ({len(b)}B in {chunk}B chunks): {out[:60]!r}")
         return True
     except usb.core.USBError as e:
-        print(f"  chunked write ({len(b)}B): STALL ({e})")
+        print(f"  chunked write STALL after {written} of {len(b)} bytes ({e})")
         return False
 
 
@@ -99,13 +101,13 @@ def main():
 
     name = "A" * args.chars
     print(f"[2] chunked getvar ({args.chars} chars)")
-    ok = chunked(fb, "getvar " + name, args.chunk, args.delay)
+    ok = chunked(fb, "getvar:" + name, args.chunk, args.delay)
     if not liveness(fb, "post-chunk"):
         print("[!] stalled after chunked write - replug to continue")
         return 3
 
     print(f"[3] single-write getvar ({args.chars} chars)")
-    ok = single(fb, "getvar " + name)
+    ok = single(fb, "getvar:" + name)
     if not liveness(fb, "post-single"):
         print("[!] stalled after single write - replug to continue")
         return 4

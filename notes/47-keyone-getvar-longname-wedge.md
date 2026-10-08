@@ -135,3 +135,25 @@ Run fb_longcmd_probe.py after a replug:
 - if chunked survives and single wedges -> host/driver transfer-size issue
   (no device bug);
 - if both wedge -> device-side receive handling of long commands.
+
+## Update (sixth pass) - DEVICE-SIDE STALL CONFIRMED
+
+Raw libusb (bypassing Google fastboot entirely, explicit backend):
+
+- sanity getvar:version -> OKAY0.5 (clean)
+- **chunked** 1500-char getvar sent as **paced 64-byte writes** -> **STALL**
+  mid-stream (ep_out.write timeout), endpoint unresponsive afterwards.
+- Conclusion: **not** a host transfer-size artifact. The bootloader
+  **stops consuming the OUT endpoint partway through long commands** and the
+  endpoint stays stalled until USB re-enumeration (replug). Physical device
+  remains healthy (menu works; reboot clears nothing; replug clears the
+  endpoint).
+- Tool now reports how many bytes were accepted before the stall
+  (b_longcmd_probe.py), enabling an exact boundary measurement.
+
+## Next
+
+Replug, then run b_longcmd_probe.py --chars 2000 --chunk 1 (or 64) to read
+the accepted-byte count at stall. Candidates: 512/1024/2048 buffer boundary.
+If the stall byte count is a round buffer size, the endpoint/receive buffer
+is the culprit and the boundary count becomes the exploitation constraint.

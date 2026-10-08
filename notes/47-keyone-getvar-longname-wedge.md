@@ -100,3 +100,16 @@ Reliable liveness: response must contain `OKAY` or `(bootloader)`
 ## Device state
 
 Wedged in fastboot; physical reset required (hold Power ~15 s).
+
+## Update (fourth pass) - boundaries and host-side hypothesis
+
+- Strict full-output criterion (Finished present, FAILED absent):
+  - getvar + 400-char name (407 B): **OK**
+  - getvar + 593-char name (600 B): **OK**
+- Boundary now known to be **(600, 1500]** (1500 wedged strictly; 1000 untested strictly).
+- After the two successes, astboot reboot timed out and the device remained
+  in fastboot, unresponsive to commands (still enumerating).
+- **New hypothesis: host-side USB bulk-pipe stall** (Windows/QUSB driver),
+  not a device hang. Decisive test in progress: unplug/replug the USB cable
+  while the phone stays in fastboot; if commands resume immediately, prior
+  "wedge" conclusions must be re-examined as host artifacts.

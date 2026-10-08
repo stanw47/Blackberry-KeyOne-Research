@@ -224,3 +224,24 @@ working-hypothesis frame layout (cookie/size/version/code, events
 HANDSHAKE..DISCONNECTED). Next step for RTAS fuzzing: capture a real exchange
 (trigger an RTAS-gated command over the raw harness and record all IN/OUT
 traffic), then fuzz the parsed fields.
+
+## download:0 aftermath - USB malfunction + LED (2026-10-08)
+
+After the download:0 probe (DATA00000000, endpoint stopped consuming):
+
+- Windows reports a **malfunctioning USB device** for the KEYone.
+- The phone shows a **white blinking LED**.
+- ZLP / download:16 follow-up could not run (device no longer enumerates as
+  fastboot; no 0FCA devices at all until reset).
+
+Assessment: download:0 (and/or the follow-on state) puts the device into a
+USB-corrupted state requiring physical reset - a **device-side crash-class
+candidate**, not a mere host artifact. Rules until understood:
+
+1. Do not probe download: with data-phase edge cases again without a
+   staged recovery (device reset + known-good autoloader).
+2. On recovery, verify nothing persistent changed:
+   oem info (Insecure flag, WP type, versions), getvar all diff.
+3. If the device boots normally, classify as non-persistent (RAM) state.
+4. If it does not boot: bootloader menu -> fastboot; official ABL766
+   autoloader restore; EDL only as last resort (test points required).

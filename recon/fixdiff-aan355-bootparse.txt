@@ -1,0 +1,146 @@
+﻿[*] A: firmware\keyone-aan355\img\emmc_appsboot.mbn @ 0x8f62b914 (243 insns)
+[*] B: firmware\keyone-abl766\ABL766 - Hn03\target\product\bbry_qc8953\emmc_appsboot.mbn @ 0x8f62bb94 (243 insns)
+
+--- AAN-era
++++ ABL-era
+@@ -2,6 +2,16 @@
+ movt r0, #I   ; 'Device tree addresses overlap with aboot addresses.'
+ bl #I
+ mvn r0, #0
++b #I
++movw r0, #I
++movt r0, #I
++cmp r1, r0
++bhi #I
++b #I
++movw r2, #I
++movt r2, #I
++cmp r1, r2
++bhi #I
+ b #I
+ ldr ip, [r6]
+ movw r3, #I
+@@ -23,10 +33,10 @@
+ subs r8, r0, #0
+ bne #I
+ ldr r3, [r4, #I]
+-ldr r2, [r7]
++ldr ip, [r7]
+ ldr r1, [sp, #I]
+-add r2, r3, r2
+-bic r3, r2, r3
++add ip, r3, ip
++bic r3, ip, r3
+ cmp r3, r1
+ blo #I
+ mov r0, #I
+@@ -84,14 +94,9 @@
+ bl #I
+ mvn r0, #0
+ b #I
+-movw r2, #I
+-movt r2, #I
+-cmp r3, r2
+-bhi #I
+-b #I
+ ldr ip, [sp, #I]
+ add r2, sp, #I
+-ldr r4, [r8]
++ldr r4, [sl]
+ ldr r1, [r6, #I]
+ add r4, ip, r4
+ ldr ip, [sp, #I]
+@@ -131,6 +136,11 @@
+ add r1, r4, r1
+ bl #I
+ b #I
++movw r2, #I
++movt r2, #I
++cmp r3, r2
++bhi #I
++b #I
+ movw r0, #I
+ movw r1, #I
+ movt r0, #I   ; 'ERROR: Integer overflow in boot image header %s'
+@@ -157,6 +167,11 @@
+ bl #I
+ mvn r0, #0
+ b #I
++movw r3, #I
++movt r3, #I
++cmp r0, r3
++bhi #I
++b #I
+ movw r0, #I
+ movw r1, #I
+ movt r0, #I   ; 'ERROR: Integer overflow in boot image header %s'
+@@ -176,16 +191,6 @@
+ mvn r0, #0
+ b #I
+ movw r0, #I
+-movt r0, #I   ; 'ERROR: Invalid Device Tree size '
+-bl #I
+-mvn r0, #0
+-b #I
+-movw r3, #I
+-movt r3, #I
+-cmp r0, r3
+-bhi #I
+-b #I
+-movw r0, #I
+ movw r2, #I
+ movt r0, #I   ; 'Integer overflow detected in bootimage header fields %u %s'
+ movt r2, #I   ; 'boot_linux_from_flash'
+@@ -204,6 +209,11 @@
+ mvn r0, #0
+ b #I
+ movw r0, #I
++movt r0, #I   ; 'ERROR: Invalid Device Tree size '
++bl #I
++mvn r0, #0
++b #I
++movw r0, #I
+ movt r0, #I   ; 'ERROR: Cannot validate Device Tree Table '
+ bl #I
+ mvn r0, #0
+@@ -213,6 +223,13 @@
+ bl #I
+ mvn r0, #0
+ b #I
++movw r0, #I
++movt r0, #I   ; 'Integer overflow detected in bootimage header fields'
++bl #I
++mvn r0, #0
++b #I
++movw r0, #I
++movt r0, #I   ; 'ERROR: Cannot read boot image'
+ bl #I
+ mvn r0, #0
+ b #I
+@@ -221,23 +238,6 @@
+ bl #I
+ mvn r0, #0
+ b #I
+-movw r0, #I
+-movt r0, #I   ; 'ERROR: Cannot read boot image'
+-bl #I
+-mvn r0, #0
+-b #I
+-movw r0, #I
+-movt r0, #I   ; 'Integer overflow detected in bootimage header fields'
+-bl #I
+-mvn r0, #0
+-b #I
+-movw r0, #I
+-movt r0, #I   ; 'ERROR: Device tree contents are Invalid'
+-bl #I
+-mvn r0, #0
+-b #I
+-movw r0, #I
+-movt r0, #I   ; 'ERROR: No recovery partition found'
+-bl #I
+-mvn r0, #0
+-b #I
++bl #I
++mvn r0, #0
++b #I

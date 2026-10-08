@@ -157,3 +157,19 @@ Replug, then run b_longcmd_probe.py --chars 2000 --chunk 1 (or 64) to read
 the accepted-byte count at stall. Candidates: 512/1024/2048 buffer boundary.
 If the stall byte count is a round buffer size, the endpoint/receive buffer
 is the culprit and the boundary count becomes the exploitation constraint.
+
+## Update (seventh pass) - protocol correction; chunked result was OUR bug
+
+Key insight: **one USB bulk OUT transfer = one complete fastboot command**.
+The "stall after 64 bytes" in the chunked test was protocol misuse on our
+side: the device took the first 64-byte transfer as a complete (truncated)
+command and began sending its reply; because the host was not reading IN
+while continuing to write, the device blocked and our second write timed out.
+
+Consequences:
+- Chunked testing is invalid; the boundary must be measured with **single
+  transfers of increasing size** (what Google fastboot does).
+- The genuine remaining candidate is the single-transfer boundary:
+  600B OK (Google), 1000B untested-strictly, 1500B fails on a fresh pipe.
+- b_longcmd_probe.py rewritten: single-transfer mode with optional second
+  size, liveness checks, and clear stall reporting.

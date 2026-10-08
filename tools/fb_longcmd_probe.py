@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
 """
-Long fastboot command transport probe (BlackBerry KEYone, libusb direct).
+Fastboot long-command boundary probe (BlackBerry KEYone, libusb direct).
 
-Determines whether long commands fail because of host transfer size or
-device-side handling:
-  - sanity single small command
-  - long command sent in paced 64-byte chunks
-  - long command sent as one bulk write
-  - liveness check after each step (short command)
+Protocol note: LK treats ONE USB bulk OUT transfer as ONE complete command
+line. Chunked writes are NOT valid fastboot (each chunk would be a separate
+command, and the device blocks sending its reply while we keep writing).
+The correct test is a single `ep_out.write()` of the full command, then read
+the reply.
 
-Stops immediately when the endpoint stalls (needs USB replug to recover).
+Steps:
+  1. sanity `getvar:version` (expect OKAY)
+  2. single-transfer `getvar:` + N chars  (--chars)
+  3. liveness
+  4. optional second size (--chars2) + liveness
+
+Stops at the first stall (endpoint needs USB replug to recover).
 
 Usage:
-    py -3.11 fb_longcmd_probe.py [--chars 1500] [--chunk 64] [--delay 0.02]
+    py -3.11 fb_longcmd_probe.py --chars 1018 [--chars2 1500]
 """
 import argparse
 import os
 import sys
-import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -51,42 +55,26 @@ def liveness(fb, label):
     except usb.core.USBError as e:
         print(f"  [{label}] liveness: STALL ({e})")
         return False
-    ok = b"OKAY" in out or b"version" in out
+    ok = b"OKAY" in out
     print(f"  [{label}] liveness: {'OK' if ok else 'NO-RESPONSE'} ({out[:40]!r})")
     return ok
 
 
 def single(fb, text, seconds=8):
     try:
-        out = fb.command(text, seconds=seconds)
-        print(f"  single write ({len(text)}B): {out[:60]!r}")
-        return True
-    except usb.core.USBError as e:
-        print(f"  single write ({len(text)}B): STALL ({e})")
-        return False
-
-
-def chunked(fb, text, chunk=64, delay=0.02, seconds=10):
-    b = text.encode()
-    written = 0
-    try:
-        for i in range(0, len(b), chunk):
-            fb.ep_out.write(b[i:i + chunk], timeout=5000)
-            written = i + len(b[i:i + chunk])
-            time.sleep(delay)
+        fb.ep_out.write(text.encode(), timeout=6000)
         out = fb.collect(seconds=seconds)
-        print(f"  chunked write ({len(b)}B in {chunk}B chunks): {out[:60]!r}")
+        print(f"  single write {len(text)}B -> {out[:70]!r}")
         return True
     except usb.core.USBError as e:
-        print(f"  chunked write STALL after {written} of {len(b)} bytes ({e})")
+        print(f"  single write {len(text)}B -> STALL ({e})")
         return False
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--chars", type=int, default=1500)
-    ap.add_argument("--chunk", type=int, default=64)
-    ap.add_argument("--delay", type=float, default=0.02)
+    ap.add_argument("--chars", type=int, default=1018)
+    ap.add_argument("--chars2", type=int, default=0)
     args = ap.parse_args()
 
     fb = open_fb()
@@ -94,25 +82,30 @@ def main():
         return 1
     print(f"[*] {fb.endpoints}")
 
-    print("[1] sanity")
     if not liveness(fb, "pre"):
-        print("[!] endpoint already stalled - replug USB and retry")
+        print("[!] endpoint stalled - replug USB and retry")
         return 2
 
-    name = "A" * args.chars
-    print(f"[2] chunked getvar ({args.chars} chars)")
-    ok = chunked(fb, "getvar:" + name, args.chunk, args.delay)
-    if not liveness(fb, "post-chunk"):
-        print("[!] stalled after chunked write - replug to continue")
+    size = args.chars + 7
+    print(f"[1] single transfer, total {size}B")
+    if not single(fb, "getvar:" + "A" * args.chars):
+        print("[!] stalled - replug USB to continue")
+        return 3
+    if not liveness(fb, "post1"):
+        print("[!] stalled - replug USB to continue")
         return 3
 
-    print(f"[3] single-write getvar ({args.chars} chars)")
-    ok = single(fb, "getvar:" + name)
-    if not liveness(fb, "post-single"):
-        print("[!] stalled after single write - replug to continue")
-        return 4
+    if args.chars2:
+        size2 = args.chars2 + 7
+        print(f"[2] single transfer, total {size2}B")
+        if not single(fb, "getvar:" + "B" * args.chars2):
+            print("[!] stalled - replug USB to continue")
+            return 4
+        if not liveness(fb, "post2"):
+            print("[!] stalled - replug USB to continue")
+            return 4
 
-    print("[*] both transports survived")
+    print("[*] survived")
     fb.close()
     return 0
 

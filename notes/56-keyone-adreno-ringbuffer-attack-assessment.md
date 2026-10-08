@@ -97,3 +97,30 @@ from `kgsl_iommu.c`/`adreno*.c` probe order (base per notes/26:
 a scratch page has rb0 RPTR at offset 0 — small 4-aligned values), avoiding
 blind writes into the global region.
 
+## Stage 1 — DONE (live, 2026-10-10): scratch = 0xf8009000
+
+- `kgsl_scratch_scan.c`: `CP_MEM_TO_MEM` is **not usable on a5xx** (all
+  encodings accepted, nothing copied — opcode 0x3b is gen-specific); file kept
+  for the record.
+- `kgsl_scratch_verify.c`: write→wait→marker oracle:
+  `CP_MEM_WRITE(C+0x100, MAGIC)` → `CP_WAIT_REG_MEM[0x13, C+0x100, MAGIC, mask,
+  1]` → `CP_MEM_WRITE(OUT, 1)`; marker appears only if the write landed,
+  persisted and was observable. No fault on the right page.
+- **Result: `[2] cand 0xf8009000 <== WRITABLE+PERSISTENT`** — device alive.
+- Layout confirmed (bump allocator, kgsl_iommu.c:200):
+  `setstate @0xf8000000` (4K, GPUREADONLY) → `memstore @0xf8001000` (32K) →
+  **`scratch @0xf8009000`** (4K, writable) → per-RB descriptors from 0xA000
+  (`pagetable_desc` 4K, `buffer_desc`/ringbuffer 32K per RB).
+- `CP_WAIT_REG_MEM` proven encoding (from the public PoC):
+  `pkt7(0x3c,6)` + `[0x13, addr_lo, addr_hi, ref, 0xffffffff, 0x1]`.
+- Scratch usage in this build (source-confirmed): only offsets 0..15
+  (`SCRATCH_RPTR_OFFSET(id) = id*4`) — offset 0x100 free for testing.
+
+Next: **stage 2 — RPTR desync**. Write rb0 RPTR (`scratch+0`) to a chosen
+value (PoC uses 0x1ffc for a 8192-dword RB) and observe `allocspace` behaviour.
+Hazard: a wrong value can wedge that ringbuffer's allocation until the GPU
+rewrites the RPTR; choose the least-used RB, keep critical work off it, and
+close the fd promptly. RB0's ringbuffer mapping is expected at `0xf800b000`
+(32K) if we need to target ringbuffer contents.
+
+

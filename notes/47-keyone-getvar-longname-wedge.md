@@ -113,3 +113,25 @@ Wedged in fastboot; physical reset required (hold Power ~15 s).
   not a device hang. Decisive test in progress: unplug/replug the USB cable
   while the phone stays in fastboot; if commands resume immediately, prior
   "wedge" conclusions must be re-examined as host artifacts.
+
+## Update (fifth pass) - host pipe vs device: replug recovery + libusb
+
+- **Replug test**: after a stalled session, unplug/replug of the USB cable
+  (phone stays in fastboot) restores command processing instantly. So the
+  host-side pipe/endpoint state is a component of the failure.
+- However, fresh-pipe **first-shot 1500-char getvar still fails**
+  deterministically (host write times out mid-command; follow-up wedged).
+  So the trigger is real and reproducible from a clean state.
+- libusb with explicit backend (C:\bb10mt\libusb-1.0.dll) enumerates and
+  opens the fastboot interface (0FCA:8040, ifaces 0/1 vendor-specific), but
+  while stalled the bulk write also times out -> endpoint not consuming until
+  re-enumeration.
+- Tool 	ools/fb_longcmd_probe.py added: compares **chunked (64 B paced)**
+  vs **single-write** long commands after a replug, with liveness checks.
+
+## Next
+
+Run fb_longcmd_probe.py after a replug:
+- if chunked survives and single wedges -> host/driver transfer-size issue
+  (no device bug);
+- if both wedge -> device-side receive handling of long commands.

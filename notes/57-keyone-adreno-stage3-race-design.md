@@ -298,26 +298,50 @@ CP_SET_PROTECTED_MODE) and stage 4 (PM-off TTBR0 → physical R/W).
 - (S3.0/S3.1 showed `CP_WAIT_REG_MEM` stalls are not released this way; use a
   long IB as the victim window instead of a wait.)
 
-### Orchestration plan (next session)
+## STAGE 3f — overwrite orchestrator built; decisive negative (2026-10-10)
 
-1. victim rb3 context: long IB (window ≈ tens of ms — large enough for the
-   CPU to run the rest).
-2. preemptor rb0 context: at the chosen moment write **rb3's RPTR**
-   (`scratch+12`, `SCRATCH_RPTR_OFFSET(3)`) to a value near `_wptr` so
-   `allocspace` marks the victim's pending RB tail as free.
-3. attacker on an **rb3** context: submit two `KGSL_CMDBATCH_PROFILING`
-   commands so the driver overwrites the victim's pending RB ops with the
-   crafted profiling addresses (2 consecutive dwords each, 2× per submission).
-4. When the victim's IB ends, the GPU returns to the RB and executes the
-   overwritten region → smuggled `CP_NOP` then `CP_SET_PROTECTED_MODE 0` →
-   protected mode off → next driver `CP_INDIRECT_BUFFER_PFE` jumps to the
-   attacker IB with PM off → stage 4 (TTBR0).
-5. Open constraint to solve: the profiling `gpuaddr` dwords are the *values*
-   executed; SVM-mapped profiling buffers give lo = free offset, hi = 0x7
-   (fixed), and the address must stay inside a valid mapping for the
-   REG_TO_MEM not to fault — the exact CP_NOP/CP_SET_PROTECTED_MODE encoding
-   must be built from the (lo,hi) pair accordingly (or the kernel may accept
-   an arbitrary `obj.gpuaddr`; verify `add_profiling_buffer` validation).
+`tools/kgsl_overwrite_test.c` (control + `-DFULL`):
+
+- Full choreography implemented: f1/f2/f3/f4 fillers to normalise rb3 `_wptr`
+  (wrap ×2 + 150 spacer), victim = long 200k-write IB + 300-entry padding +
+  marker last (outside CP prefetch), rb0 preemptor writes `scratch+12` (rb3
+  RPTR slot) and a marker, attacker = 360-entry cmdbatch aimed at the wrap
+  path with a distinct `OUT[9]=0xAA` slice.
+- CONTROL run: clean (`OUT[9]=0xV1` present, structure intact, device alive).
+- FULL runs (fake RPTR 7900, 8100, then decisive probe 0x1FFF):
+  - preemptor executed mid-IB ✓ (validated again);
+  - attacker submission **ret=0 with fake RPTR=0x1FFF** — if `allocspace(rb3)`
+    had read the fake (8191 > `_wptr`), the ~2200-dword request would have
+    been **ENOSPC**; it succeeded instead.
+  - ⇒ **`adreno_ringbuffer_allocspace` on this build did not consume the fake
+    RPTR value.** Victim marker remained present; no overwrite.
+- Also discovered: the kallsyms dump (`recon/kallsyms-abl766.txt`) has a
+  **name drift in the adreno_ringbuffer/adreno_get_rptr cluster** — the code at
+  the "adreno_get_rptr" address (0x5414ac) is a refcount helper. All earlier
+  "fuzzy symbol" results stem from this; addresses are monotonic but names are
+  off by some entries in this region.
+
+### Interpretation + next step
+
+Two possibilities for the live negative:
+1. The shipped Dec-2018 build's `adreno_get_rptr` does **not** read the RPTR
+   from `device->scratch` (pre-scratch-era code: RPTR from memstore/IRQ), in
+   which case the CVE-2019-10567/2020-11179 runtime primitive is dead here even
+   though the profiling-write and scratch-write machinery exist.
+2. The attacker submission did not go to rb3 (ruled unlikely: same ctx as victim
+   ran on rb3 per dmesg in earlier tests).
+
+Next session (static, no device):
+1. Re-anchor `adreno_get_rptr` / `adreno_ringbuffer_allocspace` **by code
+   structure** (scan for the `0x1FFE`/`0x2000` constants of allocspace and for a
+   call to `kgsl_sharedmem_readl`-shaped code), bypassing the kallsyms drift.
+2. Confirm the RPTR source on this build:
+   - if scratch → debug why the fake was ignored (e.g., rb id vs slot, or a
+     cached rptr in the rb struct);
+   - if not scratch → the RPTR-desync route is closed on ABL766; the remaining
+     GMX route would be the profiling-write alone (needs a different
+     misalignment mechanism).
+
 
 ## add_profiling_buffer decoded (2026-10-10): arbitrary 64-bit RB value
 

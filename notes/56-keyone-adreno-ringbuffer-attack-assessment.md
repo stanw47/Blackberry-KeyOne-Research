@@ -69,3 +69,31 @@ the deterministic global layout can be computed.
 
 Build `tools/kgsl_gpu_submit.c` (stage 0) and validate GPU command execution
 from `shell` on the live device. Then stage 1 (scratch base).
+
+## Stage 0 — DONE (live, 2026-10-10)
+
+`tools/kgsl_gpu_submit.c` runs on the device (static aarch64, zig):
+
+```
+[2] DRAWCTXT_CREATE ret=0 id=11          (flags=0x12: PREAMBLE|NO_GMEM_ALLOC —
+                                          required by adreno_drawctxt_create,
+                                          flags=0 -> -EINVAL)
+[3] alloc CMD gpu=0x300000   [4] alloc OUT gpu=0x301000
+[5] mmap CMD/OUT OK          (mmap offset = id<<12; non-cpu-map pgoff = mem id)
+[6] GPU_COMMAND ret=0
+[7] readback d0=0x42424242 d1=0x43434343  <== GPU COMMANDS WORK
+```
+
+- Packet encoders validated: exact `cp_type7_packet` layout (odd-parity bits
+  at 15/23) + `cp_gpuaddr` low/high + `CP_MEM_WRITE` (0x3d) + `CP_NOP` (0x10).
+- Cache maintenance: `dc civac` + `dsb ish` both directions works.
+- Command object: `{offset=0, gpuaddr, size, flags=KGSL_CMDLIST_IB, id}`;
+  objlist optional (numobjs=0 OK).
+
+Next: stage 1 — scratch base. Offline: derive the global allocation layout
+from `kgsl_iommu.c`/`adreno*.c` probe order (base per notes/26:
+`KGSL_IOMMU_GLOBAL_MEM_BASE=0xf8000000`, 8 MB). Live: detect candidates with
+**read-only `CP_MEM_TO_MEM`** probes (copy candidate dword into our OUT buffer;
+a scratch page has rb0 RPTR at offset 0 — small 4-aligned values), avoiding
+blind writes into the global region.
+

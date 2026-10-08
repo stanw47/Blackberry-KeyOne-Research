@@ -35,9 +35,13 @@ Instruction-level diffs (AAN355 → ABL766), normalized:
 - **`fastboot boot` is not registered**: live test → `FAILED (remote:
   'unknown command')`. BlackBerry LK does not implement `boot:` at all.
 - Therefore `boot_linux_from_*` parsers are **only reachable by booting a
-  written boot/recovery partition** — i.e. after a flash (authboot-gated) or
-  via another write channel (EDL/root).
-- The **flash-path fixes** are reachable during an authorized `flash:` only.
+  written boot/recovery partition** — i.e. after a flash (**not authboot-gated**
+  for boot/recovery: arbitrary bytes can be written pre-auth — notes/49) or via
+  another write channel (EDL/root). Note: ABL766 already contains the 2018
+  flash-path fixes (notes/45); the vulnerable pre-fix code is only in older
+  signed bootchains (downgrade target).
+- The **flash-path fixes** are reachable during any `flash:` of those partitions
+  (which on ABL766 is open) — the fixes matter when downgrading to an old aboot.
 - Pre-auth surfaces that *are* reachable from a hostile host:
   - `getvar:` / `oem` command parsers (read-only probes fuzzable safely)
   - `download:` size handling (buffer = fastboot scratch; published max

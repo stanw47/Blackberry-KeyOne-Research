@@ -32,10 +32,15 @@ The KEYone's root of trust is silicon, not software:
   operations (unlocking, token provisioning, protected reads) require a signed,
   server-issued authorization. Those servers are long dead.
 
-**Consequence:** you cannot flash a different bootchain, and patching `aboot` is
-rejected by SBL1's re-verification (observed on the Priv eMMC incident, where a
+**Consequence:** you cannot *boot* a different bootchain, and a patched `aboot`
+is rejected by SBL1's verification (observed on the Priv eMMC incident, where a
 patched `aboot` bricked the device until recovered; not directly tested on the
-KEYone, whose `flash` path is authboot-gated). The eMMC chip-off route that unlocked the Passport/Priv works only
+KEYone). One nuance: the `flash` write path is **per-partition**, not globally
+authboot-gated — boot/recovery/bootchain partitions accept arbitrary bytes
+pre-auth (verified by writing a modified `boot.img` and reading it back through
+the pre-auth SHA-224 oracle; see notes/49). Writes are still useless without a
+valid signature, because every candidate image is ECDSA-verified at boot with
+keys held by BlackBerry. The eMMC chip-off route that unlocked the Passport/Priv works only
 because those devices have prototype bootloaders and a leaked `imggen` toolchain;
 no equivalent exists publicly for the KEYone.
 

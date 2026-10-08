@@ -56,11 +56,16 @@ may also be written, but RPMB is what the secure path trusts.
 - Even a raw `fastboot flash devinfo` would require the `flash:` command
   (whitelist type 1 → RTAS authorization), and the write path expects a
   *valideştirilmiş* struct, not our bytes.
+- **CORRECTION (2026-10-09):** `flash:` is **per-partition**; the boot-chain
+  class is open pre-auth (`flash boot` etc. → OKAY). Whether `flash devinfo`
+  itself is permitted is **untested**; even if written, the consumer expects a
+  validated struct. See notes/49.
 
 ## The three lock layers (summary)
 
 1. **Command authorization** — `authboot`/RTAS bitmap via the `bbauthtool`
-   daemon (online/service-gated). Blocks `flash`, `erase`, `set-factory-mode`.
+   daemon (online/service-gated). Blocks data-partition `flash` (e.g. `persist`)
+   and `set-factory-mode`; boot-chain-class `flash` is open (notes/49).
 2. **Image signature** — boot/recovery/aboot/sbl1 must carry BlackBerry
    ECDSA sigs (APBI/ADBI tokens; `sig/*.sig`, `ECDSA521verify`). We can't sign.
 3. **Secure storage** — unlock state in RPMB, written via TZ secapp.

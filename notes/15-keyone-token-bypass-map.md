@@ -2,6 +2,15 @@
 
 Date: 2026-10-02  |  `emmc_appsboot.mbn` (LK, symbol table present)
 
+> **CORRECTION (2026-10-09):** the token signatures are **ECDSA P-256**, not
+> "RSA/HMAC". Public keys are compiled into aboot (HLOS IDs `ADBI/ABBI/APBI/ACBI`
+> @ `0x8f6e12e8`/`13f8`/`1370`/`1480`; RTAS tool-key table @ `0x8f794988`,
+> 55 entries `<TOOL>-<product><variant>`). The addresses quoted below as
+> "key=debug(0x8f6e2568)" are the **`DBGSIG`/`NVSIG` name strings**, not key
+> material. There is no symmetric key and no writable key store — token forgery
+> is blocked (private keys are HSM-held). The write-channel/parser details are
+> in notes/49.
+
 ## The two verification-bypass paths in `verify_hlos_image` (0x8f653c38)
 
 Fully decoded disassembly:

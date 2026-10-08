@@ -96,3 +96,9 @@ surface mapped in notes/16.
 Testing `oem securewipe` (2026-10-02) erased `boot`+`recovery` on the KEYone.
 Fully restored via ABL766 autoloader `flashall.bat` (bootchain, boot, recovery,
 system, modem, dsp, oem, userdata, cache all OKAY). Device healthy afterward.
+
+**Recurred 2026-10-09** (run again without re-reading this note): wiped the
+boot/recovery **signature records** ("No Signature found") and set the userdata
+wipe pending. Restored in-place with `flash bootsig` + `flash recoverysig`
+(production-sprint tokens); see notes/49 §0. The sig-wipe is the immediate,
+restorable damage; the userdata wipe fires on next boot.

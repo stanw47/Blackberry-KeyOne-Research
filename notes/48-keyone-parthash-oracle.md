@@ -32,7 +32,7 @@ fastboot oem parthash:<partition> <bytes>
 | aboot (`<1952062` bytes) | **MATCH** local `emmc_appsboot.mbn` |
 | aboot (full 2 MB) | differs — the partition **tail after 1,952,062 B is non-zero leftover** (not zero/0xFF pad) |
 | AAK399/AAL093/AAN355 aboot prefixes | **no match** → device runs exactly the ABL766 image |
-| bootsig (first 208 B) | differs from package `sig/boot.img.sig` (token variant or layout differs) |
+| bootsig | **MATCH** `sig/boot.img.production-sprint.sig` (sha224 `72065002…`) — only differed from the *generic* `boot.img.sig`; see notes/49 |
 
 ## What it changes for research
 
@@ -61,5 +61,6 @@ fastboot oem parthash:<partition> <bytes>
   device that lookup fails — yet `oem info` returns WP type/insecure values,
   so the data comes from elsewhere).
 - devinfo flag brute-force via oracle (optional demo).
-- Next big move remains a **write channel** (modified autoloader experiment
-  against a restorable partition first, e.g., `persist`/`splash`).
+- **Write channel FOUND (2026-10-09)** — `flash` is open for boot-chain-class
+  partitions; modified `boot.img` written and oracle-verified; `persist` is the
+  gated exception. See notes/49. Next: parser/exploit lanes (notes/49 §6).

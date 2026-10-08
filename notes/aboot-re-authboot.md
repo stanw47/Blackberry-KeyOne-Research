@@ -47,6 +47,11 @@ So the *only* thing standing between us and an unlocked bootloader is the
 | 9 | RTAS | `oem setprd:`, `oem console`, `oem bootmetrics` |
 | 10 | RTAS | (default) |
 
+> **CORRECTION (2026-10-09, live):** `flash:` is **per-partition gated**, not a
+> single global type-1 rule. Verified live pre-auth: `flash tz/boot/recovery/aboot/sbl1/bootsig/recoverysig`
+> → **OKAY**; only `flash persist` (data class) → `authboot flash permission denied`.
+> `erase cache` also OKAY. `oem securewipe` runs un-gated. See notes/49.
+
 **Key:** `oem set-factory-mode` = type **6**; `flash:` / `erase:` =
 type **1**. All of these call:
 

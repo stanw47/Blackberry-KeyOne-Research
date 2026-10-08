@@ -47,7 +47,9 @@ service** today, with an exploitation path under analysis.
 - **Boot-chain model** — PBL->SBL1->aboot with fused root key; a patched `aboot`
   is rejected by SBL1 (inferred from the Priv eMMC incident, where a patched
   `aboot` bricked the device until recovered — not directly tested on the
-  KEYone, whose `flash` path is authboot-gated).
+  KEYone). The `flash` write path is **per-partition**: boot/recovery/bootchain
+  accept arbitrary bytes pre-auth, but all images are ECDSA-verified at boot
+  (notes/49).
 - **`authboot`/RTAS2 protocol** — full command-permission model decoded.
 - **Reachable-surface map** — WLAN, Diag/QMI, TrustZone, Binder, KGSL.
 - **KGSL/IOMMU bug** — confirmed live from `shell` (safe + corruption PoCs).

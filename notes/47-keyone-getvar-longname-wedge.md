@@ -53,3 +53,33 @@ physical reset recovers.
 ## Device state
 
 Wedged in fastboot again; physical reset required (hold Power ~15 s).
+
+## Static follow-up (cmd_getvar + length check)
+
+- `cmd_getvar` @ `0x8f62f6bc`: bounded throughout — copies variable
+  values into a **0x40-byte stack buffer** via strlcpy/strlcat-style calls
+  before sending. No unbounded copy on the name.
+- Length check region (`0x8f63b5e0`): computes **max command line = 0x800
+  (2048 bytes)** (`mov r2, #0x800; rsb r3, r1, r2`) and logs
+  `"Command line length is %d, maximum is %d"`.
+- Probe sequence fits an overflow hypothesis at the *receive/dispatch layer*:
+  - 200-char name → OK
+  - 1000-char name → response started (1007 total < 2048) → OK
+  - **4000-char name → exceeded 0x800; subsequent commands all timeout**
+  - Later probes (`%s…`, `%n`, colons, long `oem`) fail because the device
+    was already dead — not because of their content.
+
+## Revised hypothesis
+
+The **fastboot command-receive buffer** (expected to be the 0x800 command
+line) is overflowed/hung when the host sends more than the maximum *before*
+the length check is enforced — consistent with the CVE-2018-5854 class
+("stack-based buffer overflow in fastboot"). Next: locate the command loop
+(`fastboot: processing commands` string) and its buffer size, and determine
+check ordering (read-into-buffer vs length validation).
+
+## Threshold test plan (one probe per boot, after reset)
+
+1500 / 2048 / 2049 / 2500 / 3000-char `getvar` names; record response vs
+wedge. If wedge starts just above 0x800, the max-length boundary is the
+trigger and the input path must be inspected for pre-check writes.

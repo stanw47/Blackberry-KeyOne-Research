@@ -277,6 +277,49 @@ Remaining: whitepaper race orchestration (victim wait + rb0 RPTR desync +
 overwrite with crafted profiling gpuaddrs encoding CP_NOP /
 CP_SET_PROTECTED_MODE) and stage 4 (PM-off TTBR0 → physical R/W).
 
+## STAGE 3e — preemption timing validated (S3.2b, live)
+
+`tools/kgsl_preempt_test.c`:
+
+- victim ctx priority 12 → rb3: IB of 200,000 `CP_MEM_WRITE`s
+  (OUT[1..200000] = i);
+- preemptor ctx priority 1 → rb0: tiny marker IB (OUT[0] = 0xB0B0);
+- preemptor submitted immediately after the victim; poll OUT[0], on hit sample
+  OUT[5000] with a single-line invalidate.
+
+```
+[3] victim submit ret=0 preemptor submit ret=0
+[4] preemptor marker seen=1  mid-sample OUT[5000]=0x1388   (== 5000)
+[5] victim last=0x30d40                                    (== 200000)
+```
+
+- The rb0 batch executed while the rb3 victim had completed only ~5000 of
+  200000 writes (≈2.5%): **cross-ringbuffer interleaving mid-IB confirmed**.
+- (S3.0/S3.1 showed `CP_WAIT_REG_MEM` stalls are not released this way; use a
+  long IB as the victim window instead of a wait.)
+
+### Orchestration plan (next session)
+
+1. victim rb3 context: long IB (window ≈ tens of ms — large enough for the
+   CPU to run the rest).
+2. preemptor rb0 context: at the chosen moment write **rb3's RPTR**
+   (`scratch+12`, `SCRATCH_RPTR_OFFSET(3)`) to a value near `_wptr` so
+   `allocspace` marks the victim's pending RB tail as free.
+3. attacker on an **rb3** context: submit two `KGSL_CMDBATCH_PROFILING`
+   commands so the driver overwrites the victim's pending RB ops with the
+   crafted profiling addresses (2 consecutive dwords each, 2× per submission).
+4. When the victim's IB ends, the GPU returns to the RB and executes the
+   overwritten region → smuggled `CP_NOP` then `CP_SET_PROTECTED_MODE 0` →
+   protected mode off → next driver `CP_INDIRECT_BUFFER_PFE` jumps to the
+   attacker IB with PM off → stage 4 (TTBR0).
+5. Open constraint to solve: the profiling `gpuaddr` dwords are the *values*
+   executed; SVM-mapped profiling buffers give lo = free offset, hi = 0x7
+   (fixed), and the address must stay inside a valid mapping for the
+   REG_TO_MEM not to fault — the exact CP_NOP/CP_SET_PROTECTED_MODE encoding
+   must be built from the (lo,hi) pair accordingly (or the kernel may accept
+   an arbitrary `obj.gpuaddr`; verify `add_profiling_buffer` validation).
+
+
 
 
 

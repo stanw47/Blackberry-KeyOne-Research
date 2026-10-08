@@ -319,6 +319,41 @@ CP_SET_PROTECTED_MODE) and stage 4 (PM-off TTBR0 → physical R/W).
    must be built from the (lo,hi) pair accordingly (or the kernel may accept
    an arbitrary `obj.gpuaddr`; verify `add_profiling_buffer` validation).
 
+## add_profiling_buffer decoded (2026-10-10): arbitrary 64-bit RB value
+
+`kgsl_cmdbatch.c:531-572`:
+
+```c
+if (id != 0) entry = kgsl_sharedmem_find_id(proc, id);
+else         entry = kgsl_sharedmem_find(proc, gpuaddr);
+if (entry && !kgsl_gpuaddr_in_memdesc(&entry->memdesc, gpuaddr, size))
+        entry = NULL;
+...
+if (id != 0)
+        cmdbatch->profiling_buffer_gpuaddr = entry->memdesc.gpuaddr + offset;
+else
+        cmdbatch->profiling_buffer_gpuaddr = gpuaddr;
+```
+
+- With `id != 0` and `obj.gpuaddr` = a valid address inside that entry,
+  validation passes; the value used for the RB write is
+  **`entry_base + offset` with `offset` a fully user-controlled 64-bit field**
+  → the 8 RB bytes can be **any 64-bit constant**.
+- With `id == 0` the value is verbatim `obj.gpuaddr` (must be in a mapping).
+- Remaining subtlety: the REG_TO_MEM op that carries those 8 bytes also
+  *executes* (writing the alwayson counter to that address) — if the crafted
+  value is not itself a mapped GPU address, that write faults. Two ways out:
+  (a) choose crafted values that are also mapped addresses (cpu-map VA
+  `0x700000000+off` → bytes `[off][0x7]`, or driver-assigned VA < 4 GiB →
+  bytes `[va][0]`), or (b) arrange the carrying op to be overwritten/skipped
+  before the GPU executes it (the overwrite race itself) — resolve when
+  building the orchestrator.
+- Practical upshot: the smuggled `CP_NOP` (consumes arbitrary payload) is
+  easy with either form; `CP_SET_PROTECTED_MODE 0` (needs payload 0) fits the
+  `[va][0]` driver-assigned form (hi dword 0) or `[off][0x7]` chains that
+  skip the 0x7 via a preceding controlled `CP_NOP` count.
+
+
 
 
 

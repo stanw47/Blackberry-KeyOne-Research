@@ -66,6 +66,41 @@ exact vold args `-p -f`, crash = rc ≥ 128, pulls crashing images).
 - The FAT checker validates aggressively and FORTIFYs everything; no
   low-hanging fruit in FAT12/16 BPB/FAT/dir/LFN mutation space.
 
+## Update — full campaign results (same session)
+
+| Parser | Invocation (vold) | Mutants | Crashes |
+|---|---|---|---|
+| `fsck_msdos` | `-p -f` (preen+force) | 1,344 | 0 |
+| `blkid` (libblkid) | `-c /dev/null -s TYPE -s UUID -s LABEL`, plus `-p` | 4,608 | 0 |
+| `fsck.exfat` (relan 1.2.3) | `<dev>` | 512 | 0 |
+| `e2fsck` (e2fsprogs 1.42.9) | `-y` | — | path GATED |
+
+New tooling: `tools/blkid_fuzz.py`, `tools/exfat_seed.py` (ports relan mkexfatfs;
+needs `mkfs/uctc.c` from a relan/exfat clone), `tools/exfat_fuzz.py`,
+`tools/sparse2raw.py` (Android sparse → raw), `tools/ext4_quota_poc.py`.
+
+Seed work:
+- exFAT seed built from the relan mkfs layout (VBR checksum, bitmap, upcase
+  table, root dir) — `fsck.exfat` reports **No errors found**, then shrugged off
+  512 semantic mutants (with checksum recompute so boot-sector changes mount).
+- ext4 seeds: `bbpersist.img` sparse (20 MB raw) is the small one; the others
+  are 256 MB–9.5 GB logical. `e2fsck -fn` clean on it.
+
+**e2fsck quota path: dead.** The binary references `libext2_quota.so`
+(`quota_compare_and_update`, `quota_write_inode`, …) and has e2fsck/quota.c
+messages, but its feature table rejects the ext4 `quota` feature:
+
+```
+/data/local/tmp/poc.ext4 has unsupported feature(s): quota
+e2fsck: Get a newer version of e2fsck!
+```
+
+Crafted CVE-2019-5094-style images (RO_COMPAT_QUOTA + quota inodes 3/4 with a
+qtree leading to `get_bit(bitmap, 0x40000000)`) never reach `report_tree` —
+e2fsck exits before parsing. The quota code is only reachable via
+mke2fs/tune2fs, which are not on this device and never run on untrusted media.
+**CVE-2019-5094 is not reachable through vold on Android 7.1.1/ABL766.**
+
 ## Flavor queue (not yet done)
 
 1. **Grammar-aware FAT12/FAT32** seeds (FAT32 = >65k clusters, 32 MB — sparse

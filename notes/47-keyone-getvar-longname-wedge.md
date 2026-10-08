@@ -50,6 +50,41 @@ physical reset recovers.
    test whether control-flow corruption (e.g., device resets/takes longer)
    vs a pure hang.
 
+## Threshold test result (live)
+
+- `getvar` + 2049-char name (total command 2056 bytes) → **device wedged**
+  (liveness probe + `fastboot reboot` both time out; physical reset needed).
+- Combined with the earlier batch: 1007-byte command OK, 2056-byte command
+  wedges → **boundary at/inside (1007, 2056]**, matching the 0x800 (2048)
+  maximum command line from the length-check string.
+
+## Command loop static analysis (`fastboot_command_loop`)
+
+Disassembly (`0x8f62f138`+):
+
+- `memalign(0x40, 0x1000)` → **4 KB command buffer** (heap).
+- Per iteration: `memset(buf, 0, 0x40)`, receive via transport vtable
+  `[r7+0x20]` (= `0x8f62eb0c`) with `r1 = 0x40`, NUL-terminate at the returned
+  length, print `"fastboot: %s"`, then dispatch:
+  - special-case `getvar:partition-type` (21-byte strncmp),
+  - whitelist/permission route (`authboot_check_command_permission` call),
+  - command table lookup, unknown → `FAIL`.
+- So commands are processed in **64-byte chunks**; long commands span multiple
+  reads and must be reassembled somewhere — or are truncated/desynced.
+- The only explicit max is the `0x800` "Command line length" check
+  (`0x8f63b5e8` region). Exceeding it does not produce a clean error — it
+  wedges the transport (observed).
+
+## Open questions
+
+1. Where does the reassembly of multi-chunk commands happen, and is there a
+   copy into a **smaller fixed buffer** before the 0x800 check?
+2. Is the wedge a pure transport deadlock (DoS) or memory corruption?
+   Distinguish by sending a command far beyond the limits (e.g., 8 KB) and
+   watching behaviour: deadlock-reset vs corrupt-reset vs no-recovery.
+3. Identify the exact length check applied to the fastboot input path
+   (the `0x8f63b5e8` function may be a different module's logger).
+
 ## Device state
 
 Wedged in fastboot again; physical reset required (hold Power ~15 s).

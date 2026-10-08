@@ -139,3 +139,54 @@ tables in a sprayed physical page → arbitrary physical R/W → kernel patch.
      probes),
   3. align execution so those dwords run as ops (misaligned-entry smuggle).
 
+## BREAKTHROUGH (live, 2026-10-10): arbitrary dword into rb0 via perfcounter GET
+
+`tools/kgsl_perfcounter_probe.c`:
+
+```
+[2] QUERY group CP ret=0 count=16
+[3] GET custom countable (0x41414141) ret=0 offset=0x3ae offset_hi=0x3af
+[4] READ ret=0 value=0x11866
+[5] PUT ret=0
+```
+
+- `adreno_perfcounter_get()` accepts an arbitrary **new** `countable` (non-fixed
+  CP group): it assigns an empty counter slot and calls
+  `adreno_perfcounter_enable()` → `_perfcounter_enable_default()` which does:
+
+  ```c
+  rb = &adreno_dev->ringbuffers[0];              // rb0!
+  cmds += cp_wait_for_idle(adreno_dev, cmds);
+  *cmds++ = cp_register(adreno_dev, reg->select, 1);   // type4 header
+  *cmds++ = countable;                                 // <-- USER DWORD
+  adreno_ringbuffer_issuecmds(rb, 0, buf, cmds-buf);
+  ```
+
+- `adreno_ringbuffer_issuecmds()` = `addcmds(rb, flags|KGSL_CMD_FLAGS_INTERNAL_ISSUE,
+  cmds, sizedwords, 0, NULL)` → the inserted RB block framing is exactly the
+  normal addcmds layout (NOP+identifier, pre_ibsubmit 22 dw, internal
+  identifier, timestamps, **our 3 dwords**, seq write, cache-flush timestamp).
+
+So: **unprivileged shell can inject a fully attacker-chosen 32-bit dword into
+rb0's command stream, at a computable offset within each insertion block**
+(repeatable per GET, each new countable = one more controlled dword, slot
+reusable via PUT). Together with RPTR control (notes/56 stage 2a) this is the
+complete CVE-2019-10567 smuggling primitive — no race needed.
+
+Old-vs-fix status: the shipped kernel's perfcounter path matches the pre-fix
+2017 code (`ref/adreno_perfcounter_3.18.c`); the Sep-2019 fix ("execute user
+profiling commands in an IB") is absent.
+
+Next (smuggler build):
+1. Track rb0 `_wptr` across our own submissions + GET insertions (deterministic
+   sizedwords from addcmds; system rb0 traffic adds noise — mitigate by
+   fast repeated cycles + WAIT_REG_MEM confirmation of our dword at candidate
+   offsets).
+2. Build the fake stream: choose countables (and RPTR entry point) so the
+   interleaved fixed/controlled dwords decode to
+   `CP_SET_PROTECTED_MODE 0` + `CP_INDIRECT_BUFFER_PFE -> attacker commands`
+   (the whitepaper's alignment puzzle; usable dwords repeat every block).
+3. Payload with PM off: program `CONTEXT_SWITCH_SAVE_ADDR` / SMMU TTBR0 →
+   physical R/W (stage 4).
+
+

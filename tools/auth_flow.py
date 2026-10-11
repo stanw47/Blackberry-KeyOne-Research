@@ -57,7 +57,7 @@ def dump_replies(d, seconds=6):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("action", choices=["handshake", "raw", "flow", "chal", "big"])
+    ap.add_argument("action", choices=["handshake", "raw", "flow", "chal", "big", "probe"])
     ap.add_argument("hexbytes", nargs="?")
     ap.add_argument("--seconds", type=int, default=6)
     ap.add_argument("--size", type=int, default=0, help="total message size for big/chal")
@@ -82,6 +82,8 @@ def main():
     elif args.action == "big":
         # length-trust test: oversized 0x2005 (dispatcher stack buffer is 0x760)
         msg = chal_frame(len_a=0x10, len_b=0x10, payload=b"\x41" * max(0, args.size - 24))
+    elif args.action == "probe":
+        msg = handshake_frame()
     else:
         msg = bytes.fromhex(args.hexbytes or "")
     print(f"[*] sending {len(msg)} bytes: {msg.hex()}")
@@ -91,6 +93,17 @@ def main():
     except Exception as e:
         print("write failed:", e)
     dump_replies(d, args.seconds)
+    if args.action == "probe":
+        # walk the state machine: 0x1010 (state), 0x1012 (rtas init -> challenge), 0x1016
+        for label, m in (("0x1010", frame(0x1010, b"\x00" * 16)),
+                         ("0x1012", frame(0x1012, b"\x00" * 16)),
+                         ("0x1016", frame(0x1016, b"\x00" * 0x120))):
+            print(f"[*] {label}: {m.hex()}")
+            try:
+                d.write(0x02, m)
+            except Exception as e:
+                print("write failed:", e); break
+            dump_replies(d, args.seconds)
     if args.action == "flow":
         # password step (device has none set; send a zeroed 72B reply anyway)
         pw = frame(0x2003, b"\x00" * 64)

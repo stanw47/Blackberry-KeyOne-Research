@@ -52,3 +52,20 @@ accepted in the insecure state, or (b) provision the insecure state itself
 - `bbss_insecure` remains a **one-write-wins** objective (plaintext tag), but
   every pre-auth path is closed (notes/64).
 - /tmp is tmpfs — never extract large files there (RAM exhaustion).
+
+## 5. FINAL VERDICT on the provisioning routes (all sources exhausted)
+
+- **No KEYONE (qc8953/bbb100) MFI/factory/insecure autoloader exists in any
+  accessible source** (the community drive has only the 4 known KEYone
+  packages + the Q10/Z50 BB10 MFI_Insecure ones; no amount of searching
+  produced a qc8953 factory package).
+- **No `rtas.bin` in any autoloader** (Priv AAW068/AAF153: none; KEYone
+  AAK399/AAL093/ABL766: none; only the tools + `pcauthtool.ps1`).
+- **`pcauthtool.ps1` decodes the "credential": it is a `RIMNET\username` +
+  domain password** (BlackBerry corporate login) passed to pcauthtool
+  (`-u <user> -r <password> [-p <device_password>]`). **Not a file. Not
+  obtainable. The domain is gone.**
+- Therefore: **both provisioning routes (insecure-package + credential) are
+  permanently closed.** The only remaining legitimate direction is a fresh
+  memory-corruption hunt in the pre-auth parser surface (all known bugs so
+  far are canary-walled or DoS-only).

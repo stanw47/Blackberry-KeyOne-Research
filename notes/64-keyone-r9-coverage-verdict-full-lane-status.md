@@ -45,3 +45,49 @@ The image-verify lane is conclusively closed.
 2. **Canary leak hunt** — no vector found so far (parthash reads flash only;
    challenge values are encrypted).
 3. Fresh static review of unexamined pre-auth parsers (notes/39 list).
+
+---
+
+## ADDENDUM (later same day): the bbss_insecure corner — CLOSED, with precision
+
+Prompted by the backup-chain question ("is the backup bootloader only for
+flashing?"): yes — recovery-flashing mode running an April-2017 image (AAK171).
+We extracted **AAK399** (its retail sibling/proxy) and ran era diffs:
+
+### 1. RTAS verifier stack = instruction-identical AAK399 <-> ABL766
+Normalized instruction diff (only canary-global + dprintf string addresses
+differ): `is_sig_valid` 120/120, `sb_ecc521_verify_sign` 178/178,
+`rtas_verify_response` / `_nv_sig_` / `parse_response` / `find_challenge_item`
+/ `get_key` / `sb_sha_512` / challenge builders — all logic-identical;
+`husw_ECDSANoHashVerify` / `hu_ECDSANoHashVerify` byte-identical.
+**No weaker crypto/parser target in the old era.** The only security-relevant
+era delta = the BIDE/ECC keypair-validation functions (AAL093+) — a separate
+BIDE keypair store, **not** the bbss tag path.
+
+### 2. Partition whitelists = identical (both eras)
+Full `authboot_ptn_whitelist` dumped for ABL766 and AAK399: **same entries,
+same types, same flags** (phyboot* = type 3, nvuser = type 10/0x100,
+debug_token/all_debug_tokens = type 7, persist = type 4, …). **`bbss` is
+absent in both** -> `flash bbss` = "authboot flash permission denied" in the
+backup chain too. No era downgrade for the write gate.
+
+### 3. Hidden partitions are not addressable pre-auth (read either)
+`oem parthash:bbss:…` -> `FAILED (remote: Partition doesn't exist)`; same for
+phyboot*/bsis/bsi. The UTF-16 "bbss"/"hwi" names exist in both builds (the
+dedicated GPT-scan literal for the hidden LUN), but the LK's *addressable*
+partition table (used by parthash/flash/getvar) does not resolve them.
+So: no pre-auth read of the BSI tag store either.
+
+### 4. Net
+`bbss_insecure` is a **plaintext numeric tag (≤0xFF, unsigned)**; flipping it
+= instant boot bypass ("proceeding with boot anyways" / "Insecure bootchain
+detected. Skipping fuse verification check"). But every pre-auth path to it
+(read + write) is closed in both eras. **The data route needs EDL, root, or an
+aboot code-exec primitive — nothing else.** (Matches notes/40-41 conclusions,
+now era-verified.)
+
+### 5. Tooling lesson (re-learned twice today)
+Piping fastboot output through `head` kills the client mid-response (SIGPIPE)
+and **wedges the device**; the **EP 0x81 drain recovers it** (no reset needed —
+recovered twice today that way). Always redirect to files, never truncate
+live fastboot output.

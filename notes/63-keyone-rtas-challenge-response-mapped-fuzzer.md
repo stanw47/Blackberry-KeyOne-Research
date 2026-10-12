@@ -109,3 +109,36 @@ Deeper `create_challenge` decode + fresh live capture (payload_len=171):
 - Fuzzer harness remains in `tools/fb_fuzz.py`/`fb_case.py` (stable, one case
   per process, garbage-0x2005 + drain cleanup) for that NV_SIG path or future
   work.
+
+---
+
+## 8. THE DOOR: pre-auth NV-SIG reachability (live-proven)
+
+Incoming message code **0x1016** → `process_rtas_sign_event` (0x8f63a684):
+- Message format: `{cookie, 0x1016, name@+8 (string), data@+0x28, u32 data_len@+0x128}`.
+- Handler: checks `[ctx+0]!=0` (set by the 0x2000 handshake), sets `[ctx+0x75c]=1`,
+  runs `init_nv_sign_rtas_ctx` (channel **"NVSIG"**), then
+  `rtas_create_nv_sig_challenge` → sends the NV-SIG **0x2004 challenge** (items
+  type 5 = name, type 6 = data) via `usb_send_msg` — **to us, pre-auth**.
+- Live: crafted 0x1016 → 0x2004 with channel `NVSIG-bbb100usa`, payload_len 193.
+- Reply path: `rtas_verify_nv_sig_response` only requires items **5+6 to EXIST**
+  (no value checks!) → `is_sig_valid` (DER parser + the canary-walled overflow).
+
+**Proof (live):** a 0x2005 with items 5+6 and sl=66 → device healthy; the same
+with **sl=140 (overflows the 136B buffer into the canary @sp+0xd4)** → device
+**wedged** → `is_sig_valid` was reached and the unchecked memcpy executed.
+
+## 9. Walls found on the door (same day)
+
+- **Canary:** both memcpy buffers end exactly at the canary (@sp+0xd4); the
+  reverse loops also swap through it. No non-canary corruption surface.
+- **No success observable:** on a passing verify the reply goes through the
+  local socket (`sock_send_msg(0x1017, ...)`), not USB — a passing ECDSA is
+  silent to us (the ECDSA r/s sweep is therefore blind).
+- **Disclosure attempt #1 failed:** `data_len` > available message bytes would
+  overread, but the 512-byte challenge cap (~340B max item) forbids reaching
+  the message boundary (480B). Name-field `strlen` overread is still open for
+  a small-message variant (heap overread; non-crashy to test).
+- **Recovery: NOT automatic** — a canary panic wedges the device until a manual
+  power reset (user correction; earlier "auto-recovered" note was wrong — the
+  user had been resetting it).

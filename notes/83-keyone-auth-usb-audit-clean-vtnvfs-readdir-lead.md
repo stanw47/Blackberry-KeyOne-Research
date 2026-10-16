@@ -349,6 +349,32 @@ Token body was garbage ("TOKEN"); next builds must use a real token body
 Also try: sig file at a second inode in a DIFFERENT record slot (bit in slot2) vs same record;
 check the sig lookup by adding a `.sig.hlos_signature.tkn` ALSO as the ONLY file (swap test).
 
+## 12. Final decodes (session 83 cont.) — every link verified, one runtime step open
+
+- `get_device_id` 0x8f65a504: bsi("product")+bsi("variant") via snprintf "%s%s" (fmt 0x8f6d8c0c)
+  -> "bbb100usa" (live values bbb100/usa) => key = **"DBGSIG-bbb100usa"** exists in table.
+- `get_key` 0x8f65a270: malloc(strlen(name)+strlen(dev)+2); name + '-' + dev; find_key (strcmp x55).
+- `read_nvram` 0x8f6584e4: fd by dirname string -> vtnvfs_read(fd, basename,...).
+- `vtnvfs_read_drv` 0x8f65dc70: hash_name -> get_file_fmdata(ctx,hash,buf,len,**mode=2**);
+  mode-2 validate copies data from block+48+round4(namelen) into buf (crc2 checked over
+  min(560+round4,size)); mode 1/5 = stat/readdir paths.
+- `get_sig_path` = "<dirname>/.sig.<basename>" confirmed at register level (r3=dirname,
+  [sp]=".sig.", [sp+4]=basename).
+- `__stack_chk_fail` -> `_panic` (infinite loop) => overflow = hard hang (none observed).
+- A12 live: listing shows `hlos_signature.tkn` + "Key names unavailable" (special-case parse
+  ran; read attempted). No hang => chain stops before is_sig_valid.
+
+### Remaining single unknown + next tests
+Chain stops inside verify (sig lookup / early checks / rtas ctx / parse_response / items).
+Next diagnostics (cheapest first):
+1. Reboot fresh + `fastboot getvar hlos_signature.tkn` (publish path re-runs parse) - if the
+   overflow ever fires here we'd see a hang instead of "NONE".
+2. Swap test: put sig blob in "hlos_signature.tkn" and token body in
+   ".sig.hlos_signature.tkn" (isolates which lookup fails).
+3. Give token a real body (`key_name = "DBGSIG-bbb100usa"` etc.) and watch the printed
+   "Key Name:" line for parse-stage info.
+4. Try sig file as second inode in a different record slot vs same record.
+
 ## Artifacts
 - `/tmp/opencode/meta_test.img`, `/tmp/opencode/meta_rcause2.img`,
   `/tmp/opencode/hwi_store.bin`, `/tmp/opencode/meta_flash.log`

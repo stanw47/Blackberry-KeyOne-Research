@@ -206,6 +206,42 @@ dirent      block 13 0x1a00 : {crc, len=0x10 @+4, id 0x95e7ddbf @+8, u16 13 @+0x
   zlib.crc32(entry+4 .. entry+0x40) (name > 16 bytes extends past +0x40; update len byte).
 - Name len byte = dirent+4 (0x10 for "bootcontrolblock"); names up to ~144 supported.
 
+## 8. Crafting attempts live + mount internals (session 83 cont.)
+
+### Live test matrix (device 1164118297, perm partition)
+| build | layout | result |
+|-------|--------|--------|
+| var1 | name field +0x40 filler 'A' (no NUL) | write OK, listing unchanged (mount cache! then no effect) |
+| var2 | name="bootcontrolb.tkn" (16B) | **LISTED** after reboot-bootloader -> readdir control proven |
+| A2 | rec@2/3 (0x400/0x600), files@16/17, crc2=data crc | **"Partition Read Error"** (walk rejected) |
+| C | rec@16->file@17, rec@18->file@19, crc2=data crc | parses OK but entries NOT listed |
+| C2 | same + crc2 patched | parses OK, still not listed |
+
+### Mount internals (do_mount 0x8f65bea0)
+- reads block 0 (512B), checks `u16 [0] == 0xfade`, **CRC: `zlib.crc32(superblock[0:92]) == u32 @+0x5c`** (stock
+  sb crc 0x7e0af6e4 verified intact in our builds - mount CRC passes).
+- copies 96B of superblock into fs object; fields: `[+4] u16 = 0x200` (total blocks!), `[+6] u16 = 9`
+  (reserved/data start?), `[+3] u8` shift; computes bitmap word count from (total-reserved).
+- **block bitmap**: `vtnvfs_set_bits` 0x8f65a838 / get_bits; mount `blk_read` + `inode_blk_cmd` 0x8f65b940.
+  => FS tracks ALLOCATED blocks in a bitmap; our added files' blocks are NOT marked allocated, which
+  explains "parses but not listed" (readdir iterates allocated nodes only / statfs count wrong).
+- record walk appears sequential: rec@1 -> file@13 (span 3) -> next rec@16 ... ; records in 2..12
+  area rejected (A2) => do NOT place records in the low record area; chain after files.
+- Listing special-case: entry name == **"hlos_signature.tkn"** (string @0x8f6dfdbc) triggers
+  `parse_hlos_signature_token` -> token read -> verify -> **sig -> is_sig_valid -> OVERFLOW** in the
+  SAME `oem info` call. Prints: "Key Name: %s" / "Sig Tag Override: %s" (0x8f6dfde8/df f8).
+- `crc2` @dirent+0x18 = `zlib.crc32(file data)` (verified: stock zeros(0x440) -> 0xc6fe8258).
+- `get_sig_path` = `"%s/%s%s"` with dirname + **".sig." prefix + basename** => sig file =
+  **".sig.hlos_signature.tkn"** (hidden from token listing, leading dot).
+
+### NEXT (bitmap step)
+1. Read `vtnvfs_set_bits`/`get_bits` (0x8f65a838/…) + superblock struct to learn bitmap location+format
+   (fields [+4]=total blocks 512, [+6]=9 reserved, [+8..] root inode?).
+2. Mark our blocks allocated in the bitmap (records 2/3 + files 16/17) OR find the correct record
+   area, then rebuild -> entries must appear in `Debug Tokens (perm)`.
+3. Once listed, the listing itself triggers the read -> overflow (crash expected with s_len=251,
+   canary+saved regs+LR range sp+144..sp+395).
+
 ## Artifacts
 - `/tmp/opencode/meta_test.img`, `/tmp/opencode/meta_rcause2.img`,
   `/tmp/opencode/hwi_store.bin`, `/tmp/opencode/meta_flash.log`

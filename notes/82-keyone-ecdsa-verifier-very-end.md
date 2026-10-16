@@ -58,6 +58,25 @@ Method struct = entry with ptrs at +0x18/+0x1c/+0x20/+0x24/+0x28/+0x30/+0x40/
 - Next: disasm tail of eca_fppm3CombParamsCreate → table install → +0x5c fn name
   → audit (length/byte-order/early-out).
 
+## Update — method-slot hunt (state)
+
+- eca_fppm3CombParamsCreate does NOT install method pointers (no str to +0x18..+0x60).
+- The methods come from the GLOBAL CTX: husw_ECDSANoHashVerify does `ldr fp,[r0,#8]`
+  (r0 = ctx) and calls fp+0x18..+0x60. So fp = the registered crypto-provider
+  method struct; find where [ctx+8] is filled (provider registration at init).
+- Two candidate data regions found:
+  - 0x8f7ba0d0.. region: 16-byte entries {0, 0x20000, tag, fn} — fn in 4th dword
+    (e.g. 0x8f6b0ae8 eca_fppm3CombParamsCreate, 0x8f6b0d84 eca_fppm3DoubleJacobian,
+    0x8f6b1034 eca_linMultX). Looks like a registration/class table (tag field).
+  - 0x8f7a4dc8..0x8f7a5200: dense husw_* fn pointers (provider API table;
+    @0x8f7a5168 window: +0x40 = eca_linMultX, +0x4c = husw_ECCsecp256r1_2ParamsCreate).
+- eca/fp method family (from table): eca_fppm3DoubleJacobian 0x8f6b0d84,
+  eca_linMultX 0x8f6b1034, eca_pointSet 0x8f6b1354, ff_IsEqual17 0x8f6b1714,
+  ff_IsEqual8 0x8f6b1740, ff_IsZero17 0x8f6b18f4, fp_*Red* 0x8f6b1b60-0x8f6b20dc,
+  fp_InvGen 0x8f6b2240, eca_fpDouble 0x8f6b675c, eca_fpCombMult 0x8f6b70d8.
+- Next: resolve the provider struct base (where [ctx+8] points) → read +0x5c →
+  audit (likely an ff_IsEqual*/fp_ reduction-compare). Then the probe.
+
 ## Probe rig (ready)
 
 - `tools/auth_canary.py` — 0x2000 hs → 0x1016 nvinit (nvitem/signit/[+0x120]=1)

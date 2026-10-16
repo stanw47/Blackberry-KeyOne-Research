@@ -375,6 +375,25 @@ Next diagnostics (cheapest first):
    "Key Name:" line for parse-stage info.
 4. Try sig file as second inode in a different record slot vs same record.
 
+## 13. A13 (real token body) + read-path isolation (session 83 cont.)
+
+- A13: token file body = `hlos_sig\0` + `key_name = "DBGSIG-bbb100usa"\ntag_override = "sprint"\n`
+  (token entries are `name = "value"` per dbg_token_find_entry_value: strstr + quote pairs).
+  Result: still `hlos_signature.tkn` + **"Key names unavailable"**, getvar "NONE", no hang.
+  => the failure is in the READ/VERIFY (not the token's entry lookup).
+- is_image_mfi 0x8f658d08 and is_dev_insecure 0x8f658d40 are both **hardcoded `mov r0,#0`** =>
+  requires_verification for .tkn is always TRUE (verify mandatory).
+- Suspect now: `get_file_len` (0x8f658c48) returns **u16 stat[0]** and `get_nv_rec` bails on
+  `len<=0`; the listing (get_dirlist/readdir) has NO size check, so a broken size propagation
+  would show exactly this split (listed but unreadable). Need to read the validate's stat
+  filling (the 8f65c7c0..8f65c8e8 block in validate_and_copy 0x8f65c3f8) to see which dirent
+  field lands at stat+76 (the size the getstats returns).
+- Next tests queued:
+  1. Read validate_and_copy stat-fill block; compare with my dirent fields (size @0x10 etc.).
+  2. Try dirent size = span*512 (stock-style 0x440) with data padded, in case the size is
+     expected to match the span rather than the exact data length.
+  3. Fresh-boot `fastboot getvar hlos_signature.tkn` after any fix (publish re-parses).
+
 ## Artifacts
 - `/tmp/opencode/meta_test.img`, `/tmp/opencode/meta_rcause2.img`,
   `/tmp/opencode/hwi_store.bin`, `/tmp/opencode/meta_flash.log`

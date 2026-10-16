@@ -276,6 +276,43 @@ Next: decode inode_blk_cmd + the mount tail (0x8f65c190+ bitmap path) to find th
 enumeration; then rebuild and the listing itself fires the token read -> verify ->
 is_sig_valid overflow (sig blob with s_len=251 already built and ready).
 
+## 10. vtnvfs inode system fully decoded (session 83 cont.) — readdir filter still open
+
+### Structures (all verified against stock + live tests)
+- **Record = inode table**: `{u64 bitmap @0x0 (bit b = inode!), u32 magic 0xf0deed0f @0x8,
+  entry[b] = {u32 id, u16 block, u16 span} @0xc+b*8}`, block trailer @0x1FC =
+  zlib.crc32(block[0:0x1FC]). Stock slot1: bitmap 0x2 (inode 1) -> entry[1] @0x14 = {id,13,3}.
+- **`inode_add` (0x8f65b4d4)**: copies the 8B entry into a 16B slot of a 1040-byte node
+  (`node = {u64 slot bitmap @0/4, 64 slots x16B @+12}`; slot = {entry8B, next4B @8,
+  record u8 @0xc, bit u8 @0xe}), links into id-hash buckets `[fs+0x47c + ((id^id>>5)&31)*4]`,
+  then `set_bits(block bitmap fs+0x510, 512, entry.block, entry.span)`. NO rejection path.
+- **`inode_blk_cmd` (0x8f65b940)**: mount's walk. Non-cmd2: bound = u16 sb[+6] (=9) ->
+  walks record blocks 1..9 (r6+1); cache = [fs+0x50c] (2 blocks read at mount, blk_read
+  (fs,buf,count,block)); magic + trailer checked; cmd 1 = for each set bitmap bit b ->
+  inode_add(entry @ rec+0xc+b*8, record index, bit).
+- **`blk_read(fs, buf, count, block)`** — confirmed via size=count<<9, offset=block<<9.
+- **dirent CRC range = `[4 : 4+44+round4(namelen))`** (validate computes 44+round4(len));
+  for len=16 -> [4:64) (matches stock); for len=18 -> [4:68); len=23 -> [4:72).
+  (My earlier fixed [4:0x40) was only correct for 16-byte names!)
+- `vtnvfs_readdir_drv` (0x8f65d52c): iterates id-hash buckets [fs+0x478..0x4f8); per slot ->
+  validate_and_copy (reads entry.block via blk_read, 48B "stat" overlaps stack args;
+  compares block[0] vs block[8] first, then CRC path at 0x8f65c5c0, type/name checks);
+  name len byte = dirent[5], type = dirent[4]=0x33.
+
+### Live tests this session (all restored after; device fine)
+var2 rename root (16B name) -> LISTED. A8 (bits 2/3 in slots 2/3), A9 (bits 1,2,3 in slot1
+record), A10 (A9 + corrected CRC range [4:68)/[4:72)) -> all "None Found".
+=> walk+inode_add execute without error, yet new inodes never surface in the listing.
+Remaining suspects: readdir's per-slot validate (0x8f65c458 vs 0x8f65c518 branch:
+block[0]==block[8]? then [r6+20]&16 test) OR slot layout offset (16B slots at +12, my
+entries maybe need matching record/bit fields / the 0x47c vs 0x478 table start).
+
+### Next
+1. Decode validate_and_copy's two branches (0x8f65c458 vs 0x8f65c518) exactly - likely the
+   gate that drops our slots from readdir.
+2. Consider populating a slot via matching the stock's exact slot bytes (entry+next+record+bit).
+3. Overflow payload is ready (token dirent + ".sig.hlos_signature.tkn" blob, s_len=251).
+
 ## Artifacts
 - `/tmp/opencode/meta_test.img`, `/tmp/opencode/meta_rcause2.img`,
   `/tmp/opencode/hwi_store.bin`, `/tmp/opencode/meta_flash.log`

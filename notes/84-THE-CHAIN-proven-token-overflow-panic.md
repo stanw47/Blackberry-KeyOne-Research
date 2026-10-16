@@ -80,6 +80,42 @@ Replicate §2 on Priv (AAW068, AAC603 backup) `perm`/`nvuser` vtnvfs (256KB temp
 recon / imggen). Priv TZ may have the LCG canary fallback (deterministic!) — check first.
 Then: canary leak hunt / ROP -> set_bootmode -> factory mode.
 
+## 7. FINAL KEYONE STATE (end of session) + Priv continuity
+
+### KeyOne 1164118297 — the casualty
+- Power-cycle -> stuck at BlackBerry/Android splash; **both primary and backup chains
+  inaccessible** (no fastboot). Confirms: every boot path reads /perm/hlos_signature.tkn ->
+  is_sig_valid overflow -> canary mismatch -> `_panic` (infinite loop; splash frozen).
+- Recovery only via: EDL (ruled out) or service; if any fastboot prompt ever appears:
+  `fastboot flash boot meta_perm_stock.img` (stock perm; hash 5978fd6a99b88f15...).
+- Storage-level state is intact (SBL1/ABL/partitions) — this is a trigger loop, not corruption.
+
+### Priv continuity (testbed for the exploit — device alive, in fastboot)
+- Priv = MSM8994, AAW068/venicena; partition map via `/sys/class/block/*/uevent` PARTNAME:
+  **p22=perm (256KB — same as imggen template), p23=nvuser, p11=blog, p6=prdid, p8=boardid.**
+- The full chain EXISTS in the Priv aboot (strings): `/perm/hlos_signature.tkn`, `.sig.`,
+  `DBGSIG-venicena`, `hlos_signature debug token not valid...`, `scm_call for random failed !!!`.
+- **Canary = likely deterministic!** `get_canary` 0xf916e3c: scm_random -> on failure `rand()`;
+  `rand` 0xf971798 = LCG `seed = seed*12345 + 17`, seed global 0xfa63058, **single caller**
+  (the canary fallback!) => if the 2016 TZ lacks the random service, canary = first rand() =
+  **0x11**, every boot. Canary global = **0xfa81584**.
+- `is_sig_valid` 0xf953e80 region: **same frame as KeyOne** (r @sp+76, s @sp+144,
+  canary @sp+212, saved LR @sp+248) => the A14 payload maps 1:1.
+- Command whitelist (35 entries): flash:/erase:/download: = type 1; getvar:/reboot/oem info = 0;
+  oem set-product-mode = 1; oem securewipe = 0 (flag).
+- **PRIV BLOCKER: type-1 flash gate = BBSECFW "devicepassword"** (0xf93e8bc -> 0xf93e730 ->
+  0xf93f348; reads `devicepassword` record from nvuser; ALL type-1 commands denied on the
+  primary incl. set-product-mode). Partition table (56 entries): boot/system/oem = type 0x1,
+  perm/nvuser/blog = 0xa.
+- **Probe image built**: /tmp/opencode/meta_priv_probe.img (token `DBGSIG-venicena` + sig blob
+  with items {len,type,payload} + **s_len=69, canary byte0 = 0x11** -> tests "canary==17"
+  with only 1/256 risk if TZ RNG works).
+- Backup chain (AAC603, abootr.img in /tmp/opencode/priv_bc/): same whitelist + strings;
+  is_sig_valid refactored (worker 0xaf250 — different frame, so only the PRIMARY takes the
+  smash). Plan: boot backup (Power+Mute) -> `oem set-product-mode` gate test -> if OKAY:
+  `fastboot flash boot meta_priv_probe.img` -> `fastboot reboot` -> primary boots -> canary
+  test (alive = canary 17 = WIN; panic = RNG works).
+
 ## Artifacts
 - /tmp/opencode/meta_perm_A14.img (the trigger), meta_perm_stock.img (repair),
   perm_A12/A13/A14.img, hwi_store.bin, note 83 (full session log).

@@ -82,13 +82,19 @@ Then: canary leak hunt / ROP -> set_bootmode -> factory mode.
 
 ## 7. FINAL KEYONE STATE (end of session) + Priv continuity
 
-### KeyOne 1164118297 — the casualty
-- Power-cycle -> stuck at BlackBerry/Android splash; **both primary and backup chains
-  inaccessible** (no fastboot). Confirms: every boot path reads /perm/hlos_signature.tkn ->
-  is_sig_valid overflow -> canary mismatch -> `_panic` (infinite loop; splash frozen).
-- Recovery only via: EDL (ruled out) or service; if any fastboot prompt ever appears:
+### KeyOne 1164118297 — CONFIRMED LOST (end of session)
+- State: stuck at BlackBerry / "Powered by Android" splash; LED blink pattern 101111; never
+  reaches Android; **no USB enumeration at all; no power-off via any button combination**.
+- Diagnosis: the ABL panics before USB/fastboot init (every path reads the token -> overflow
+  -> `_panic`). Button combos (incl. backup-chain entry) are handled by the hung ABL => dead.
+  Not storage corruption; the CPU just spins in the panic loop (screen on = battery drains).
+- Final options (all effectively out): EDL (no valid programmer / user constraint), board-level
+  force (no tools), service. If any fastboot prompt ever appears:
   `fastboot flash boot meta_perm_stock.img` (stock perm; hash 5978fd6a99b88f15...).
-- Storage-level state is intact (SBL1/ABL/partitions) — this is a trigger loop, not corruption.
+- **LESSON FOR ALL FUTURE TARGETS: the trigger is UNCONDITIONAL at every boot (fastboot
+  publish + image verify both read /perm/hlos_signature.tkn) => the first wrong guess bricks
+  the device exactly like this. On any next device: (1) verify the recovery path (backup chain
+  entry + its flash gate) BEFORE triggering; (2) prefer a canary leak over a guess.**
 
 ### Priv continuity (testbed for the exploit — device alive, in fastboot)
 - Priv = MSM8994, AAW068/venicena; partition map via `/sys/class/block/*/uevent` PARTNAME:

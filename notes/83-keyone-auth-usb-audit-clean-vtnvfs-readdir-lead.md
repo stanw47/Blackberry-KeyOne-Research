@@ -313,6 +313,42 @@ entries maybe need matching record/bit fields / the 0x47c vs 0x478 table start).
 2. Consider populating a slot via matching the stock's exact slot bytes (entry+next+record+bit).
 3. Overflow payload is ready (token dirent + ".sig.hlos_signature.tkn" blob, s_len=251).
 
+## 11. A12: FILE LISTED LIVE + full read-chain decoded (session 83 cont.)
+
+### THE BREAKTHROUGH (A12, live)
+- **Root cause of every failed build: the file data must be at `dirent+0x30+round4(namelen)`**
+  (4-byte aligned) and `crc2 = zlib.crc32(data)` over THAT placement. For 16-byte names this
+  equals +0x40 (why the stock matched my old formula); for 18/23-byte names it's +0x44/+0x48.
+- A12 (slot1 record bitmap 0xE = inodes 1,2,3; entries at 0xc+b*8; ids = FNV-1(name);
+  files @16/@17 with aligned data) -> **`oem info` now prints:**
+  `Debug Tokens (perm): hlos_signature.tkn` + `Key names unavailable`
+  => the entry is listed AND the listing's special-case ran `parse_hlos_signature_token`
+  (read attempted). No panic -> verify failed before `is_sig_valid`.
+
+### Read chain fully decoded (all links verified)
+- `get_file_len` 0x8f658c48: dirname->fd via `bbry_get_nv_fd`, basename -> `vtnvfs_getstats`
+  -> u16 size.
+- `get_nv_rec` 0x8f6582ac: size -> malloc -> `read_nv` -> `read_nvram(dirname,basename,buf,len)`
+  0x8f6584e4 -> fd by dirname -> `vtnvfs_read` -> `vtnvfs_read_drv` 0x8f65dc70:
+  `hash_name` -> `get_file_fmdata(ctx,hash,buf,len,mode=2)` -> validate mode-2 copies data from
+  `block+48+round4(namelen)` into the buffer, len = min(560+round4,size) crc2-checked.
+- `hash_name` 0x8f65b104: FNV (h*=0x01000193 then h^=byte), first char '/' rejected,
+  len<=126; **file id = FNV1(name)** verified on stock (0x95e7ddbf) and nvuser (0xbe8d59d9).
+- lookup bucket = `(hash ^ hash>>5) & 31` -> `[fs+0x47c+i*4]`; `get_file_fmdata` compares
+  slot entry id == hash then validates (mode-1 name compare).
+- `get_sig_path` = dirname + "/" + ".sig." + basename (hidden dot file).
+- `nvverify_verify` checks: sig[0]=0xae104a54, sig[4]<=2, sig[8]=size-12, DBGSIG key via
+  get_dev_id (bsi fields -> "bbb100usa"), parse_response {L1,L2} + items 5/6, then is_sig_valid.
+- `__stack_chk_fail` 0x8f679cb4 -> `_panic` (infinite loop) => any overflow = hard hang.
+
+### Where it currently stops
+A12's parse printed "Key names unavailable" = pk name NULL = either (a) read/verify failed
+(sig lookup or the checks) or (b) read succeeded but token body lacks "key_name" entry.
+Token body was garbage ("TOKEN"); next builds must use a real token body
+(`state = "development"`, `key_name = ...`) to disambiguate via the printed Key Name line.
+Also try: sig file at a second inode in a DIFFERENT record slot (bit in slot2) vs same record;
+check the sig lookup by adding a `.sig.hlos_signature.tkn` ALSO as the ONLY file (swap test).
+
 ## Artifacts
 - `/tmp/opencode/meta_test.img`, `/tmp/opencode/meta_rcause2.img`,
   `/tmp/opencode/hwi_store.bin`, `/tmp/opencode/meta_flash.log`

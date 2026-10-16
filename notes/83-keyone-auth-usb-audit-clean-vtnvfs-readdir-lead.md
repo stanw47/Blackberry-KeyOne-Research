@@ -242,6 +242,40 @@ dirent      block 13 0x1a00 : {crc, len=0x10 @+4, id 0x95e7ddbf @+8, u16 13 @+0x
 3. Once listed, the listing itself triggers the read -> overflow (crash expected with s_len=251,
    canary+saved regs+LR range sp+144..sp+395).
 
+## 9. Full crafting test matrix (session 83 cont.) — FS enumeration still unsolved
+
+Confirmed format facts (all verified byte-exact against stock perm.img):
+- superblock CRC = zlib.crc32(sb[0:92]) == u32 @+0x5c
+- record block trailer (u32 @+0x1FC) = zlib.crc32(block[0:0x1FC])
+- dirent: [4]=0x33 (type), **[5]=namelen** (NOT [4]!), name @+0x30 (variable len),
+  crc @+0 = zlib.crc32(entry[4:0x40]), crc2 @+0x18 = zlib.crc32(file data),
+  data inline after name
+- record: {[0]=2, [8]=0xf0deed0f, [0x14]=id (links dirent [8]), [0x18]=file block u16,
+  [0x1a]=3}, trailer @+0x1FC
+- slots: blocks 1..9 = 9 records (stock uses slot1 -> file block 13; slot2..9 = empty
+  templates {0,0,magic,...}); reserved = blocks 0..9; files from block 10+
+- sig file name = ".sig." + basename (leading dot, hidden from listing)
+
+Live tests (all after fresh reboot-bootloader mount; perm partition; device unharmed):
+| # | build | result |
+|---|-------|--------|
+| var2 | rename root dirent -> "bootcontrolb.tkn" | **LISTED** (only working case) |
+| A2/A3/A4/A5/A6 | records in slots 2/3 + files @16/17 (various [0],len,const3,trailers) | not listed (A2: "Partition Read Error") |
+| clone | byte-exact clone of slot1's file @16, only name/id/block changed | not listed |
+| child | root data (0x1a40) = u16 16 + child dirent block @16, root crc2/crc updated | not listed |
+
+=> The mount loads ONLY the stock slot1/file13 (root). Adding slot records or child
+entries is NOT picked up by the readdir. Remaining unknowns:
+- `inode_blk_cmd` 0x8f65b940 (mount's root inode processing — the actual file enumeration)
+- mount walk: which structure lists files (records vs root data vs bitmap);
+  superblock [8..0x2f] = root inode struct (stock: id 0x545a5769 + zeros)
+- statfs: [22] = total blocks (512), [24] = total - popcount(bitmap), [26] = max free run
+- readdir node table = fs+0x470 (16 nodes); nodes built at mount
+
+Next: decode inode_blk_cmd + the mount tail (0x8f65c190+ bitmap path) to find the exact
+enumeration; then rebuild and the listing itself fires the token read -> verify ->
+is_sig_valid overflow (sig blob with s_len=251 already built and ready).
+
 ## Artifacts
 - `/tmp/opencode/meta_test.img`, `/tmp/opencode/meta_rcause2.img`,
   `/tmp/opencode/hwi_store.bin`, `/tmp/opencode/meta_flash.log`

@@ -77,6 +77,27 @@ Method struct = entry with ptrs at +0x18/+0x1c/+0x20/+0x24/+0x28/+0x30/+0x40/
 - Next: resolve the provider struct base (where [ctx+8] points) → read +0x5c →
   audit (likely an ff_IsEqual*/fp_ reduction-compare). Then the probe.
 
+## RESOLVED + AUDITED — the very end is CLEAN (lane closed)
+
+- `hu_GlobalCtxCreateDefault` 0x8f6ba038 → `hu_GlobalCtxCreate` 0x8f6bf460
+  (ctx holds sym/asym/hash/misc/authenc/rng/mac alg tables).
+- Field object for the order field: `ff_fp521r1OrderParamsCreate` 0x8f6a7984.
+  GOT base (fixed): `add r3,pc,r3` @0x8f6a7998 (PC 0x8f6a79a0) + 0xfd414
+  = **0x8f7a4db4**. Slot map (obj+off ← GOT):
+  +0x14 ff_ConvertToOS, +0x18 fp_CarryRedGen, +0x1c fp_BorrowRedGen,
+  +0x20 fp_WordRedGen, +0x24 fp_SizeRedGen, +0x28 fp_FinalRedGen,
+  +0x30 fp_InvGen, +0x34 fp_AddGen, +0x38 fp_SubGen, +0x40 fp_MulGen,
+  +0x4c ff_IsZero17, +0x50 ff_IsUnity17, +0x54 ff_SetToZero17,
+  +0x58 ff_SetToUnity17, **+0x5c ff_IsEqual17 0x8f6b1714**, +0x60 ff_Copy17.
+- Final compare = `ff_IsEqual17` = fp_SubGen (X − r, order field mod n) then
+  `ff_IsZero17` 0x8f6b18f4. Audited in full: 17-word zero test, nonzero-word
+  paths return 0, all-zero returns 1 (last word: `rsbs r0,word16,#1`).
+  **CORRECT — no length/truncation/early-out/byte-order bug.**
+- VERDICT: the KeyOne ECDSA verification is airtight end-to-end. No forged
+  (r,s) is possible via impl bugs. This lane is CLOSED (negative, with evidence).
+- Remaining lanes: nv_sig parser overflow (canary TZ-random), other pre-auth
+  parsers (guarded), kernel-root lane, boot0 data route (WP), Priv mux (blocked).
+
 ## Probe rig (ready)
 
 - `tools/auth_canary.py` — 0x2000 hs → 0x1016 nvinit (nvitem/signit/[+0x120]=1)

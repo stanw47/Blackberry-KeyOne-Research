@@ -142,6 +142,18 @@ Then: canary leak hunt / ROP -> set_bootmode -> factory mode.
 - Beyond recovery: BB-signed programmer => full eMMC R/W + peek/poke (bkerler's public
   `009720e1..._fhprg_peek.bin` MSM8953) => the HWI/vendor-CMD56 route to the actual unlock.
 
+## 9. FINAL VERDICT (2026-10-17): KeyOne closed
+
+- User constraints: screwdrivers only (glued back = cannot open), no shopping, no deep-flash
+  cable; zero community reports of EDL entry on BBB100. Battery-drain/charger cycle = same
+  panic (no charger screen; charge path boots the same ABL).
+- => KeyOne unrecoverable under these constraints. Keep the unit (donor parts + the unique
+  asset: the BB-signed 8953 firehose on disk means the EDL recovery exists the day a
+  boardview/TP photo surfaces or tools become available). Not worth further effort now.
+- Research value banked in this note + notes/83. Continue on the Priv (alive) when ready:
+  backup-chain entry (Power+Mute works there), BBSECFW flash-gate test, then the canary probe
+  (/tmp/opencode/meta_priv_probe.img).
+
 ## Artifacts
 - /tmp/opencode/meta_perm_A14.img (the trigger), meta_perm_stock.img (repair),
   perm_A12/A13/A14.img, hwi_store.bin, note 83 (full session log).

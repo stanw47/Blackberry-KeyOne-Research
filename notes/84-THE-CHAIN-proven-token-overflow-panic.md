@@ -122,6 +122,26 @@ Then: canary leak hunt / ROP -> set_bootmode -> factory mode.
   `fastboot flash boot meta_priv_probe.img` -> `fastboot reboot` -> primary boots -> canary
   test (alive = canary 17 = WIN; panic = RNG works).
 
+## 8. THE RECOVERY PATH (EDL) — kit is ready, entry is physical
+
+- **The BB-signed MSM8953 firehose is ON DISK**: `recon/2026-10-02/autoloader/ABL766 -
+  Hn03/target/product/bbry_qc8953/qcbc/fh/prog_emmc_firehose_8953_ddr.mbn` (340KB ELF; from
+  the official retail package -> signed with the retail PBL key; supports program/read/erase).
+- Plus: `gpt/rawprogram0.xml` (full QFIL plan incl. perm @ start_byte_hex 0x1998b000),
+  bkerler/edl tool (priv-research/edl/edl), repair image /tmp/opencode/meta_perm_stock.img.
+- **Entry = hardware-only** (software dload compiled out — notes/39 + priv log §15):
+  1. Teardown (iFixit/vrm24 guides; also disconnects battery = the only way to power it off).
+  2. Short **eMMC CMD (or DAT0) to GND** during power-up -> flash init fails -> PBL falls
+     to EDL (05c6:9008). Or short the JTAG-sense points (`pbl_sense_jtag_test_points_edl`).
+  3. `edl --loader prog_emmc_firehose_8953_ddr.mbn printgpt` -> `edl w perm <stock img>` ->
+     reboot -> alive (userdata untouched).
+- **The KeyOne's exact TP locations are NOT publicly documented** (searched 2026-10-17:
+  XDA thread 4207481 dead-end, no BBB100 TP photos; SaintPepsi/claude-on-blackberry#4 is the
+  analogous open PCB-mapping task for the Priv). Research targets: repair-forum boardview
+  files, CrackBerry thread, or probe the Toshiba eMMC CMD ball -> via (multimeter).
+- Beyond recovery: BB-signed programmer => full eMMC R/W + peek/poke (bkerler's public
+  `009720e1..._fhprg_peek.bin` MSM8953) => the HWI/vendor-CMD56 route to the actual unlock.
+
 ## Artifacts
 - /tmp/opencode/meta_perm_A14.img (the trigger), meta_perm_stock.img (repair),
   perm_A12/A13/A14.img, hwi_store.bin, note 83 (full session log).
